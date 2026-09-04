@@ -4,13 +4,9 @@
 
 ## Descripción
 
-Este es un proyecto de programación con enfoque **frontend**, basado en el desarrollo de una tienda virtual de productos de hardware para computadoras gamer.
-
-La página permitirá a los usuarios **explorar, buscar y visualizar productos** como procesadores, placas de video, memorias RAM, almacenamiento, fuentes de alimentación y otros componentes utilizados para el armado y actualización de computadoras.
+Este es un proyecto de programación con enfoque **frontend**, basado en el desarrollo de una tienda virtual de productos de hardware para computadoras.
 
 El objetivo principal del proyecto es desarrollar una interfaz **rápida, intuitiva y fácil de utilizar**, donde el usuario pueda recorrer el catálogo, consultar la información de los productos y seleccionar aquellos que sean de su interés.
-
-El sitio estará orientado principalmente a **personas interesadas en tecnología, hardware y videojuegos**, tanto usuarios que buscan comprar componentes para armar una computadora como aquellos que desean actualizar su equipo.
 
 Desde el frontend se priorizará la **experiencia de usuario**, la organización visual de los productos, la navegación entre las distintas secciones y la adaptación de la página a diferentes tamaños de pantalla.
 
@@ -50,14 +46,14 @@ Los commits deberán utilizar una estructura clara que permita identificar rápi
 
 Ejemplos:
 
-<<<<<<< HEAD
-| Descripción                  |
-| ---------------------------- |
-| Agregar tarjeta de producto  |
-| Corregir diseño del carrito  |
-| Ajustar estilos del catálogo |
-| Reorganizar componentes      |
-| Actualizar documentación     |
+| Tipo     <<<<<<< HEAD
+| Descripciónn                 |
+| -------- | ---------------------------- |
+| feat     | Agregar tarjeta de producto  |
+| fix      | Corregir diseño del carrito  |
+| style    | Ajustar estilos del catálogo |
+| refactor | Reorganizar componentes      |
+| docs     | Actualizar documentación     |
 =======
 | Tipo     | Descripciónn                 |
 | -------- | ---------------------------- |
