@@ -4,29 +4,44 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TerraByte</title>
+    <link rel="stylesheet" href="../css/login.css" />
   </head>
   <body>
     <header>
-      <nav style="background-color: black">
-        <a href="./home.html"
-          ><img src="../assets/Logo.png" alt="Logo" width="200pc"
-        /></a>
-        <a href="./home.html"
-          ><label name="home" style="color: white">Home</label></a
+      <nav>
+        <a href="./home.html">
+          <img class="nav-imagen" src="../assets/Logo.png" alt="Logo" />
+        </a>
+        <button
+          class="nav-button"
+          onclick="window.location.href = './home.html'"
         >
-        <a href="./aboutus.html"
-          ><label name="about" style="color: white">About us</label></a
+          <label name="home" class="nav-label">Home</label>
+        </button>
+        <button
+          class="nav-button"
+          onclick="window.location.href = './aboutus.html'"
         >
-        <a href="./products.html"
-          ><label name="products" style="color: white">Products</label></a
+          <label name="about" class="nav-label">About us</label>
+        </button>
+        <button
+          class="nav-button"
+          onclick="window.location.href = './products.html'"
         >
-        <a href="./services.html"
-          ><label name="services" style="color: white">Services</label></a
+          <label name="products" class="nav-label">Products</label>
+        </button>
+        <button
+          class="nav-button"
+          onclick="window.location.href = './services.html'"
         >
-        <a href=""><input type="search" placeholder="Buscar" /></a>
-        <a href="./login.html" href=""
-          ><label name="login" style="color: white">Log In</label></a
-        >
+          <label name="services" class="nav-label">Services</label>
+        </button>
+        <button class="nav-button">
+          <input type="search" placeholder="Buscar" />
+        </button>
+        <a class="nav-button" onclick="window.location.href = './login.html'">
+          <label name="login" class="nav-label">Log In</label>
+        </a>
       </nav>
     </header>
 
@@ -43,15 +58,15 @@
       </form>
     </main>
 
-    <footer style="background-color: black">
-      <label name="home" style="color: white"
+    <footer>
+      <label name="home" class="footer-text"
         >Copyright © 2026 TerraByte Team. All rights reserved.</label
       >
-      <a style="color: white" href="" target="_blank">Privacy Policy</a>
-      <a style="color: white" href="" target="_blank">Terms of Use</a>
-      <a style="color: white" href="" target="_blank">Sales and Refunds</a>
-      <a style="color: white" href="" target="_blank">Legal</a>
-      <a style="color: white" href="" target="_blank">Site Map</a>
+      <a class="footer-text" href="" target="_blank">Privacy Policy</a>
+      <a class="footer-text" href="" target="_blank">Terms of Use</a>
+      <a class="footer-text" href="" target="_blank">Sales and Refunds</a>
+      <a class="footer-text" href="" target="_blank">Legal</a>
+      <a class="footer-text" href="" target="_blank">Site Map</a>
     </footer>
   </body>
 </html>
