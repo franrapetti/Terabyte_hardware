@@ -39,7 +39,7 @@
         <button class="nav-button">
           <input type="search" placeholder="Buscar" />
         </button>
-        <a class="nav-button" onclick="window.location.href = './login.html'">
+        <a class="nav-button" href="./login.html">
           <label name="login" class="nav-label">Log In</label>
         </a>
       </nav>
@@ -54,118 +54,74 @@
           En nuestra página puede ver productos de las siguientes marcas.
         </h2>
       </div>
+
       <div class="brands">
         <div class="brands-track">
-          <img
-            class="brand-image"
-            src="../assets/products/fractal.svg"
-            alt="Fractal"
-          />
-          <img
-            class="brand-image"
-            src="../assets/products/jonsbo.png"
-            alt="Jonsbo"
-          />
-          <img
-            class="brand-image"
-            src="../assets/products/Nvidia.png"
-            alt="Nvidia"
-          />
-          <img
-            class="brand-image"
-            src="../assets/products/Rosewill.png"
-            alt="Rosewill"
-          />
-          <img
-            class="brand-image"
-            src="../assets/products/Seagate.png"
-            alt="Seagate"
-          />
-          <img
-            class="brand-image"
-            src="../assets/products/Western_Digital.svg"
-            alt="Western Digital"
-          />
-          <img
-            class="brand-image"
-            src="../assets/products/fractal.svg"
-            alt=""
-            aria-hidden="true"
-          />
-          <img
-            class="brand-image"
-            src="../assets/products/jonsbo.png"
-            alt=""
-            aria-hidden="true"
-          />
-          <img
-            class="brand-image"
-            src="../assets/products/Nvidia.png"
-            alt=""
-            aria-hidden="true"
-          />
-          <img
-            class="brand-image"
-            src="../assets/products/Rosewill.png"
-            alt=""
-            aria-hidden="true"
-          />
-          <img
-            class="brand-image"
-            src="../assets/products/Seagate.png"
-            alt=""
-            aria-hidden="true"
-          />
-          <img
-            class="brand-image"
-            src="../assets/products/Western_Digital.svg"
-            alt=""
-            aria-hidden="true"
-          />
+          <img class="brand-image" src="../assets/products/fractal.svg" alt="Fractal" />
+          <img class="brand-image" src="../assets/products/jonsbo.png" alt="Jonsbo" />
+          <img class="brand-image" src="../assets/products/Nvidia.png" alt="Nvidia" />
+          <img class="brand-image" src="../assets/products/Rosewill.png" alt="Rosewill" />
+          <img class="brand-image" src="../assets/products/Seagate.png" alt="Seagate" />
+          <img class="brand-image" src="../assets/products/Western_Digital.svg" alt="Western Digital" />
+          
+          <img class="brand-image" src="../assets/products/fractal.svg" alt="Fractal" />
+          <img class="brand-image" src="../assets/products/jonsbo.png" alt="Jonsbo" />
+          <img class="brand-image" src="../assets/products/Nvidia.png" alt="Nvidia" />
+          <img class="brand-image" src="../assets/products/Rosewill.png" alt="Rosewill" />
+          <img class="brand-image" src="../assets/products/Seagate.png" alt="Seagate" />
+          <img class="brand-image" src="../assets/products/Western_Digital.svg" alt="Western Digital" />
+          
+          <img class="brand-image" src="../assets/products/fractal.svg" alt="Fractal" />
+          <img class="brand-image" src="../assets/products/jonsbo.png" alt="Jonsbo" />
+          <img class="brand-image" src="../assets/products/Nvidia.png" alt="Nvidia" />
+          <img class="brand-image" src="../assets/products/Rosewill.png" alt="Rosewill" />
+          <img class="brand-image" src="../assets/products/Seagate.png" alt="Seagate" />
+          <img class="brand-image" src="../assets/products/Western_Digital.svg" alt="Western Digital" />
         </div>
       </div>
 
-      <grid class="products">
-        <img
-          class="products-arrow"
-          src="../assets/products/arrow-left.png"
-          alt="Flecha Izquierda"
-          width="25pc"
-        />
-        <div class="products-item">
-          <h5>NAS QNAP TS-264-8G-US $1.669.000</h5>
-          <h6>1.669.000</h6>
-          <img
-            src="../assets/products/Producto 1.png"
-            alt="Producto 1"
-            width="150pc"
-          />
+      <!-- Carrusel de productos: grilla horizontal con flechas -->
+      <section class="products" aria-label="Productos destacados">
+        <button class="products-arrow" id="products-prev" type="button" aria-label="Anterior">
+          <img src="../assets/products/arrow-left.png" alt="Flecha Izquierda" />
+        </button>
+
+        <div class="products-viewport">
+          <div class="products-track" id="products-track">
+            <article class="products-item">
+              <img src="../assets/products/Producto 1.png" alt="Producto 1" />
+              <h5>NAS QNAP TS-264-8G-US</h5>
+              <h6>$1.669.000</h6>
+              <div class="products-button-section">
+                <button class="products-button">Ver Más</button>
+                <button class="products-button">Comprar</button>
+              </div>
+            </article>
+            <article class="products-item">
+              <img src="../assets/products/Producto 2.png" alt="Producto 2" />
+              <h5>NAS QNAP TS-264-8G-US</h5>
+              <h6>$1.734.000</h6>
+              <div class="products-button-section">
+                <button class="products-button">Ver Más</button>
+                <button class="products-button">Comprar</button>
+              </div>
+            </article>
+            <article class="products-item">
+              <img src="../assets/products/Producto 3.png" alt="Producto 3" />
+              <h5>Servidor NAS Asustor Lockerstor</h5>
+              <h6>$1.800.000</h6>
+              <div class="products-button-section">
+                <button class="products-button">Ver Más</button>
+                <button class="products-button">Comprar</button>
+              </div>
+            </article>
+          </div>
         </div>
-        <div class="products-item">
-          <h5>NAS QNAP TS-264-8G-US</h5>
-          <h6>$1.669.000</h6>
-          <img
-            src="../assets/products/Producto 2.png"
-            alt="Producto 2"
-            width="150pc"
-          />
-        </div>
-        <div class="products-item">
-          <h5>Servidor NAS Asustor Lockerstor</h5>
-          <h6>$1.800.000</h6>
-          <img
-            src="../assets/products/Producto 3.png"
-            alt="Producto 3"
-            width="150pc"
-          />
-        </div>
-        <img
-          class="products-arrow"
-          src="../assets/products/arrow-right.png"
-          alt="Flecha Derecha"
-          width="25pc"
-        />
-      </grid>
+
+        <button class="products-arrow" id="products-next" type="button" aria-label="Siguiente">
+          <img src="../assets/products/arrow-right.png" alt="Flecha Derecha" />
+        </button>
+      </section>
     </main>
 
     <footer>
@@ -178,5 +134,43 @@
       <a class="footer-text" href="" target="_blank">Legal</a>
       <a class="footer-text" href="" target="_blank">Site Map</a>
     </footer>
+
+    <script>
+      (function () {
+        const track = document.getElementById("products-track");
+        const prev = document.getElementById("products-prev");
+        const next = document.getElementById("products-next");
+        let index = 0;
+
+        function perView() {
+          const v = getComputedStyle(track).getPropertyValue("--per-view");
+          return parseInt(v, 10) || 1;
+        }
+
+        function update() {
+          const total = track.children.length;
+          const max = Math.max(0, total - perView());
+          index = Math.min(index, max);
+
+          const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+          const step = track.children[0].offsetWidth + gap;
+          track.style.transform = "translateX(" + -index * step + "px)";
+
+          prev.disabled = index === 0;
+          next.disabled = index >= max;
+        }
+
+        prev.addEventListener("click", function () {
+          index = Math.max(0, index - 1);
+          update();
+        });
+        next.addEventListener("click", function () {
+          index += 1;
+          update();
+        });
+        window.addEventListener("resize", update);
+        update();
+      })();
+    </script>
   </body>
 </html>
