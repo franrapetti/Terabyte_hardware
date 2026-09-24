@@ -14,6 +14,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: linear-gradient(to right, #1b1b1b, #140b1a);
 }
 
 header {
@@ -43,6 +44,7 @@ nav {
   font-size: 1rem;
   border: none;
   margin: 1rem;
+  transition: all 0.2s ease-in-out;
 }
 .nav-button:hover {
   font-weight: bolder;
@@ -71,4 +73,64 @@ footer {
   font-size: 1rem;
   border: none;
   margin: 1rem;
+}
+
+.titulo {
+  color: white;
+  justify-self: center;
+}
+
+.titulo-item {
+  display: flex;
+  justify-self: center;
+}
+
+.brands {
+  display: flex;
+  overflow: hidden;
+  border-color: black;
+  border-radius: 1rem;
+  background-color: #435058;
+  width: 100%;
+}
+
+.brands-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: deslizar 25s linear infinite;
+}
+
+.brand-image {
+  flex: 0 0 auto;
+  max-height: 15rem;
+  max-width: 6rem;
+  margin: 1.5rem;
+  object-fit: contain;
+}
+
+@keyframes deslizar {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.products {
+  display: flex;
+  background-color: #435058;
+}
+
+.products-item {
+  justify-self: center;
+  border-radius: 1rem;
+  margin: 0.5rem;
+  width: 100%;
+  background-color: #d9d9d9;
+}
+
+.products-arrow:hover {
+  size: 100rem;
 }
