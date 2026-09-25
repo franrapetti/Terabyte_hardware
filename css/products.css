@@ -108,10 +108,6 @@ footer {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
 }
 
-.brands:hover .brands-track {
-  animation-play-state: paused;
-}
-
 .brand-image {
   flex: 0 0 auto;
   max-height: 15rem;
@@ -174,7 +170,9 @@ footer {
   align-items: center;
   gap: 0.5rem;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
-  transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+  transition:
+    box-shadow 0.2s ease-in-out,
+    transform 0.2s ease-in-out;
 }
 
 .products-item:hover {
@@ -228,7 +226,9 @@ footer {
   border: none;
   padding: 0;
   cursor: pointer;
-  transition: transform 0.2s ease-in-out, filter 0.2s ease-in-out;
+  transition:
+    transform 0.2s ease-in-out,
+    filter 0.2s ease-in-out;
   filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.4));
 }
 
