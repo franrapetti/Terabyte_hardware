@@ -1,5 +1,6 @@
 main {
   flex: 1;
+  padding: 2rem clamp(1rem, 4vw, 3rem) 3rem;
 }
 
 .titulo {
@@ -65,6 +66,7 @@ main {
   border-radius: 1rem;
   background-color: #435058;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  width: 100%;
 }
 
 .products-viewport {
@@ -182,5 +184,31 @@ main {
 @media (max-width: 700px) {
   .products-track {
     --per-view: 1;
+  }
+
+  .titulo h1 {
+    font-size: 1.8rem;
+  }
+
+  .titulo h2 {
+    font-size: 1.1rem;
+  }
+
+  .products {
+    gap: 0.25rem;
+    padding: 0.75rem 0.25rem;
+  }
+
+  .products-item {
+    padding: 0.75rem;
+  }
+
+  .products-arrow img {
+    width: 1.5rem;
+  }
+
+  .products-button-section {
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }
