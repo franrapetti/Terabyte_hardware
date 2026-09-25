@@ -1,26 +1,3 @@
-* {
-  box-sizing: border-box;
-}
-
-html,
-body {
-  width: 100%;
-  min-height: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background: linear-gradient(to right, #1b1b1b, #140b1a);
-}
-
-header {
-  margin-bottom: 4rem;
-}
-
 main {
   flex: 1;
   display: flex;
@@ -28,58 +5,6 @@ main {
   align-items: center;
   gap: 2rem;
   padding: 2rem 3rem 3rem;
-}
-
-nav {
-  background-color: black;
-  top: 0;
-  width: 100%;
-  position: fixed;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  z-index: 10;
-}
-
-.nav-label {
-  color: white;
-}
-
-.nav-button {
-  background-color: transparent;
-  font-size: 1rem;
-  border: none;
-  margin: 1rem;
-  transition: all 0.2s ease-in-out;
-}
-.nav-button:hover {
-  font-weight: bolder;
-  cursor: pointer;
-}
-.nav-imagen {
-  width: 10rem;
-  align-self: flex-start;
-  margin-right: 1rem;
-}
-
-footer {
-  background-color: black;
-  bottom: 0;
-  width: 100%;
-  position: static;
-  margin-top: auto;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.footer-text {
-  color: white;
-  background-color: transparent;
-  font-size: 1rem;
-  border: none;
-  margin: 1rem;
 }
 
 /* Secciones de contenido (Somos TerraByte, Visión, Misión, Valores) */
@@ -90,7 +15,9 @@ main > div {
   background-color: #435058;
   padding: 1.5rem 2.5rem;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
-  transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+  transition:
+    box-shadow 0.2s ease-in-out,
+    transform 0.2s ease-in-out;
 }
 
 main > div:hover {
@@ -99,14 +26,12 @@ main > div:hover {
 }
 
 main h1 {
-  color: white;
   font-size: 1.8rem;
   margin: 0 0 1rem;
   text-align: center;
 }
 
 main p {
-  color: #d9d9d9;
   font-size: 1rem;
   line-height: 1.6;
   margin: 0;

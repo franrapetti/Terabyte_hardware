@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TerraByte</title>
+    <link rel="stylesheet" href="../css/global.css" />
     <link rel="stylesheet" href="../css/products.css" />
   </head>
   <body>
@@ -37,11 +38,14 @@
           <label name="services" class="nav-label">Services</label>
         </button>
         <button class="nav-button">
-          <input type="search" placeholder="Buscar" />
+          <input class="nav-search" type="search" placeholder=" ⌕ Buscar" />
         </button>
-        <a class="nav-button" href="./login.html">
+        <button
+          class="nav-button"
+          onclick="window.location.href = './login.html'"
+        >
           <label name="login" class="nav-label">Log In</label>
-        </a>
+        </button>
       </nav>
     </header>
 
@@ -57,32 +61,109 @@
 
       <div class="brands">
         <div class="brands-track">
-          <img class="brand-image" src="../assets/products/fractal.svg" alt="Fractal" />
-          <img class="brand-image" src="../assets/products/jonsbo.png" alt="Jonsbo" />
-          <img class="brand-image" src="../assets/products/Nvidia.png" alt="Nvidia" />
-          <img class="brand-image" src="../assets/products/Rosewill.png" alt="Rosewill" />
-          <img class="brand-image" src="../assets/products/Seagate.png" alt="Seagate" />
-          <img class="brand-image" src="../assets/products/Western_Digital.svg" alt="Western Digital" />
-          
-          <img class="brand-image" src="../assets/products/fractal.svg" alt="Fractal" />
-          <img class="brand-image" src="../assets/products/jonsbo.png" alt="Jonsbo" />
-          <img class="brand-image" src="../assets/products/Nvidia.png" alt="Nvidia" />
-          <img class="brand-image" src="../assets/products/Rosewill.png" alt="Rosewill" />
-          <img class="brand-image" src="../assets/products/Seagate.png" alt="Seagate" />
-          <img class="brand-image" src="../assets/products/Western_Digital.svg" alt="Western Digital" />
-          
-          <img class="brand-image" src="../assets/products/fractal.svg" alt="Fractal" />
-          <img class="brand-image" src="../assets/products/jonsbo.png" alt="Jonsbo" />
-          <img class="brand-image" src="../assets/products/Nvidia.png" alt="Nvidia" />
-          <img class="brand-image" src="../assets/products/Rosewill.png" alt="Rosewill" />
-          <img class="brand-image" src="../assets/products/Seagate.png" alt="Seagate" />
-          <img class="brand-image" src="../assets/products/Western_Digital.svg" alt="Western Digital" />
+          <img
+            class="brand-image"
+            src="../assets/products/fractal.svg"
+            alt="Fractal"
+          />
+          <img
+            class="brand-image"
+            src="../assets/products/jonsbo.png"
+            alt="Jonsbo"
+          />
+          <img
+            class="brand-image"
+            src="../assets/products/Nvidia.png"
+            alt="Nvidia"
+          />
+          <img
+            class="brand-image"
+            src="../assets/products/Rosewill.png"
+            alt="Rosewill"
+          />
+          <img
+            class="brand-image"
+            src="../assets/products/Seagate.png"
+            alt="Seagate"
+          />
+          <img
+            class="brand-image"
+            src="../assets/products/Western_Digital.svg"
+            alt="Western Digital"
+          />
+
+          <img
+            class="brand-image"
+            src="../assets/products/fractal.svg"
+            alt="Fractal"
+          />
+          <img
+            class="brand-image"
+            src="../assets/products/jonsbo.png"
+            alt="Jonsbo"
+          />
+          <img
+            class="brand-image"
+            src="../assets/products/Nvidia.png"
+            alt="Nvidia"
+          />
+          <img
+            class="brand-image"
+            src="../assets/products/Rosewill.png"
+            alt="Rosewill"
+          />
+          <img
+            class="brand-image"
+            src="../assets/products/Seagate.png"
+            alt="Seagate"
+          />
+          <img
+            class="brand-image"
+            src="../assets/products/Western_Digital.svg"
+            alt="Western Digital"
+          />
+
+          <img
+            class="brand-image"
+            src="../assets/products/fractal.svg"
+            alt="Fractal"
+          />
+          <img
+            class="brand-image"
+            src="../assets/products/jonsbo.png"
+            alt="Jonsbo"
+          />
+          <img
+            class="brand-image"
+            src="../assets/products/Nvidia.png"
+            alt="Nvidia"
+          />
+          <img
+            class="brand-image"
+            src="../assets/products/Rosewill.png"
+            alt="Rosewill"
+          />
+          <img
+            class="brand-image"
+            src="../assets/products/Seagate.png"
+            alt="Seagate"
+          />
+          <img
+            class="brand-image"
+            src="../assets/products/Western_Digital.svg"
+            alt="Western Digital"
+          />
         </div>
       </div>
 
       <!-- Carrusel de productos: grilla horizontal con flechas -->
       <section class="products" aria-label="Productos destacados">
-        <button class="products-arrow" id="products-prev" type="button" aria-label="Anterior">
+        <button
+          class="products-arrow"
+          id="products-prev"
+          type="button"
+          aria-label="Anterior"
+        >
           <img src="../assets/products/arrow-left.png" alt="Flecha Izquierda" />
         </button>
 
@@ -118,7 +199,12 @@
           </div>
         </div>
 
-        <button class="products-arrow" id="products-next" type="button" aria-label="Siguiente">
+        <button
+          class="products-arrow"
+          id="products-next"
+          type="button"
+          aria-label="Siguiente"
+        >
           <img src="../assets/products/arrow-right.png" alt="Flecha Derecha" />
         </button>
       </section>
