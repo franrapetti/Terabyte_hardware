@@ -14,6 +14,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: linear-gradient(to right, #1b1b1b, #140b1a);
 }
 
 header {
@@ -22,6 +23,8 @@ header {
 
 main {
   flex: 1;
+  display: flex;
+  padding: 0 3rem;
 }
 
 nav {
@@ -32,6 +35,7 @@ nav {
   justify-content: center;
   align-items: center;
   display: flex;
+  z-index: 10;
 }
 
 .nav-label {
@@ -43,6 +47,7 @@ nav {
   font-size: 1rem;
   border: none;
   margin: 1rem;
+  transition: all 0.2s ease-in-out;
 }
 .nav-button:hover {
   font-weight: bolder;
@@ -71,4 +76,56 @@ footer {
   font-size: 1rem;
   border: none;
   margin: 1rem;
+}
+
+.hero {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  width: 100%;
+}
+
+.hero-text {
+  width: 50%;
+}
+
+.hero-image {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-image img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+main h1,
+main p {
+  color: white;
+}
+
+main h1 {
+  font-size: 3.5rem;
+  line-height: 1.1;
+}
+
+main button {
+  background-color: transparent;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  padding: 0.5rem 1.5rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+  transition: all 0.1s ease-in-out;
+}
+
+main button:hover {
+  font-weight: bolder;
+  cursor: pointer;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.35);
 }
