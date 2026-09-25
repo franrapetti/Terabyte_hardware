@@ -7,20 +7,24 @@ main {
   padding: 2rem 3rem 3rem;
 }
 
-/* Secciones de contenido (Somos TerraByte, Visión, Misión, Valores) */
-main > div {
+.info-container {
+  display: flex;
+  align-content: space-around;
+}
+
+.info-item {
   width: 100%;
-  max-width: 60rem;
+  font-size: larger;
   border-radius: 1rem;
   background-color: #435058;
   padding: 1.5rem 2.5rem;
+  margin: 1rem;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
   transition:
     box-shadow 0.2s ease-in-out,
     transform 0.2s ease-in-out;
 }
-
-main > div:hover {
+.info-item:hover {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
   transform: translateY(-2px);
 }
