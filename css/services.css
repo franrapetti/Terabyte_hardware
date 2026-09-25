@@ -22,8 +22,7 @@ main {
   display: flex;
   flex-direction: column;
   align-content: space-evenly;
-  margin: 4rem;
-  margin-top: 0;
+  margin: 0;
 }
 .fieldset-label {
   color: white;

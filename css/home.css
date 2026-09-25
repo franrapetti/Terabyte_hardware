@@ -38,7 +38,7 @@ main p {
 }
 
 main h1 {
-  font-size: 3.5rem;
+  font-size: clamp(2.25rem, 4vw, 3.5rem);
   line-height: 1.1;
 }
 
@@ -57,4 +57,39 @@ main button:hover {
   font-weight: bolder;
   cursor: pointer;
   box-shadow: 0 3px 7px rgba(0, 0, 0, 0.35);
+}
+
+@media (max-width: 800px) {
+  main {
+    padding: 2rem 1.5rem 3rem;
+  }
+
+  .hero {
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .hero-text,
+  .hero-image {
+    width: 100%;
+  }
+
+  .hero-image img {
+    max-width: 34rem;
+  }
+}
+
+@media (max-width: 480px) {
+  main {
+    padding: 1.5rem 1rem 2rem;
+  }
+
+  main h1 {
+    font-size: clamp(2rem, 10vw, 2.75rem);
+  }
+
+  .hero-text p br {
+    display: none;
+  }
 }
