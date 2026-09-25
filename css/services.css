@@ -14,6 +14,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: linear-gradient(to right, #1b1b1b, #140b1a);
 }
 
 header {
@@ -22,6 +23,11 @@ header {
 
 main {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem 3rem 3rem;
 }
 
 nav {
@@ -32,6 +38,7 @@ nav {
   justify-content: center;
   align-items: center;
   display: flex;
+  z-index: 10;
 }
 
 .nav-label {
@@ -43,6 +50,7 @@ nav {
   font-size: 1rem;
   border: none;
   margin: 1rem;
+  transition: all 0.2s ease-in-out;
 }
 .nav-button:hover {
   font-weight: bolder;
@@ -63,6 +71,7 @@ footer {
   justify-content: center;
   align-items: center;
   display: flex;
+  flex-wrap: wrap;
 }
 
 .footer-text {
@@ -71,4 +80,102 @@ footer {
   font-size: 1rem;
   border: none;
   margin: 1rem;
+}
+
+/* Título e intro */
+main h1 {
+  color: white;
+  font-size: 2.5rem;
+  margin: 0;
+  text-align: center;
+}
+
+main > p {
+  color: #d9d9d9;
+  font-size: 1rem;
+  text-align: center;
+  max-width: 40rem;
+  margin: 0;
+}
+
+/* Formulario */
+main form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 45rem;
+}
+
+fieldset {
+  border: none;
+  border-radius: 1rem;
+  background-color: #435058;
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+fieldset:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  transform: translateY(-2px);
+}
+
+legend {
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 0 0.5rem;
+}
+
+fieldset label {
+  color: #d9d9d9;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+fieldset input[type="radio"],
+fieldset input[type="checkbox"] {
+  accent-color: #1b1b1b;
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
+
+fieldset br {
+  content: "";
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+/* Botón de submit */
+main form button[type="submit"] {
+  align-self: center;
+  background-color: transparent;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  padding: 0.5rem 1.5rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+  transition: all 0.1s ease-in-out;
+}
+
+main form button[type="submit"]:hover {
+  font-weight: bolder;
+  cursor: pointer;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.35);
+}
+
+@media (max-width: 700px) {
+  main {
+    padding: 1.5rem 1rem 2rem;
+  }
+
+  main h1 {
+    font-size: 1.8rem;
+  }
+
+  fieldset {
+    padding: 1rem 1.25rem;
+  }
 }

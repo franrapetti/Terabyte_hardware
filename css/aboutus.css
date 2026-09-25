@@ -14,6 +14,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: linear-gradient(to right, #1b1b1b, #140b1a);
 }
 
 header {
@@ -22,6 +23,11 @@ header {
 
 main {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem 3rem 3rem;
 }
 
 nav {
@@ -32,6 +38,7 @@ nav {
   justify-content: center;
   align-items: center;
   display: flex;
+  z-index: 10;
 }
 
 .nav-label {
@@ -43,6 +50,7 @@ nav {
   font-size: 1rem;
   border: none;
   margin: 1rem;
+  transition: all 0.2s ease-in-out;
 }
 .nav-button:hover {
   font-weight: bolder;
@@ -63,6 +71,7 @@ footer {
   justify-content: center;
   align-items: center;
   display: flex;
+  flex-wrap: wrap;
 }
 
 .footer-text {
@@ -71,4 +80,62 @@ footer {
   font-size: 1rem;
   border: none;
   margin: 1rem;
+}
+
+/* Secciones de contenido (Somos TerraByte, Visión, Misión, Valores) */
+main > div {
+  width: 100%;
+  max-width: 60rem;
+  border-radius: 1rem;
+  background-color: #435058;
+  padding: 1.5rem 2.5rem;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+main > div:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  transform: translateY(-2px);
+}
+
+main h1 {
+  color: white;
+  font-size: 1.8rem;
+  margin: 0 0 1rem;
+  text-align: center;
+}
+
+main p {
+  color: #d9d9d9;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+main ul {
+  margin: 0;
+  padding-left: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+main li {
+  color: #d9d9d9;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 700px) {
+  main {
+    padding: 1.5rem 1rem 2rem;
+  }
+
+  main > div {
+    padding: 1.25rem 1.5rem;
+  }
+
+  main h1 {
+    font-size: 1.4rem;
+  }
 }
