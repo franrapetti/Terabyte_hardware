@@ -21,20 +21,27 @@ header {
   position: sticky;
   top: 0;
   z-index: 10;
+  background-color: #000000;
 }
 
 nav {
-  background-color: black;
-  width: 100%;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 10rem minmax(18rem, 1fr) auto;
+  grid-template-areas:
+    "brand search accounts"
+    "categories categories secondary";
   align-items: center;
-  display: flex;
-  min-height: 4rem;
-  padding: 0.25rem 1rem;
+  gap: 0.35rem 1.5rem;
+  width: min(100%, 90rem);
+  min-height: 5.5rem;
+  margin: 0 auto;
+  padding: 0.65rem clamp(1rem, 3vw, 2.5rem) 0;
 }
 
-.nav-label {
-  color: white;
+.nav-brand {
+  grid-area: brand;
+  display: flex;
+  align-items: center;
 }
 
 .theme-toggle {
@@ -43,7 +50,7 @@ nav {
   width: 2.5rem;
   height: 2.5rem;
   place-items: center;
-  margin-left: 0.5rem;
+  margin: 0;
   border: 1px solid #666;
   border-radius: 0.5rem;
   background: transparent;
@@ -80,25 +87,150 @@ html[data-theme="light"] .theme-icon-moon {
 }
 
 .nav-search {
-  border-radius: 0.5rem;
-  height: 1.75rem;
+  grid-area: search;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  height: 3.1rem;
+  padding: 0.3rem;
+  border: 2px solid #d9d9d9;
+  border-radius: 0.65rem;
+  background-color: #ffffff;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.25);
 }
 
-.nav-button {
-  background-color: transparent;
+.nav-search > svg {
+  flex: 0 0 auto;
+  width: 1.35rem;
+  height: 1.35rem;
+  margin: 0 0.65rem;
+  fill: none;
+  stroke: #435058;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.nav-search input {
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  padding: 0.25rem 0.4rem;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #1b1b1b;
+  font: inherit;
   font-size: 1rem;
-  border: none;
-  margin: 1rem;
-  transition: all 0.2s ease-in-out;
 }
-.nav-button:hover {
-  font-weight: bolder;
+
+.nav-search input::placeholder {
+  color: #687177;
+}
+
+.nav-search button {
+  flex: 0 0 auto;
+  align-self: stretch;
+  min-width: 5.5rem;
+  border: 0;
+  border-radius: 0.45rem;
+  background: #435058;
+  color: white;
+  font: inherit;
+  font-weight: 700;
   cursor: pointer;
+  transition: background-color 0.2s ease;
 }
+
+.nav-search button:hover {
+  background: #596870;
+}
+
+.nav-account-links {
+  grid-area: accounts;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.nav-account-link {
+  display: inline-flex;
+  min-height: 2.55rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0.85rem;
+  border: 1px solid #77838a;
+  border-radius: 0.4rem;
+  background: #435058;
+  color: #ffffff;
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.nav-account-link:hover,
+.nav-account-link:focus-visible {
+  border-color: #aab5ba;
+  background: #596870;
+}
+
+.nav-categories {
+  grid-area: categories;
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2.5vw, 2rem);
+  min-height: 2.8rem;
+  border-top: 1px solid #363636;
+}
+
+.nav-categories a,
+.nav-secondary-tools a {
+  color: #f3f3f3;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.nav-categories a:hover,
+.nav-categories a:focus-visible,
+.nav-secondary-tools a:hover,
+.nav-secondary-tools a:focus-visible {
+  color: #b8c4ca;
+}
+
+.nav-secondary-tools {
+  grid-area: secondary;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  min-height: 2.8rem;
+  border-top: 1px solid #363636;
+}
+
+.nav-secondary-tools .nav-secondary {
+  color: #b7bdc0;
+  font-weight: 400;
+}
+
 .nav-imagen {
-  width: 10rem;
+  width: 9.5rem;
   display: block;
-  margin-right: 1rem;
+}
+
+.nav-imagen-light {
+  display: none;
+}
+
+html[data-theme="light"] .nav-imagen-dark {
+  display: none;
+}
+
+html[data-theme="light"] .nav-imagen-light {
+  display: block;
 }
 
 .mobile-menu {
@@ -127,67 +259,30 @@ footer {
 
 @media (max-width: 1050px) {
   nav {
-    justify-content: space-between;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "brand accounts"
+      "search search"
+      "categories secondary";
+    gap: 0.65rem 1rem;
+    padding: 0.65rem 1.25rem 0;
   }
 
-  nav > .nav-button {
-    display: none;
+  .nav-account-links {
+    justify-self: end;
   }
 
-  .mobile-menu {
-    display: block;
-    position: relative;
-    color: white;
+  .nav-imagen {
+    width: 9rem;
   }
 
-  .mobile-menu summary {
-    cursor: pointer;
-    list-style: none;
-    padding: 0.6rem 0.85rem;
-    border: 1px solid #777;
-    border-radius: 0.5rem;
+  .nav-search {
+    height: 3rem;
   }
 
-  .mobile-menu summary::-webkit-details-marker {
-    display: none;
-  }
-
-  .mobile-menu summary::after {
-    content: " ☰";
-  }
-
-  .mobile-menu-links {
-    position: absolute;
-    right: 0;
-    top: calc(100% + 0.5rem);
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-    width: min(18rem, calc(100vw - 2rem));
-    padding: 0.75rem;
-    background: #222;
-    border: 1px solid #555;
-    border-radius: 0.5rem;
-    box-shadow: 0 8px 20px #0009;
-  }
-
-  .mobile-menu-links a {
-    color: white;
-    text-decoration: none;
-    padding: 0.65rem;
-    border-radius: 0.25rem;
-  }
-
-  .mobile-menu-links a:hover,
-  .mobile-menu-links a:focus-visible {
-    background: #435058;
-  }
-
-  .mobile-menu-links input {
-    width: 100%;
-    min-height: 2.5rem;
-    margin-top: 0.4rem;
-    padding: 0.5rem;
+  .nav-categories,
+  .nav-secondary-tools {
+    min-height: 2.6rem;
   }
 }
 
@@ -247,9 +342,38 @@ html[data-theme="light"] footer {
   box-shadow: 0 2px 10px rgba(24, 32, 36, 0.12);
 }
 
-html[data-theme="light"] .nav-label,
+html[data-theme="light"] header {
+  background-color: #ffffff;
+  box-shadow: 0 2px 10px rgba(24, 32, 36, 0.12);
+}
+
 html[data-theme="light"] .footer-text {
   color: #273137;
+}
+
+html[data-theme="light"] .nav-categories,
+html[data-theme="light"] .nav-secondary-tools {
+  border-top-color: #d5dade;
+}
+
+html[data-theme="light"] .nav-categories a,
+html[data-theme="light"] .nav-secondary-tools a {
+  color: #273137;
+}
+
+html[data-theme="light"] .nav-secondary-tools .nav-secondary {
+  color: #59656b;
+}
+
+html[data-theme="light"] .nav-account-link {
+  border-color: #66747b;
+  background-color: #435058;
+  color: #ffffff;
+}
+
+html[data-theme="light"] .nav-search {
+  border-color: #c5cdd1;
+  box-shadow: 0 3px 12px rgba(24, 32, 36, 0.12);
 }
 
 html[data-theme="light"] .theme-toggle {
@@ -271,30 +395,6 @@ html[data-theme="light"] main li {
   color: #273137;
 }
 
-html[data-theme="light"] .mobile-menu {
-  color: #273137;
-}
-
-html[data-theme="light"] .mobile-menu summary {
-  border-color: #aeb6bb;
-}
-
-html[data-theme="light"] .mobile-menu-links {
-  background: #ffffff;
-  border-color: #c6cdd1;
-  box-shadow: 0 8px 20px rgba(24, 32, 36, 0.18);
-}
-
-html[data-theme="light"] .mobile-menu-links a {
-  color: #273137;
-}
-
-html[data-theme="light"] .mobile-menu-links a:hover,
-html[data-theme="light"] .mobile-menu-links a:focus-visible {
-  background: #e2e6e8;
-}
-
-html[data-theme="light"] .mobile-menu-links input,
 html[data-theme="light"] .nav-search {
   border: 1px solid #bdc5c9;
   background-color: #f4f6f7;
@@ -368,15 +468,74 @@ html[data-theme="light"] .field-group input:focus {
   box-shadow: 0 0 0 3px rgba(54, 65, 71, 0.15);
 }
 
-@media (max-width: 1050px) {
+@media (max-width: 480px) {
+  nav {
+    padding-right: 0.85rem;
+    padding-left: 0.85rem;
+  }
+
+  .nav-imagen {
+    width: clamp(7.5rem, 36vw, 9rem);
+  }
+
+  .nav-account-links {
+    gap: 0.35rem;
+  }
+
+  .nav-account-link {
+    min-height: 2.3rem;
+    padding: 0.4rem 0.55rem;
+    font-size: 0.76rem;
+  }
+
+  .nav-search button {
+    min-width: 4.25rem;
+    font-size: 0.85rem;
+  }
+
+  .nav-search > svg {
+    margin-right: 0.25rem;
+    margin-left: 0.4rem;
+  }
+
+  .nav-categories {
+    gap: 0.75rem;
+  }
+
+  .nav-secondary-tools {
+    gap: 0.55rem;
+  }
+
+  .nav-categories a,
+  .nav-secondary-tools a {
+    font-size: 0.78rem;
+  }
+
   .theme-toggle {
-    margin-left: 0.75rem;
+    width: 2.35rem;
+    height: 2.35rem;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 360px) {
+  nav {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
   .nav-imagen {
-    width: clamp(7.5rem, 34vw, 10rem);
-    margin-right: 0.25rem;
+    width: 7.5rem;
+  }
+
+  .nav-categories {
+    gap: 0.5rem;
+  }
+
+  .nav-secondary-tools {
+    gap: 0.35rem;
+  }
+
+  .nav-categories a,
+  .nav-secondary-tools a {
+    font-size: 0.72rem;
   }
 }
