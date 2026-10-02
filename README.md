@@ -46,6 +46,15 @@ Los commits deberán utilizar una estructura clara que permita identificar rápi
 
 Ejemplos:
 
+| Tipo     <<<<<<< HEAD
+| Descripciónn                 |
+| -------- | ---------------------------- |
+| feat     | Agregar tarjeta de producto  |
+| fix      | Corregir diseño del carrito  |
+| style    | Ajustar estilos del catálogo |
+| refactor | Reorganizar componentes      |
+| docs     | Actualizar documentación     |
+=======
 | Tipo     | Descripciónn                 |
 | -------- | ---------------------------- |
 | feat     | Agregar tarjeta de producto  |
@@ -53,6 +62,7 @@ Ejemplos:
 | style    | Ajustar estilos del catálogo |
 | refactor | Reorganizar componentes      |
 | docs     | Actualizar documentación     |
+>>>>>>> parent of 0a25785 (Eliminacion de columna de tabla de ejemplos)
 
 ### Pull Requests
 

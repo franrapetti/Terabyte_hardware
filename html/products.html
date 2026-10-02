@@ -4,74 +4,189 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TerraByte</title>
+    <link rel="stylesheet" href="../css/global.css" />
+    <link rel="stylesheet" href="../css/products.css" />
+    <script src="../javascript/theme.js" defer></script>
   </head>
   <body>
     <header>
-      <nav style="background-color: black">
-        <img src="../assets/Logo.png" alt="Logo" width="200pc" />
-        <label name="home" style="color: white">Home</label>
-        <label name="about" style="color: white">About us</label>
-        <label name="products" style="color: white">Products</label>
-        <label name="services" style="color: white">Services</label>
-        <input type="search" placeholder="Buscar" />
-        <label name="login" style="color: white">Log In</label>
+      <nav>
+        <a class="nav-brand" href="./home.html" aria-label="TerraByte, inicio">
+          <img class="nav-imagen nav-imagen-dark" src="../assets/Logo.png" alt="TerraByte" />
+          <img class="nav-imagen nav-imagen-light" src="../assets/Logo_claro.png" alt="TerraByte" />
+        </a>
+        <div class="nav-search" role="search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8" /><path d="m16 16 5 5" /></svg>
+          <input type="search" aria-label="Buscar productos" placeholder="¿Qué estás buscando?" />
+          <button type="button" aria-label="Buscar">Buscar</button>
+        </div>
+        <div class="nav-account-links">
+          <a class="nav-account-link" href="./login.html">Ingresar</a>
+          <a class="nav-account-link" href="./register.html">Registrarse</a>
+        </div>
+        <div class="nav-categories">
+          <a href="./products.html">Productos</a>
+          <a href="./services.html">Armá tu NAS</a>
+        </div>
+        <div class="nav-secondary-tools">
+          <a class="nav-secondary" href="./aboutus.html">Nosotros</a>
+        <button class="theme-toggle" type="button" aria-label="Cambiar a modo claro" title="Cambiar a modo claro">
+          <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" /><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" /></svg>
+          <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.1A8.5 8.5 0 0 1 8.9 3.8 8.5 8.5 0 1 0 20.2 15.1Z" /></svg>
+        </button>
+        </div>
       </nav>
     </header>
 
-    <h1>La tecnología que estas buscando, al alcance de tu mano.</h1>
-    <h2>En nuestra página puede ver productos de las siguientes marcas.</h2>
-    <fieldset style="border-color: black; border-radius: 10px">
-      <img src="../assets/products/fractal.svg" alt="Fractal" width="200pc" />
-      <img src="../assets/products/jonsbo.png" alt="Jonsbo" width="200pc" />
-      <img src="../assets/products/Nvidia.png" alt="Nvidia" width="200pc" />
-      <img src="../assets/products/Rosewill.png" alt="Rosewill" width="250pc" />
-      <img src="../assets/products/Seagate.png" alt="Seagate" width="150pc" />
-      <img
-        src="../assets/products/Western_Digital.svg"
-        alt="Western Digital"
-        width="300pc"
-      />
-    </fieldset>
+    <main class="main">
+      <div class="titulo">
+        <h1 class="titulo-item">
+          La tecnología que estas buscando, al alcance de tu mano.
+        </h1>
+        <h2 class="titulo-item">
+          En nuestra página puede ver productos de las siguientes marcas.
+        </h2>
+      </div>
 
-    <div style="background-color: #435058">
-      <img
-        src="../assets/products/arrow-left.png"
-        alt="Flecha Izquierda"
-        width="25pc"
-      />
-      <div style="background-color: #d9d9d9">
-        <h5>NAS QNAP TS-264-8G-US $1.669.000</h5>
-        <h6>1.669.000</h6>
-        <img
-          src="../assets/products/Producto 1.png"
-          alt="Producto 1"
-          width="150pc"
-        />
+      <div class="brands">
+        <div class="brands-track">
+          <img
+            class="brand-image"
+            src="../assets/products/fractal.svg"
+            alt="Fractal"
+          />
+          <img
+            class="brand-image"
+            src="../assets/products/jonsbo.png"
+            alt="Jonsbo"
+          />
+          <img
+            class="brand-image"
+            src="../assets/products/Nvidia.png"
+            alt="Nvidia"
+          />
+          <img
+            class="brand-image"
+            src="../assets/products/Rosewill.png"
+            alt="Rosewill"
+          />
+          <img
+            class="brand-image"
+            src="../assets/products/Seagate.png"
+            alt="Seagate"
+          />
+          <img
+            class="brand-image"
+            src="../assets/products/Western_Digital.svg"
+            alt="Western Digital"
+          />
+
+          <img
+            class="brand-image"
+            src="../assets/products/fractal.svg"
+            alt="Fractal"
+          />
+          <img
+            class="brand-image"
+            src="../assets/products/jonsbo.png"
+            alt="Jonsbo"
+          />
+          <img
+            class="brand-image"
+            src="../assets/products/Nvidia.png"
+            alt="Nvidia"
+          />
+          <img
+            class="brand-image"
+            src="../assets/products/Rosewill.png"
+            alt="Rosewill"
+          />
+          <img
+            class="brand-image"
+            src="../assets/products/Seagate.png"
+            alt="Seagate"
+          />
+          <img
+            class="brand-image"
+            src="../assets/products/Western_Digital.svg"
+            alt="Western Digital"
+          />
+
+          <img
+            class="brand-image"
+            src="../assets/products/fractal.svg"
+            alt="Fractal"
+          />
+          <img
+            class="brand-image"
+            src="../assets/products/jonsbo.png"
+            alt="Jonsbo"
+          />
+          <img
+            class="brand-image"
+            src="../assets/products/Nvidia.png"
+            alt="Nvidia"
+          />
+          <img
+            class="brand-image"
+            src="../assets/products/Rosewill.png"
+            alt="Rosewill"
+          />
+          <img
+            class="brand-image"
+            src="../assets/products/Seagate.png"
+            alt="Seagate"
+          />
+          <img
+            class="brand-image"
+            src="../assets/products/Western_Digital.svg"
+            alt="Western Digital"
+          />
+        </div>
       </div>
-      <div style="background-color: #d9d9d9">
-        <h5>NAS QNAP TS-264-8G-US</h5>
-        <h6>$1.669.000</h6>
-        <img
-          src="../assets/products/Producto 2.png"
-          alt="Producto 2"
-          width="150pc"
-        />
-      </div>
-      <div style="background-color: #d9d9d9">
-        <h5>Servidor NAS Asustor Lockerstor</h5>
-        <h6>$1.800.000</h6>
-        <img
-          src="../assets/products/Producto 3.png"
-          alt="Producto 3"
-          width="150pc"
-        />
-      </div>
-      <img
-        src="../assets/products/arrow-right.png"
-        alt="Flecha Derecha"
-        width="25pc"
-      />
-    </div>
+
+      <!-- Carrusel de productos: grilla horizontal con flechas -->
+      <section class="products" aria-label="Productos destacados">
+        <button
+          class="products-arrow"
+          id="products-prev"
+          type="button"
+          aria-label="Anterior"
+        >
+          <img src="../assets/products/arrow-left.png" alt="Flecha Izquierda" />
+        </button>
+
+        <div class="products-viewport">
+          <div class="products-track" id="products-track">
+            <article class="products-item">
+              <img src="../assets/products/Producto 1.png" alt="Producto 1" />
+              <h5>NAS QNAP TS-264-8G-US</h5>
+              <h6>$1.669.000</h6>
+              <div class="products-button-section">
+                <button class="products-button">Ver Más</button>
+                <button class="products-button">Comprar</button>
+              </div>
+            </article>
+            <article class="products-item">
+              <img src="../assets/products/Producto 2.png" alt="Producto 2" />
+              <h5>NAS QNAP TS-264-8G-US</h5>
+              <h6>$1.734.000</h6>
+              <div class="products-button-section">
+                <button class="products-button">Ver Más</button>
+                <button class="products-button">Comprar</button>
+              </div>
+            </article>
+            <article class="products-item">
+              <img src="../assets/products/Producto 3.png" alt="Producto 3" />
+              <h5>Servidor NAS Asustor Lockerstor</h5>
+              <h6>$1.800.000</h6>
+              <div class="products-button-section">
+                <button class="products-button">Ver Más</button>
+                <button class="products-button">Comprar</button>
+              </div>
+            </article>
+          </div>
+        </div>
 
 <<<<<<< Updated upstream
     <footer style="background-color: black">
@@ -163,16 +278,11 @@
 >>>>>>> Stashed changes
         >Copyright © 2026 TerraByte Team. All rights reserved.</label
       >
-      <a style="color: white" href="" target="_blank">Privacy Policy</a>
-      <a style="color: white" href="" target="_blank">Terms of Use</a>
-      <a style="color: white" href="" target="_blank">Sales and Refunds</a>
-      <a style="color: white" href="" target="_blank">Legal</a>
-      <a style="color: white" href="" target="_blank">Site Map</a>
+      <a class="footer-text" href="" target="_blank">Privacy Policy</a>
+      <a class="footer-text" href="" target="_blank">Terms of Use</a>
+      <a class="footer-text" href="" target="_blank">Sales and Refunds</a>
+      <a class="footer-text" href="" target="_blank">Legal</a>
+      <a class="footer-text" href="" target="_blank">Site Map</a>
     </footer>
-<<<<<<< Updated upstream
-=======
-
-    <script src="../javascript/products.js"></script>
->>>>>>> Stashed changes
   </body>
 </html>

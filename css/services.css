@@ -1,0 +1,137 @@
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding: 2rem 3rem 3rem;
+}
+
+.titulo {
+  color: white;
+  justify-self: center;
+  text-align: center;
+  padding: 0 1rem;
+}
+.titulo-item {
+  display: flex;
+  justify-content: center;
+}
+
+.fieldset-form {
+  display: flex;
+  flex-direction: column;
+  align-content: space-evenly;
+  margin: 0;
+}
+.fieldset-label {
+  color: white;
+}
+.fieldset-leyend {
+  color: white;
+  font-weight: bolder;
+}
+
+.cart-button {
+  color: white;
+  display: flex;
+  align-self: flex-end;
+  background-color: transparent;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  transition: all 0.1s ease-in-out;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+}
+.cart-button:hover {
+  font-weight: bolder;
+  cursor: pointer;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.35);
+}
+
+/* Formulario */
+main form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 45rem;
+}
+
+fieldset {
+  border: none;
+  border-radius: 1rem;
+  background-color: #435058;
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  transition:
+    box-shadow 0.2s ease-in-out,
+    transform 0.2s ease-in-out;
+}
+
+fieldset:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  transform: translateY(-1px);
+}
+
+legend {
+  color: white;
+  background-color: #364147;
+  border-radius: 1rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 0 0.5rem;
+}
+
+fieldset label {
+  color: #d9d9d9;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+fieldset input[type="radio"],
+fieldset input[type="checkbox"] {
+  accent-color: #1b1b1b;
+  margin-right: 0.5rem;
+  cursor: pointer;
+}
+
+fieldset br {
+  content: "";
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+/* Botón de submit */
+main form button[type="submit"] {
+  align-self: center;
+  background-color: transparent;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  padding: 0.5rem 1.5rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+  transition: all 0.1s ease-in-out;
+}
+
+main form button[type="submit"]:hover {
+  font-weight: bolder;
+  cursor: pointer;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.35);
+}
+
+@media (max-width: 700px) {
+  main {
+    padding: 1.5rem 1rem 2rem;
+  }
+
+  main h1 {
+    font-size: 1.8rem;
+  }
+
+  fieldset {
+    padding: 1rem 1.25rem;
+  }
+}

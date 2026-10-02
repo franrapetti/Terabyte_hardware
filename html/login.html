@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TerraByte</title>
+    <title>Iniciar sesión | TerraByte</title>
     <link rel="stylesheet" href="../css/global.css" />
-    <link rel="stylesheet" href="../css/home.css" />
+    <link rel="stylesheet" href="../css/login.css" />
     <script src="../javascript/theme.js" defer></script>
   </head>
   <body>
@@ -39,42 +39,39 @@
     </header>
 
     <main>
-      <section class="hero">
-        <div class="hero-text">
-          <h1>
-            Todo para armar<br />
-            Tu NAS <em>en casa</em>
-          </h1>
-
-          <p>
-            <em>
-              Chasis hot-swap, racks compactos y hardware optimizado<br />
-              para homelabs e inferencia de IA local.
-            </em>
-          </p>
-
-          <button onclick="window.location.href = './services.html'">
-            Armá tu NAS
-          </button>
-          <br /><br /><br />
-
-          <p>
-            🚚 <strong>Envíos en 24h</strong><br />
-            🛡️ <strong>Garantía de 12 meses</strong>
-          </p>
+      <section class="login-shell" aria-labelledby="login-title">
+        <div class="login-aside">
+          <span class="aside-kicker">HARDWARE PARA IR MÁS LEJOS</span>
+          <div class="login-mark" aria-hidden="true"><span>TB</span></div>
+          <span class="aside-index">TERRABYTE / ACCESS</span>
+          <h2>Tu mundo,<br />a otro nivel.</h2>
+          <p>Todo tu universo gamer y tecnológico, en un solo lugar.</p>
         </div>
-
-        <div class="hero-image">
-          <img
-            src="../assets/NAS0-removebg-preview.png"
-            alt="Servidores NAS Hero"
-          />
+        <div class="login-panel">
+          <div class="panel-heading">
+            <span class="eyebrow">QUÉ BUENO VERTE DE NUEVO</span>
+            <h1 id="login-title">Iniciar sesión</h1>
+            <p>Ingresá tus datos para continuar.</p>
+          </div>
+          <div class="login-fields">
+            <div class="field-group">
+              <label for="email">Correo electrónico</label>
+              <input type="email" id="email" name="email" placeholder="nombre@ejemplo.com" autocomplete="email" />
+            </div>
+            <div class="field-group">
+              <label for="password">Contraseña</label>
+              <input type="password" id="password" name="password" placeholder="Ingresá tu contraseña" autocomplete="current-password" />
+            </div>
+            <button class="login-submit" type="button">Ingresar <span aria-hidden="true">↗</span></button>
+          </div>
+          <p class="auth-switch">¿Todavía no tenés cuenta? <a href="./register.html">Crear una cuenta</a></p>
+          <div class="login-footnote"><span></span> TU PRÓXIMA BUILD TE ESPERA</div>
         </div>
       </section>
     </main>
 
     <footer>
-      <label name="home" class="footer-text"
+      <label class="footer-text"
         >Copyright © 2026 TerraByte Team. All rights reserved.</label
       >
       <a class="footer-text" href="" target="_blank">Privacy Policy</a>
