@@ -54,6 +54,18 @@ main.auth-main {
 	margin-top: 2rem;
 }
 
+.form-message {
+	min-height: 1.25rem;
+	margin: 0;
+	color: #f3b3a8;
+	font-size: 0.9rem;
+	text-align: center;
+}
+
+.form-message[data-state="success"] {
+	color: #a8dfb8;
+}
+
 .field-row {
 	display: grid;
 	grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -128,8 +140,9 @@ main.auth-main {
 	padding: 0.5rem 1.5rem;
 	border: none;
 	border-radius: 0.5rem;
-	background-color: transparent;
-	color: white;
+	background-color: #c5e846;
+	color: #172025;
+	font-weight: 700;
 	font: inherit;
 	font-size: 1rem;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
@@ -137,9 +150,14 @@ main.auth-main {
 }
 
 .auth-submit:hover {
-	font-weight: bolder;
+	background-color: #d6f56a;
 	cursor: pointer;
 	box-shadow: 0 3px 7px rgba(0, 0, 0, 0.35);
+}
+
+.auth-submit:focus-visible {
+	outline: 3px solid #ffffff;
+	outline-offset: 3px;
 }
 
 .auth-submit span {

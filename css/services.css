@@ -50,6 +50,22 @@ legend {
   padding: 0.25rem 0.75rem;
 }
 
+/* Total estimado */
+.total-bar {
+  align-self: center;
+  background-color: #2b353b;
+  border: 1px solid #435058;
+  border-radius: 0.5rem;
+  padding: 0.6rem 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ffffff;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+}
+.total-bar span {
+  color: #38bdf8;
+  font-weight: bold;
+}
 
 /* Pasos secuenciales */
 .form-step {
@@ -284,6 +300,15 @@ html[data-theme="light"] .btn-prev {
 }
 html[data-theme="light"] .btn-prev:hover {
   background-color: #e2e6e8;
+}
+
+html[data-theme="light"] .total-bar {
+  background-color: #ffffff;
+  border-color: #c5cdd1;
+  color: #273137;
+}
+html[data-theme="light"] .total-bar span {
+  color: #007aff;
 }
 
 html[data-theme="light"] .service-modal {

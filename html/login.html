@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../css/global.css" />
     <link rel="stylesheet" href="../css/login.css" />
     <script src="../javascript/theme.js" defer></script>
+    <script src="../javascript/auth.js" defer></script>
   </head>
   <body>
     <header>
@@ -102,7 +103,7 @@
             <h1 id="login-title">Iniciar sesión</h1>
             <p>Ingresá tus datos para continuar.</p>
           </div>
-          <div class="login-fields">
+          <form class="login-fields" id="login-form">
             <div class="field-group">
               <label for="email">Correo electrónico</label>
               <input
@@ -111,6 +112,7 @@
                 name="email"
                 placeholder="nombre@ejemplo.com"
                 autocomplete="email"
+                required
               />
             </div>
             <div class="field-group">
@@ -121,12 +123,19 @@
                 name="password"
                 placeholder="Ingresá tu contraseña"
                 autocomplete="current-password"
+                required
               />
             </div>
-            <button class="login-submit" type="button">
+            <button class="login-submit" type="submit">
               Ingresar <span aria-hidden="true">↗</span>
             </button>
-          </div>
+            <p
+              class="form-message"
+              id="login-message"
+              role="status"
+              aria-live="polite"
+            ></p>
+          </form>
           <p class="auth-switch">
             ¿Todavía no tenés cuenta?
             <a href="./register.html">Crear una cuenta</a>

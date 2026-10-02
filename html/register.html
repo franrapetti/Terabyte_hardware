@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../css/global.css" />
     <link rel="stylesheet" href="../css/register.css" />
     <script src="../javascript/theme.js" defer></script>
+    <script src="../javascript/auth.js" defer></script>
   </head>
   <body>
     <header>
@@ -108,7 +109,7 @@
             <p>Completá tus datos para empezar.</p>
           </div>
 
-          <div class="auth-fields">
+          <form class="auth-fields" id="register-form">
             <div class="field-row">
               <div class="field-group">
                 <label for="first-name">Nombre</label>
@@ -118,6 +119,7 @@
                   name="first-name"
                   placeholder="Lucía"
                   autocomplete="given-name"
+                  required
                 />
               </div>
               <div class="field-group">
@@ -128,6 +130,7 @@
                   name="last-name"
                   placeholder="Gómez"
                   autocomplete="family-name"
+                  required
                 />
               </div>
             </div>
@@ -139,6 +142,7 @@
                 name="email"
                 placeholder="nombre@ejemplo.com"
                 autocomplete="email"
+                required
               />
             </div>
             <div class="field-row">
@@ -150,6 +154,8 @@
                   name="password"
                   placeholder="Mínimo 8 caracteres"
                   autocomplete="new-password"
+                  minlength="8"
+                  required
                 />
               </div>
               <div class="field-group">
@@ -160,17 +166,25 @@
                   name="confirm-password"
                   placeholder="Volvé a escribirla"
                   autocomplete="new-password"
+                  minlength="8"
+                  required
                 />
               </div>
             </div>
             <label class="check-row">
-              <input type="checkbox" name="terms" />
+              <input type="checkbox" name="terms" required />
               <span>Acepto los <a href="#">términos y condiciones</a></span>
             </label>
-            <button class="auth-submit" type="button">
+            <button class="auth-submit" type="submit">
               Crear mi cuenta <span aria-hidden="true">↗</span>
             </button>
-          </div>
+            <p
+              class="form-message"
+              id="register-message"
+              role="status"
+              aria-live="polite"
+            ></p>
+          </form>
 
           <p class="auth-switch">
             ¿Ya tenés cuenta? <a href="./login.html">Iniciá sesión</a>
