@@ -16,6 +16,8 @@ main {
   background-color: #435058;
   padding: 2.5rem 3rem;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  width: 100%;
+  max-width: 28rem;
 }
 
 .login-container h1 {
@@ -61,4 +63,14 @@ main {
   font-weight: bolder;
   cursor: pointer;
   box-shadow: 0 3px 7px rgba(0, 0, 0, 0.35);
+}
+
+@media (max-width: 700px) {
+  main {
+    padding: 1.5rem 1rem 2rem;
+  }
+
+  .login-container {
+    padding: 1.5rem;
+  }
 }
