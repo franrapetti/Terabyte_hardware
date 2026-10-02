@@ -36,6 +36,49 @@ nav {
 .nav-label {
   color: white;
 }
+
+.theme-toggle {
+  display: grid;
+  flex: 0 0 auto;
+  width: 2.5rem;
+  height: 2.5rem;
+  place-items: center;
+  margin-left: 0.5rem;
+  border: 1px solid #666;
+  border-radius: 0.5rem;
+  background: transparent;
+  color: #f2f2f2;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus-visible {
+  background-color: #435058;
+}
+
+.theme-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.theme-icon-moon {
+  display: none;
+}
+
+html[data-theme="light"] .theme-icon-sun {
+  display: none;
+}
+
+html[data-theme="light"] .theme-icon-moon {
+  display: block;
+}
+
 .nav-search {
   border-radius: 0.5rem;
   height: 1.75rem;
@@ -192,4 +235,148 @@ main label {
 main li {
   font-family: Arial, Helvetica, sans-serif;
   color: #d9d9d9;
+}
+
+html[data-theme="light"] body {
+  background: linear-gradient(to right, #f1f3f4, #e8ebed);
+}
+
+html[data-theme="light"] nav,
+html[data-theme="light"] footer {
+  background-color: #ffffff;
+  box-shadow: 0 2px 10px rgba(24, 32, 36, 0.12);
+}
+
+html[data-theme="light"] .nav-label,
+html[data-theme="light"] .footer-text {
+  color: #273137;
+}
+
+html[data-theme="light"] .theme-toggle {
+  border-color: #aeb6bb;
+  color: #273137;
+}
+
+html[data-theme="light"] .theme-toggle:hover,
+html[data-theme="light"] .theme-toggle:focus-visible {
+  background-color: #e2e6e8;
+}
+
+html[data-theme="light"] main h1,
+html[data-theme="light"] main h2,
+html[data-theme="light"] main p,
+html[data-theme="light"] main a,
+html[data-theme="light"] main label,
+html[data-theme="light"] main li {
+  color: #273137;
+}
+
+html[data-theme="light"] .mobile-menu {
+  color: #273137;
+}
+
+html[data-theme="light"] .mobile-menu summary {
+  border-color: #aeb6bb;
+}
+
+html[data-theme="light"] .mobile-menu-links {
+  background: #ffffff;
+  border-color: #c6cdd1;
+  box-shadow: 0 8px 20px rgba(24, 32, 36, 0.18);
+}
+
+html[data-theme="light"] .mobile-menu-links a {
+  color: #273137;
+}
+
+html[data-theme="light"] .mobile-menu-links a:hover,
+html[data-theme="light"] .mobile-menu-links a:focus-visible {
+  background: #e2e6e8;
+}
+
+html[data-theme="light"] .mobile-menu-links input,
+html[data-theme="light"] .nav-search {
+  border: 1px solid #bdc5c9;
+  background-color: #f4f6f7;
+  color: #273137;
+}
+
+html[data-theme="light"] .hero-text button,
+html[data-theme="light"] .cart-button,
+html[data-theme="light"] main form button[type="submit"] {
+  color: #273137;
+}
+
+html[data-theme="light"] .info-item,
+html[data-theme="light"] fieldset,
+html[data-theme="light"] .brands,
+html[data-theme="light"] .products,
+html[data-theme="light"] .login-shell,
+html[data-theme="light"] .auth-shell {
+  background-color: #ffffff;
+  box-shadow: 0 6px 16px rgba(24, 32, 36, 0.14);
+}
+
+html[data-theme="light"] .products-item {
+  background-color: #e9edef;
+}
+
+html[data-theme="light"] .products-item h5,
+html[data-theme="light"] .products-item h6 {
+  color: #273137;
+}
+
+html[data-theme="light"] legend {
+  background-color: #e2e6e8;
+  color: #273137;
+}
+
+html[data-theme="light"] .panel-heading h1,
+html[data-theme="light"] .panel-heading p,
+html[data-theme="light"] .field-group label,
+html[data-theme="light"] .auth-switch,
+html[data-theme="light"] .check-row {
+  color: #273137;
+}
+
+html[data-theme="light"] .auth-switch a,
+html[data-theme="light"] .check-row a {
+  color: #273137;
+}
+
+html[data-theme="light"] .login-submit,
+html[data-theme="light"] .auth-submit {
+  background-color: #364147;
+  color: #ffffff;
+}
+
+html[data-theme="light"] .login-submit:hover,
+html[data-theme="light"] .auth-submit:hover {
+  background-color: #20292e;
+}
+
+html[data-theme="light"] .eyebrow {
+  color: #364147;
+}
+
+html[data-theme="light"] main.auth-main {
+  background-image: none;
+}
+
+html[data-theme="light"] .field-group input:focus {
+  border-color: #364147;
+  box-shadow: 0 0 0 3px rgba(54, 65, 71, 0.15);
+}
+
+@media (max-width: 1050px) {
+  .theme-toggle {
+    margin-left: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-imagen {
+    width: clamp(7.5rem, 34vw, 10rem);
+    margin-right: 0.25rem;
+  }
 }
