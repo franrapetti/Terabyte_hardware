@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TerraByte</title>
+    <link rel="stylesheet" href="../css/global.css" />
+    <link rel="stylesheet" href="../css/cart.css" />
+    <script src="../javascript/theme.js" defer></script>
+    <script src="../javascript/cart.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a class="nav-brand" href="./home.html" aria-label="TerraByte, inicio">
+          <img
+            class="nav-imagen nav-imagen-dark"
+            src="../assets/Logo.png"
+            alt="TerraByte"
+          />
+          <img
+            class="nav-imagen nav-imagen-light"
+            src="../assets/Logo_claro.png"
+            alt="TerraByte"
+          />
+        </a>
+        <div class="nav-search" role="search">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="10.8" cy="10.8" r="6.8" />
+            <path d="m16 16 5 5" />
+          </svg>
+          <input
+            type="search"
+            aria-label="Buscar productos"
+            placeholder="¿Qué estás buscando?"
+          />
+          <button type="button" aria-label="Buscar">Buscar</button>
+        </div>
+        <div class="nav-account-links">
+          <a class="nav-account-link" href="./login.html">Ingresar</a>
+          <a class="nav-account-link" href="./register.html">Registrarse</a>
+        </div>
+        <div class="nav-categories">
+          <a href="./products.html">Productos</a>
+          <a href="./services.html">Armá tu NAS</a>
+        </div>
+        <div class="nav-secondary-tools">
+          <a class="nav-cart" href="./cart.html" aria-label="Carrito">
+            <img
+              class="nav-cart-image nav-imagen-dark"
+              src="../assets/shopping-cart_claro.png"
+              alt="Carrito"
+            />
+            <img
+              class="nav-cart-image nav-imagen-light"
+              src="../assets/shopping-cart.png"
+              alt="Carrito"
+            />
+          </a>
+          <a class="nav-secondary" href="./aboutus.html">Nosotros</a>
+          <button
+            class="theme-toggle"
+            type="button"
+            aria-label="Cambiar a modo claro"
+            title="Cambiar a modo claro"
+          >
+            <svg
+              class="theme-icon theme-icon-sun"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="4" />
+              <path
+                d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"
+              />
+            </svg>
+            <svg
+              class="theme-icon theme-icon-moon"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                d="M20.2 15.1A8.5 8.5 0 0 1 8.9 3.8 8.5 8.5 0 1 0 20.2 15.1Z"
+              />
+            </svg>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="cart-main">
+      <section class="cart-panel" aria-labelledby="cart-title">
+        <div class="cart-heading">
+          <div>
+            <h1 id="cart-title">Carrito</h1>
+            <p>Productos y configuraciones guardadas para tu compra.</p>
+          </div>
+          <button id="clear-cart" class="cart-clear" type="button">
+            Vaciar carrito
+          </button>
+        </div>
+
+        <div id="cart-items" class="cart-items" aria-live="polite"></div>
+
+        <div class="cart-summary">
+          <span>Total</span>
+          <strong id="cart-total">$0</strong>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <label name="home" class="footer-text"
+        >Copyright © 2026 TerraByte Team. All rights reserved.</label
+      >
+      <a class="footer-text" href="" target="_blank">Privacy Policy</a>
+      <a class="footer-text" href="" target="_blank">Terms of Use</a>
+      <a class="footer-text" href="" target="_blank">Sales and Refunds</a>
+      <a class="footer-text" href="" target="_blank">Legal</a>
+      <a class="footer-text" href="" target="_blank">Site Map</a>
+    </footer>
+  </body>
+</html>

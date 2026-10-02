@@ -111,7 +111,8 @@ function iniciarModalesProductos() {
     boton.addEventListener("click", function () {
       const producto = obtenerDatosProducto(boton);
 
-      if (boton.textContent.trim() === "Comprar") {
+      if (boton.textContent.trim() !== "Ver Más") {
+        guardarProductoEnCarrito(producto);
         abrirModal(templateComprar(producto));
       } else {
         abrirModal(templateVerMas(producto));
@@ -134,16 +135,55 @@ function obtenerDatosProducto(boton) {
   };
 }
 
+function obtenerCarrito() {
+  const carritoGuardado = localStorage.getItem("terrabyte-cart");
+
+  if (!carritoGuardado) {
+    return [];
+  }
+
+  try {
+    const carrito = JSON.parse(carritoGuardado);
+    return Array.isArray(carrito) ? carrito : [];
+  } catch (error) {
+    return [];
+  }
+}
+
+function guardarProductoEnCarrito(producto) {
+  const carrito = obtenerCarrito();
+
+  carrito.push({
+    id: Date.now().toString() + "-" + Math.random().toString(16).slice(2),
+    tipo: "Producto",
+    nombre: producto.nombre,
+    precio: producto.precio,
+    imagen: producto.imagen,
+    alt: producto.alt,
+    cantidad: 1,
+  });
+
+  localStorage.setItem("terrabyte-cart", JSON.stringify(carrito));
+}
+
 function templateComprar(producto) {
   return `
     <div class="modal-content">
       <button class="modal-close" type="button" aria-label="Cerrar">x</button>
-      <h3>Comprar producto</h3>
+      <p class="modal-status">Producto agregado</p>
+      <h3>Se añadió al carrito</h3>
       <img class="modal-image" src="${producto.imagen}" alt="${producto.alt}">
       <h4>${producto.nombre}</h4>
       <p class="modal-price">${producto.precio}</p>
-      <p>El producto fue agregado al carrito correctamente.</p>
-      <button class="modal-action" type="button">Finalizar compra</button>
+      <p>Ya podés revisar tu carrito o seguir explorando el catálogo.</p>
+      <div class="modal-actions">
+        <button class="modal-action modal-action-secondary" type="button">
+          Seguir comprando
+        </button>
+        <button class="modal-action modal-action-primary" type="button" data-go-cart>
+          Ir al carrito
+        </button>
+      </div>
     </div>
   `;
 }
@@ -174,6 +214,11 @@ function abrirModal(template) {
   document.body.appendChild(modal);
 
   modal.addEventListener("click", function (event) {
+    if (event.target.hasAttribute("data-go-cart")) {
+      window.location.href = "./cart.html";
+      return;
+    }
+
     if (
       event.target.classList.contains("modal-overlay") ||
       event.target.classList.contains("modal-close") ||

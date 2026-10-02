@@ -220,6 +220,32 @@ html[data-theme="light"] .theme-icon-moon {
   font-weight: 400;
 }
 
+.nav-cart {
+  display: inline-flex;
+  flex: 0 0 auto;
+  width: 2.5rem;
+  height: 2.5rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #666;
+  border-radius: 0.5rem;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.nav-cart:hover,
+.nav-cart:focus-visible {
+  border-color: #aab5ba;
+  background-color: #435058;
+}
+
+.nav-cart-image {
+  width: 1.35rem;
+  height: 1.35rem;
+  object-fit: contain;
+}
+
 .nav-imagen {
   width: 9.5rem;
   display: block;
@@ -387,6 +413,15 @@ html[data-theme="light"] .theme-toggle {
 
 html[data-theme="light"] .theme-toggle:hover,
 html[data-theme="light"] .theme-toggle:focus-visible {
+  background-color: #e2e6e8;
+}
+
+html[data-theme="light"] .nav-cart {
+  border-color: #aeb6bb;
+}
+
+html[data-theme="light"] .nav-cart:hover,
+html[data-theme="light"] .nav-cart:focus-visible {
   background-color: #e2e6e8;
 }
 

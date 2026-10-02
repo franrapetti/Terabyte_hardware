@@ -1,106 +1,193 @@
 <!doctype html>
 <html lang="es">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Crear cuenta | TerraByte</title>
-		<link rel="stylesheet" href="../css/global.css" />
-		<link rel="stylesheet" href="../css/register.css" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crear cuenta | TerraByte</title>
+    <link rel="stylesheet" href="../css/global.css" />
+    <link rel="stylesheet" href="../css/register.css" />
     <script src="../javascript/theme.js" defer></script>
-	</head>
-	<body>
-		<header>
+  </head>
+  <body>
+    <header>
       <nav>
         <a class="nav-brand" href="./home.html" aria-label="TerraByte, inicio">
-          <img class="nav-imagen nav-imagen-dark" src="../assets/Logo.png" alt="TerraByte" />
-          <img class="nav-imagen nav-imagen-light" src="../assets/Logo_claro.png" alt="TerraByte" />
+          <img
+            class="nav-imagen nav-imagen-dark"
+            src="../assets/Logo.png"
+            alt="TerraByte"
+          />
+          <img
+            class="nav-imagen nav-imagen-light"
+            src="../assets/Logo_claro.png"
+            alt="TerraByte"
+          />
         </a>
         <div class="nav-search" role="search">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8" /><path d="m16 16 5 5" /></svg>
-          <input type="search" aria-label="Buscar productos" placeholder="¿Qué estás buscando?" />
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="10.8" cy="10.8" r="6.8" />
+            <path d="m16 16 5 5" />
+          </svg>
+          <input
+            type="search"
+            aria-label="Buscar productos"
+            placeholder="¿Qué estás buscando?"
+          />
           <button type="button" aria-label="Buscar">Buscar</button>
         </div>
-                <div class="nav-account-links">
-                    <a class="nav-account-link" href="./login.html">Ingresar</a>
-                    <a class="nav-account-link" href="./register.html">Registrarse</a>
-                </div>
-                <div class="nav-categories">
-                    <a href="./products.html">Productos</a>
-                    <a href="./services.html">Armá tu NAS</a>
-                </div>
-                <div class="nav-secondary-tools">
-                    <a class="nav-secondary" href="./aboutus.html">Nosotros</a>
-        <button class="theme-toggle" type="button" aria-label="Cambiar a modo claro" title="Cambiar a modo claro">
-          <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" /><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" /></svg>
-          <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.1A8.5 8.5 0 0 1 8.9 3.8 8.5 8.5 0 1 0 20.2 15.1Z" /></svg>
-        </button>
+        <div class="nav-account-links">
+          <a class="nav-account-link" href="./login.html">Ingresar</a>
+          <a class="nav-account-link" href="./register.html">Registrarse</a>
+        </div>
+        <div class="nav-categories">
+          <a href="./products.html">Productos</a>
+          <a href="./services.html">Armá tu NAS</a>
+        </div>
+        <div class="nav-secondary-tools">
+          <a class="nav-cart" href="./cart.html" aria-label="Carrito">
+            <img
+              class="nav-cart-image nav-imagen-dark"
+              src="../assets/shopping-cart_claro.png"
+              alt="Carrito"
+            />
+            <img
+              class="nav-cart-image nav-imagen-light"
+              src="../assets/shopping-cart.png"
+              alt="Carrito"
+            />
+          </a>
+          <a class="nav-secondary" href="./aboutus.html">Nosotros</a>
+          <button
+            class="theme-toggle"
+            type="button"
+            aria-label="Cambiar a modo claro"
+            title="Cambiar a modo claro"
+          >
+            <svg
+              class="theme-icon theme-icon-sun"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="4" />
+              <path
+                d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"
+              />
+            </svg>
+            <svg
+              class="theme-icon theme-icon-moon"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                d="M20.2 15.1A8.5 8.5 0 0 1 8.9 3.8 8.5 8.5 0 1 0 20.2 15.1Z"
+              />
+            </svg>
+          </button>
         </div>
       </nav>
     </header>
 
     <main class="auth-main">
-        <section class="auth-shell" aria-labelledby="register-title">
-            <div class="auth-aside">
-                <span class="aside-kicker">TU PRÓXIMO UPGRADE EMPIEZA ACÁ</span>
-                <div class="chip-art" aria-hidden="true">
-                    <span class="chip-core">TB</span>
-                </div>
-                <p class="aside-index">01 / 02 <span></span> CUENTA NUEVA</p>
-                <h2>Armá tu<br />setup ideal.</h2>
-                <p class="aside-copy">Creá tu cuenta y encontrá todo lo que tu próxima build necesita.</p>
+      <section class="auth-shell" aria-labelledby="register-title">
+        <div class="auth-aside">
+          <span class="aside-kicker">TU PRÓXIMO UPGRADE EMPIEZA ACÁ</span>
+          <div class="chip-art" aria-hidden="true">
+            <span class="chip-core">TB</span>
+          </div>
+          <p class="aside-index">01 / 02 <span></span> CUENTA NUEVA</p>
+          <h2>Armá tu<br />setup ideal.</h2>
+          <p class="aside-copy">
+            Creá tu cuenta y encontrá todo lo que tu próxima build necesita.
+          </p>
+        </div>
+
+        <div class="auth-panel">
+          <div class="panel-heading">
+            <span class="eyebrow">BIENVENIDO A TERRABYTE</span>
+            <h1 id="register-title">Crear cuenta</h1>
+            <p>Completá tus datos para empezar.</p>
+          </div>
+
+          <div class="auth-fields">
+            <div class="field-row">
+              <div class="field-group">
+                <label for="first-name">Nombre</label>
+                <input
+                  type="text"
+                  id="first-name"
+                  name="first-name"
+                  placeholder="Lucía"
+                  autocomplete="given-name"
+                />
+              </div>
+              <div class="field-group">
+                <label for="last-name">Apellido</label>
+                <input
+                  type="text"
+                  id="last-name"
+                  name="last-name"
+                  placeholder="Gómez"
+                  autocomplete="family-name"
+                />
+              </div>
             </div>
-
-            <div class="auth-panel">
-                <div class="panel-heading">
-                    <span class="eyebrow">BIENVENIDO A TERRABYTE</span>
-                    <h1 id="register-title">Crear cuenta</h1>
-                    <p>Completá tus datos para empezar.</p>
-                </div>
-
-                <div class="auth-fields">
-                    <div class="field-row">
-                        <div class="field-group">
-                            <label for="first-name">Nombre</label>
-                            <input type="text" id="first-name" name="first-name" placeholder="Lucía" autocomplete="given-name" />
-                        </div>
-                        <div class="field-group">
-                            <label for="last-name">Apellido</label>
-                            <input type="text" id="last-name" name="last-name" placeholder="Gómez" autocomplete="family-name" />
-                        </div>
-                    </div>
-                    <div class="field-group">
-                        <label for="register-email">Correo electrónico</label>
-                        <input type="email" id="register-email" name="email" placeholder="nombre@ejemplo.com" autocomplete="email" />
-                    </div>
-                    <div class="field-row">
-                        <div class="field-group">
-                            <label for="register-password">Contraseña</label>
-                            <input type="password" id="register-password" name="password" placeholder="Mínimo 8 caracteres" autocomplete="new-password" />
-                        </div>
-                        <div class="field-group">
-                            <label for="confirm-password">Repetir contraseña</label>
-                            <input type="password" id="confirm-password" name="confirm-password" placeholder="Volvé a escribirla" autocomplete="new-password" />
-                        </div>
-                    </div>
-                    <label class="check-row">
-                        <input type="checkbox" name="terms" />
-                        <span>Acepto los <a href="#">términos y condiciones</a></span>
-                    </label>
-                    <button class="auth-submit" type="button">Crear mi cuenta <span aria-hidden="true">↗</span></button>
-                </div>
-
-                <p class="auth-switch">¿Ya tenés cuenta? <a href="./login.html">Iniciá sesión</a></p>
+            <div class="field-group">
+              <label for="register-email">Correo electrónico</label>
+              <input
+                type="email"
+                id="register-email"
+                name="email"
+                placeholder="nombre@ejemplo.com"
+                autocomplete="email"
+              />
             </div>
-        </section>
+            <div class="field-row">
+              <div class="field-group">
+                <label for="register-password">Contraseña</label>
+                <input
+                  type="password"
+                  id="register-password"
+                  name="password"
+                  placeholder="Mínimo 8 caracteres"
+                  autocomplete="new-password"
+                />
+              </div>
+              <div class="field-group">
+                <label for="confirm-password">Repetir contraseña</label>
+                <input
+                  type="password"
+                  id="confirm-password"
+                  name="confirm-password"
+                  placeholder="Volvé a escribirla"
+                  autocomplete="new-password"
+                />
+              </div>
+            </div>
+            <label class="check-row">
+              <input type="checkbox" name="terms" />
+              <span>Acepto los <a href="#">términos y condiciones</a></span>
+            </label>
+            <button class="auth-submit" type="button">
+              Crear mi cuenta <span aria-hidden="true">↗</span>
+            </button>
+          </div>
+
+          <p class="auth-switch">
+            ¿Ya tenés cuenta? <a href="./login.html">Iniciá sesión</a>
+          </p>
+        </div>
+      </section>
     </main>
 
     <footer>
-        <label class="footer-text">Copyright © 2026 TerraByte Team. All rights reserved.</label>
-        <a class="footer-text" href="#">Privacy Policy</a>
-        <a class="footer-text" href="#">Terms of Use</a>
-        <a class="footer-text" href="#">Sales and Refunds</a>
-        <a class="footer-text" href="#">Legal</a>
-        <a class="footer-text" href="#">Site Map</a>
+      <label class="footer-text"
+        >Copyright © 2026 TerraByte Team. All rights reserved.</label
+      >
+      <a class="footer-text" href="#">Privacy Policy</a>
+      <a class="footer-text" href="#">Terms of Use</a>
+      <a class="footer-text" href="#">Sales and Refunds</a>
+      <a class="footer-text" href="#">Legal</a>
+      <a class="footer-text" href="#">Site Map</a>
     </footer>
-    </body>
+  </body>
 </html>

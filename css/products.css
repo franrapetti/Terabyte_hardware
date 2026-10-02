@@ -142,10 +142,13 @@ main {
 
 .catalogo-button {
   display: flex;
+  border: 1px solid #879299;
+  border-radius: 0.5rem;
   background-color: transparent;
   color: #1b1b1b;
-  border-radius: 0.5rem;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 1rem;
+  font-weight: 700;
   margin: 0.5rem;
   padding: 0.5rem;
   transition: all 0.1s ease-in-out;
@@ -153,7 +156,8 @@ main {
 }
 
 .catalogo-button:hover {
-  font-weight: bolder;
+  background-color: #435058;
+  color: #ffffff;
   cursor: pointer;
   box-shadow: 0 3px 7px rgba(0, 0, 0, 0.35);
 }
@@ -224,25 +228,55 @@ main {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.modal-status {
+  display: inline-flex;
+  border-radius: 999px;
+  background-color: #435058;
+  padding: 0.35rem 0.7rem;
+  color: #ffffff !important;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
 .modal-price {
   font-size: 1.1rem;
   font-weight: bold;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 0.9rem;
 }
 
 .modal-action {
   margin-top: 0.75rem;
   padding: 0.6rem 1rem;
   border-radius: 0.5rem;
-  border: 1px solid #1b1b1b;
+  border: 1px solid #435058;
   background-color: transparent;
   color: #1b1b1b;
   cursor: pointer;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+}
+
+.modal-action-primary {
+  background-color: #435058;
+  color: #ffffff;
+}
+
+.modal-action-secondary {
+  background-color: transparent;
 }
 
 .modal-action:hover,
 .modal-close:hover {
-  font-weight: bold;
+  background-color: #596870;
+  color: #ffffff;
 }
 
 .catalogo-item.is-hidden {
@@ -281,6 +315,13 @@ html[data-theme="light"] .modal-action {
 }
 
 html[data-theme="light"] .catalogo-button:hover,
+html[data-theme="light"] .modal-action-primary,
+html[data-theme="light"] .modal-status {
+  background-color: #435058;
+  color: #ffffff !important;
+}
+
+html[data-theme="light"] .catalogo-button:hover,
 html[data-theme="light"] .modal-action:hover {
   box-shadow: 0 3px 7px rgba(24, 32, 36, 0.2);
 }
@@ -316,5 +357,9 @@ html[data-theme="light"] .modal-action:hover {
   .catalogo-button-section {
     flex-wrap: wrap;
     justify-content: center;
+  }
+
+  .modal-actions {
+    flex-direction: column;
   }
 }
