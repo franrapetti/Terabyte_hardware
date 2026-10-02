@@ -26,34 +26,25 @@ main {
 }
 
 .brands-track {
-  display: flex;
-  align-content: space-around;
+  flex: 0 0 auto;
+  display: grid;
   align-items: center;
-  width: max-content;
-  animation: deslizar 25s linear infinite;
+  width: 100%;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+  transition: transform 2.4s linear;
 }
 
 .brand-image {
-  flex: 0 0 auto;
+  justify-self: center;
   max-height: 15rem;
   max-width: 6rem;
-  margin: 1.5rem;
+  margin: 1.5rem 0;
   object-fit: contain;
-}
-
-@keyframes deslizar {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .brands-track {
-    animation: none;
+    transition: none;
   }
 }
 

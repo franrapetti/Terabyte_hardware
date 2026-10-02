@@ -1,7 +1,70 @@
 document.addEventListener("DOMContentLoaded", function () {
+  iniciarCarruselMarcas();
   iniciarCarruselProductos();
   iniciarModalesProductos();
 });
+
+function iniciarCarruselMarcas() {
+  const track = document.querySelector(".brands-track");
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const cantidadMarcas = track ? track.children.length : 0;
+  let moviendo = false;
+
+  if (!track || cantidadMarcas <= 1 || reduceMotion.matches) {
+    return;
+  }
+
+  function ajustarColumnas() {
+    track.style.width = "calc(100% + (100% / " + cantidadMarcas + "))";
+    track.style.gridTemplateColumns =
+      "repeat(" + (cantidadMarcas + 1) + ", 1fr)";
+  }
+
+  function moverPrimeraMarca() {
+    if (moviendo) {
+      return;
+    }
+
+    const primeraImagen = track.children[0];
+    const distancia = track.parentElement.offsetWidth / cantidadMarcas;
+
+    if (distancia === 0 || !primeraImagen) {
+      return;
+    }
+
+    const copia = primeraImagen.cloneNode(true);
+    copia.classList.add("brand-image-copy");
+    copia.setAttribute("aria-hidden", "true");
+    track.appendChild(copia);
+
+    moviendo = true;
+    track.style.transform = "translateX(-" + distancia + "px)";
+  }
+
+  track.addEventListener("transitionend", function (event) {
+    if (event.target !== track || event.propertyName !== "transform") {
+      return;
+    }
+
+    const copia = track.querySelector(".brand-image-copy");
+
+    if (copia) {
+      copia.remove();
+    }
+
+    track.appendChild(track.children[0]);
+    track.style.transition = "none";
+    track.style.transform = "translateX(0)";
+
+    void track.offsetHeight;
+    track.style.transition = "";
+    moviendo = false;
+  });
+
+  ajustarColumnas();
+  window.addEventListener("resize", ajustarColumnas);
+  setInterval(moverPrimeraMarca, 4200);
+}
 
 function iniciarCarruselProductos() {
   const track = document.getElementById("products-track");
@@ -31,18 +94,31 @@ function iniciarCarruselProductos() {
     next.disabled = index >= max;
   }
 
+  function siguienteProducto() {
+    const total = track.children.length;
+    const max = Math.max(0, total - perView());
+
+    if (index >= max) {
+      index = 0;
+    } else {
+      index += 1;
+    }
+
+    update();
+  }
+
   prev.addEventListener("click", function () {
     index = Math.max(0, index - 1);
     update();
   });
 
   next.addEventListener("click", function () {
-    index += 1;
-    update();
+    siguienteProducto();
   });
 
   window.addEventListener("resize", update);
   update();
+  setInterval(siguienteProducto, 7500);
 }
 
 function iniciarModalesProductos() {
