@@ -117,148 +117,100 @@
             src="../assets/products/Western_Digital.svg"
             alt="Western Digital"
           />
-
-          <img
-            class="brand-image"
-            src="../assets/products/fractal.svg"
-            alt="Fractal"
-          />
-          <img
-            class="brand-image"
-            src="../assets/products/jonsbo.png"
-            alt="Jonsbo"
-          />
-          <img
-            class="brand-image"
-            src="../assets/products/Nvidia.png"
-            alt="Nvidia"
-          />
-          <img
-            class="brand-image"
-            src="../assets/products/Rosewill.png"
-            alt="Rosewill"
-          />
-          <img
-            class="brand-image"
-            src="../assets/products/Seagate.png"
-            alt="Seagate"
-          />
-          <img
-            class="brand-image"
-            src="../assets/products/Western_Digital.svg"
-            alt="Western Digital"
-          />
-
-          <img
-            class="brand-image"
-            src="../assets/products/fractal.svg"
-            alt="Fractal"
-          />
-          <img
-            class="brand-image"
-            src="../assets/products/jonsbo.png"
-            alt="Jonsbo"
-          />
-          <img
-            class="brand-image"
-            src="../assets/products/Nvidia.png"
-            alt="Nvidia"
-          />
-          <img
-            class="brand-image"
-            src="../assets/products/Rosewill.png"
-            alt="Rosewill"
-          />
-          <img
-            class="brand-image"
-            src="../assets/products/Seagate.png"
-            alt="Seagate"
-          />
-          <img
-            class="brand-image"
-            src="../assets/products/Western_Digital.svg"
-            alt="Western Digital"
-          />
         </div>
       </div>
 
-      <section class="products" aria-label="Productos destacados">
-        <button
-          class="products-arrow"
-          id="products-prev"
-          type="button"
-          aria-label="Anterior"
-        >
-          <img src="../assets/products/arrow-left.png" alt="Flecha Izquierda" />
-        </button>
-
-        <div class="products-viewport">
-          <div class="products-track" id="products-track">
-            <article class="products-item">
-              <img src="../assets/products/Producto 1.png" alt="Producto 1" />
-              <h5>NAS QNAP TS-264-8G-US</h5>
-              <h6>$1.669.000</h6>
-              <div class="products-button-section">
-                <button class="products-button">Ver Más</button>
-                <button class="products-button">Comprar</button>
-              </div>
-            </article>
-            <article class="products-item">
-              <img src="../assets/products/Producto 2.png" alt="Producto 2" />
-              <h5>NAS QNAP TS-264-8G-US</h5>
-              <h6>$1.734.000</h6>
-              <div class="products-button-section">
-                <button class="products-button">Ver Más</button>
-                <button class="products-button">Comprar</button>
-              </div>
-            </article>
-            <article class="products-item">
-              <img src="../assets/products/Producto 3.png" alt="Producto 3" />
-              <h5>Servidor NAS Asustor Lockerstor</h5>
-              <h6>$1.800.000</h6>
-              <div class="products-button-section">
-                <button class="products-button">Ver Más</button>
-                <button class="products-button">Comprar</button>
-              </div>
-            </article>
-            <article class="products-item">
-              <img src="../assets/products/Producto 4.png" alt="Producto 4" />
-              <h5>Synology DS225+ Private Cloud Media Server</h5>
-              <h6>$568.269</h6>
-              <div class="products-button-section">
-                <button class="products-button">Ver Más</button>
-                <button class="products-button">Comprar</button>
-              </div>
-            </article>
-            <article class="products-item">
-              <img src="../assets/products/Producto 5.png" alt="Producto 5" />
-              <h5>UGREEN NAS DXP2800 2-Bay</h5>
-              <h6>$594.734</h6>
-              <div class="products-button-section">
-                <button class="products-button">Ver Más</button>
-                <button class="products-button">Comprar</button>
-              </div>
-            </article>
-            <article class="products-item">
-              <img src="../assets/products/Producto 6.png" alt="Producto 6" />
-              <h5>UGREEN NAS DXP4800 GT 4-Bay</h5>
-              <h6>$853.984</h6>
-              <div class="products-button-section">
-                <button class="products-button">Ver Más</button>
-                <button class="products-button">Comprar</button>
-              </div>
-            </article>
+      <section class="catalogo" aria-label="Catálogo de Productos">
+        <div class="catalogo-buscador" id="catalogo-buscador">
+          <div class="nav-search" role="search">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="10.8" cy="10.8" r="6.8" />
+              <path d="m16 16 5 5" />
+            </svg>
+            <input
+              id="catalogo-search"
+              type="search"
+              aria-label="Buscar productos"
+              placeholder="Buscar un producto por nombre"
+            />
+            <button type="button" aria-label="Buscar">Buscar</button>
           </div>
         </div>
-
-        <button
-          class="products-arrow"
-          id="products-next"
-          type="button"
-          aria-label="Siguiente"
-        >
-          <img src="../assets/products/arrow-right.png" alt="Flecha Derecha" />
-        </button>
+        <div class="catalogo-tags" id="catalogo-tags">
+          <h3>Categorías</h3>
+          <label class="catalogo-tag">
+            <input type="checkbox" value="nas" />
+            NAS
+          </label>
+          <label class="catalogo-tag">
+            <input type="checkbox" value="qnap" />
+            QNAP
+          </label>
+          <label class="catalogo-tag">
+            <input type="checkbox" value="synology" />
+            Synology
+          </label>
+          <label class="catalogo-tag">
+            <input type="checkbox" value="ugreen" />
+            UGREEN
+          </label>
+        </div>
+        <div class="catalogo-grid" id="catalogo-grid">
+          <article class="catalogo-item" data-tags="nas qnap">
+            <img src="../assets/products/Producto 1.png" alt="Producto 1" />
+            <h5>NAS QNAP TS-264-8G-US</h5>
+            <h6>$1.669.000</h6>
+            <div class="catalogo-button-section">
+              <button class="catalogo-button">Ver Más</button>
+              <button class="catalogo-button">Comprar</button>
+            </div>
+          </article>
+          <article class="catalogo-item" data-tags="nas qnap">
+            <img src="../assets/products/Producto 2.png" alt="Producto 2" />
+            <h5>NAS QNAP TS-264-8G-US</h5>
+            <h6>$1.734.000</h6>
+            <div class="catalogo-button-section">
+              <button class="catalogo-button">Ver Más</button>
+              <button class="catalogo-button">Comprar</button>
+            </div>
+          </article>
+          <article class="catalogo-item" data-tags="nas">
+            <img src="../assets/products/Producto 3.png" alt="Producto 3" />
+            <h5>Servidor NAS Asustor Lockerstor</h5>
+            <h6>$1.800.000</h6>
+            <div class="catalogo-button-section">
+              <button class="catalogo-button">Ver Más</button>
+              <button class="catalogo-button">Comprar</button>
+            </div>
+          </article>
+          <article class="catalogo-item" data-tags="nas synology">
+            <img src="../assets/products/Producto 4.png" alt="Producto 4" />
+            <h5>Synology DS225+ Private Cloud Media Server</h5>
+            <h6>$568.269</h6>
+            <div class="catalogo-button-section">
+              <button class="catalogo-button">Ver Más</button>
+              <button class="catalogo-button">Comprar</button>
+            </div>
+          </article>
+          <article class="catalogo-item" data-tags="nas ugreen">
+            <img src="../assets/products/Producto 5.png" alt="Producto 5" />
+            <h5>UGREEN NAS DXP2800 2-Bay</h5>
+            <h6>$594.734</h6>
+            <div class="catalogo-button-section">
+              <button class="catalogo-button">Ver Más</button>
+              <button class="catalogo-button">Comprar</button>
+            </div>
+          </article>
+          <article class="catalogo-item" data-tags="nas ugreen">
+            <img src="../assets/products/Producto 6.png" alt="Producto 6" />
+            <h5>UGREEN NAS DXP4800 GT 4-Bay</h5>
+            <h6>$853.984</h6>
+            <div class="catalogo-button-section">
+              <button class="catalogo-button">Ver Más</button>
+              <button class="catalogo-button">Comprar</button>
+            </div>
+          </article>
+        </div>
       </section>
     </main>
 

@@ -1,52 +1,111 @@
 document.addEventListener("DOMContentLoaded", function () {
-  iniciarCarruselProductos();
+  iniciarCarruselMarcas();
+  iniciarFiltrosCatalogo();
   iniciarModalesProductos();
 });
 
-function iniciarCarruselProductos() {
-  const track = document.getElementById("products-track");
-  const prev = document.getElementById("products-prev");
-  const next = document.getElementById("products-next");
-  let index = 0;
+function iniciarCarruselMarcas() {
+  const track = document.querySelector(".brands-track");
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const cantidadMarcas = track ? track.children.length : 0;
+  let moviendo = false;
 
-  if (!track || !prev || !next) {
+  if (!track || cantidadMarcas <= 1 || reduceMotion.matches) {
     return;
   }
 
-  function perView() {
-    const v = getComputedStyle(track).getPropertyValue("--per-view");
-    return parseInt(v, 10) || 1;
+  function ajustarColumnas() {
+    track.style.width = "calc(100% + (100% / " + cantidadMarcas + "))";
+    track.style.gridTemplateColumns =
+      "repeat(" + (cantidadMarcas + 1) + ", 1fr)";
   }
 
-  function update() {
-    const total = track.children.length;
-    const max = Math.max(0, total - perView());
-    index = Math.min(index, max);
+  function moverPrimeraMarca() {
+    if (moviendo) {
+      return;
+    }
 
-    const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
-    const step = track.children[0].offsetWidth + gap;
-    track.style.transform = "translateX(" + -index * step + "px)";
+    const primeraImagen = track.children[0];
+    const distancia = track.parentElement.offsetWidth / cantidadMarcas;
 
-    prev.disabled = index === 0;
-    next.disabled = index >= max;
+    if (distancia === 0 || !primeraImagen) {
+      return;
+    }
+
+    const copia = primeraImagen.cloneNode(true);
+    copia.classList.add("brand-image-copy");
+    copia.setAttribute("aria-hidden", "true");
+    track.appendChild(copia);
+
+    moviendo = true;
+    track.style.transform = "translateX(-" + distancia + "px)";
   }
 
-  prev.addEventListener("click", function () {
-    index = Math.max(0, index - 1);
-    update();
+  track.addEventListener("transitionend", function (event) {
+    if (event.target !== track || event.propertyName !== "transform") {
+      return;
+    }
+
+    const copia = track.querySelector(".brand-image-copy");
+
+    if (copia) {
+      copia.remove();
+    }
+
+    track.appendChild(track.children[0]);
+    track.style.transition = "none";
+    track.style.transform = "translateX(0)";
+
+    void track.offsetHeight;
+    track.style.transition = "";
+    moviendo = false;
   });
 
-  next.addEventListener("click", function () {
-    index += 1;
-    update();
-  });
+  ajustarColumnas();
+  window.addEventListener("resize", ajustarColumnas);
+  setInterval(moverPrimeraMarca, 4200);
+}
 
-  window.addEventListener("resize", update);
-  update();
+function iniciarFiltrosCatalogo() {
+  const buscador = document.getElementById("catalogo-search");
+  const tags = document.querySelectorAll(".catalogo-tag input");
+  const items = document.querySelectorAll(".catalogo-item");
+
+  if (!buscador || items.length === 0) {
+    return;
+  }
+
+  function filtrarCatalogo() {
+    const busqueda = buscador.value.trim().toLowerCase();
+    const tagsActivos = Array.from(tags)
+      .filter(function (tag) {
+        return tag.checked;
+      })
+      .map(function (tag) {
+        return tag.value;
+      });
+
+    items.forEach(function (item) {
+      const nombre = item.querySelector("h5").textContent.toLowerCase();
+      const itemTags = item.dataset.tags.split(" ");
+      const coincideBusqueda = nombre.includes(busqueda);
+      const coincideTags = tagsActivos.every(function (tag) {
+        return itemTags.includes(tag);
+      });
+
+      item.classList.toggle("is-hidden", !coincideBusqueda || !coincideTags);
+    });
+  }
+
+  buscador.addEventListener("input", filtrarCatalogo);
+
+  tags.forEach(function (tag) {
+    tag.addEventListener("change", filtrarCatalogo);
+  });
 }
 
 function iniciarModalesProductos() {
-  const botones = document.querySelectorAll(".products-button");
+  const botones = document.querySelectorAll(".catalogo-button");
 
   botones.forEach(function (boton) {
     boton.addEventListener("click", function () {
@@ -62,7 +121,7 @@ function iniciarModalesProductos() {
 }
 
 function obtenerDatosProducto(boton) {
-  const card = boton.closest(".products-item");
+  const card = boton.closest(".catalogo-item");
   const imagen = card.querySelector("img");
   const nombre = card.querySelector("h5").textContent;
   const precio = card.querySelector("h6").textContent;
