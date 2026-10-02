@@ -45,9 +45,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    alert(
-      "¡Tu configuración de NAS personalizada fue agregada al carrito con éxito!",
-    );
+    const configuracion = obtenerConfiguracionNas(form);
+
+    if (configuracion.componentes.length === 0) {
+      abrirModalServicio({
+        titulo: "Configuración incompleta",
+        mensaje: "Seleccioná al menos un componente para agregarlo al carrito.",
+        principal: "Entendido",
+      });
+      return;
+    }
+
+    guardarConfiguracionEnCarrito(configuracion);
+    abrirModalServicio({
+      titulo: "NAS agregado al carrito",
+      mensaje:
+        "Tu configuración personalizada ya está guardada y lista para revisar.",
+      principal: "Ir al carrito",
+      secundaria: "Seguir configurando",
+      irAlCarrito: true,
+    });
   });
 
   showStep(0);
