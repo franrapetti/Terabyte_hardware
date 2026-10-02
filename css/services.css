@@ -50,25 +50,6 @@ legend {
   padding: 0.25rem 0.75rem;
 }
 
-/* Botón toggle general */
-.toggle-button {
-  background-color: #2b353b;
-  color: white;
-  border: 1px solid #435058;
-  border-radius: 0.5rem;
-  font-size: 1rem;
-  padding: 0.75rem 1.5rem;
-  cursor: pointer;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
-  transition: all 0.2s ease-in-out;
-}
-.toggle-button:hover {
-  background-color: #435058;
-}
-
-.form-hidden {
-  display: none !important;
-}
 
 /* Pasos secuenciales */
 .form-step {

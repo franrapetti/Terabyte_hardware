@@ -1,14 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('nas-form');
-  const toggleBtn = document.getElementById('toggle-form-btn');
   if (!form) return;
 
   const steps = Array.from(form.querySelectorAll('.form-step'));
   let currentStep = 0;
-
-  if (toggleBtn) {
-    toggleBtn.addEventListener('click', () => form.classList.toggle('form-hidden'));
-  }
 
   const showStep = (index) => {
     steps.forEach((step, i) => step.classList.toggle('active', i === index));
