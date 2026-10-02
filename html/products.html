@@ -12,12 +12,27 @@
     <header>
       <nav>
         <a class="nav-brand" href="./home.html" aria-label="TerraByte, inicio">
-          <img class="nav-imagen nav-imagen-dark" src="../assets/Logo.png" alt="TerraByte" />
-          <img class="nav-imagen nav-imagen-light" src="../assets/Logo_claro.png" alt="TerraByte" />
+          <img
+            class="nav-imagen nav-imagen-dark"
+            src="../assets/Logo.png"
+            alt="TerraByte"
+          />
+          <img
+            class="nav-imagen nav-imagen-light"
+            src="../assets/Logo_claro.png"
+            alt="TerraByte"
+          />
         </a>
         <div class="nav-search" role="search">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8" /><path d="m16 16 5 5" /></svg>
-          <input type="search" aria-label="Buscar productos" placeholder="¿Qué estás buscando?" />
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="10.8" cy="10.8" r="6.8" />
+            <path d="m16 16 5 5" />
+          </svg>
+          <input
+            type="search"
+            aria-label="Buscar productos"
+            placeholder="¿Qué estás buscando?"
+          />
           <button type="button" aria-label="Buscar">Buscar</button>
         </div>
         <div class="nav-account-links">
@@ -30,10 +45,32 @@
         </div>
         <div class="nav-secondary-tools">
           <a class="nav-secondary" href="./aboutus.html">Nosotros</a>
-        <button class="theme-toggle" type="button" aria-label="Cambiar a modo claro" title="Cambiar a modo claro">
-          <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4" /><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" /></svg>
-          <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.1A8.5 8.5 0 0 1 8.9 3.8 8.5 8.5 0 1 0 20.2 15.1Z" /></svg>
-        </button>
+          <button
+            class="theme-toggle"
+            type="button"
+            aria-label="Cambiar a modo claro"
+            title="Cambiar a modo claro"
+          >
+            <svg
+              class="theme-icon theme-icon-sun"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="4" />
+              <path
+                d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"
+              />
+            </svg>
+            <svg
+              class="theme-icon theme-icon-moon"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                d="M20.2 15.1A8.5 8.5 0 0 1 8.9 3.8 8.5 8.5 0 1 0 20.2 15.1Z"
+              />
+            </svg>
+          </button>
         </div>
       </nav>
     </header>
@@ -145,7 +182,6 @@
         </div>
       </div>
 
-      <!-- Carrusel de productos: grilla horizontal con flechas -->
       <section class="products" aria-label="Productos destacados">
         <button
           class="products-arrow"
@@ -185,8 +221,46 @@
                 <button class="products-button">Comprar</button>
               </div>
             </article>
+            <article class="products-item">
+              <img src="../assets/products/Producto 4.png" alt="Producto 4" />
+              <h5>Synology DS225+ Private Cloud Media Server</h5>
+              <h6>$568.269</h6>
+              <div class="products-button-section">
+                <button class="products-button">Ver Más</button>
+                <button class="products-button">Comprar</button>
+              </div>
+            </article>
+            <article class="products-item">
+              <img src="../assets/products/Producto 5.png" alt="Producto 5" />
+              <h5>UGREEN NAS DXP2800 2-Bay</h5>
+              <h6>$594.734</h6>
+              <div class="products-button-section">
+                <button class="products-button">Ver Más</button>
+                <button class="products-button">Comprar</button>
+              </div>
+            </article>
+            <article class="products-item">
+              <img src="../assets/products/Producto 6.png" alt="Producto 6" />
+              <h5>UGREEN NAS DXP4800 GT 4-Bay</h5>
+              <h6>$853.984</h6>
+              <div class="products-button-section">
+                <button class="products-button">Ver Más</button>
+                <button class="products-button">Comprar</button>
+              </div>
+            </article>
           </div>
         </div>
+
+        <button
+          class="products-arrow"
+          id="products-next"
+          type="button"
+          aria-label="Siguiente"
+        >
+          <img src="../assets/products/arrow-right.png" alt="Flecha Derecha" />
+        </button>
+      </section>
+    </main>
 
     <footer style="background-color: black">
       <label name="home" style="color: white"
