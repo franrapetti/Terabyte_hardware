@@ -103,23 +103,46 @@ fieldset br {
   margin-bottom: 0.5rem;
 }
 
-/* Botón de submit */
+/* Botones */
+.toggle-button {
+  background-color: #2b353b;
+  color: white;
+  border: 1px solid #435058;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+  transition: all 0.2s ease-in-out;
+}
+
+.toggle-button:hover {
+  background-color: #435058;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+}
+
 main form button[type="submit"] {
   align-self: center;
-  background-color: transparent;
+  background-color: #007aff;
   color: white;
   border: none;
   border-radius: 0.5rem;
-  font-size: 1rem;
-  padding: 0.5rem 1.5rem;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
-  transition: all 0.1s ease-in-out;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 0.75rem 2rem;
+  box-shadow: 0 4px 10px rgba(0, 122, 255, 0.3);
+  transition: all 0.2s ease-in-out;
 }
 
 main form button[type="submit"]:hover {
-  font-weight: bolder;
+  background-color: #005bb5;
   cursor: pointer;
-  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 6px 14px rgba(0, 122, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+.form-hidden {
+  display: none !important;
 }
 
 @media (max-width: 700px) {
@@ -134,4 +157,49 @@ main form button[type="submit"]:hover {
   fieldset {
     padding: 1rem 1.25rem;
   }
+}
+
+/* --- SECUENCIA DEL FORMULARIO CON CSS --- */
+/* Ocultar todos los fieldsets y el botón submit por defecto */
+#nas-form fieldset,
+#nas-form button[type="submit"] {
+  display: none;
+}
+
+/* Mostrar el primer paso por defecto */
+#nas-form fieldset:first-of-type {
+  display: block;
+}
+
+/* Si un fieldset tiene un radio seleccionado, se oculta (simula pasar al siguiente paso) */
+#nas-form fieldset:has(input[type="radio"]:checked) {
+  display: none !important;
+}
+
+/* Al ocultarse el actual por selección, se muestra el INMEDIATAMENTE siguiente */
+#nas-form fieldset:has(input[type="radio"]:checked) + fieldset {
+  display: block;
+}
+
+/* Mostrar botón submit final cuando el último fieldset tiene un radio seleccionado */
+#nas-form fieldset:last-of-type:has(input[type="radio"]:checked) + button[type="submit"] {
+  display: block;
+}
+
+/* Clases para el botón "Siguiente" del paso 5 (discos, que usa checkboxes) */
+.css-next-radio {
+  display: none;
+}
+.css-next-btn {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #007aff;
+  color: white !important;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+.css-next-btn:hover {
+  background-color: #005bb5;
 }

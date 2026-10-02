@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../css/global.css" />
     <link rel="stylesheet" href="../css/services.css" />
     <script src="../javascript/theme.js" defer></script>
+    <script src="../javascript/services.js" defer></script>
   </head>
   <body>
     <header>
@@ -47,7 +48,9 @@
         </h2>
       </div>
 
-      <form class="fieldset-form">
+      <button id="toggle-form-btn" class="toggle-button">Ocultar / Mostrar Formulario</button>
+
+      <form id="nas-form" class="fieldset-form">
         <fieldset>
           <legend class="fieldset-leyend">1. Gabinete</legend>
           <input type="radio" id="gabinete1" name="gabinete" />
@@ -119,7 +122,9 @@
           <input type="checkbox" id="disco3" name="discos" />
           <label class="fieldset-label" for="disco3"
             >SSD NAS 1TB - $80.000</label
-          >
+          ><br />
+          <input type="radio" id="step5_done" name="step5_done" class="css-next-radio" />
+          <label for="step5_done" class="css-next-btn">Siguiente Paso</label>
         </fieldset>
 
         <fieldset>
