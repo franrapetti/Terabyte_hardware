@@ -450,13 +450,13 @@ html[data-theme="light"] .check-row a {
 
 html[data-theme="light"] .login-submit,
 html[data-theme="light"] .auth-submit {
-  background-color: #364147;
-  color: #ffffff;
+  background-color: #c5e846;
+  color: #172025;
 }
 
 html[data-theme="light"] .login-submit:hover,
 html[data-theme="light"] .auth-submit:hover {
-  background-color: #20292e;
+  background-color: #d6f56a;
 }
 
 html[data-theme="light"] .eyebrow {
