@@ -26,11 +26,21 @@ document.addEventListener('DOMContentLoaded', () => {
     if (selSpan) {
       selSpan.textContent = checked.length ? checked.join(', ') : 'Ninguno';
     }
+    updateTotal();
   });
+
+  const totalEl = document.getElementById('total-price');
+  const updateTotal = () => {
+    const total = Array.from(form.querySelectorAll('input:checked')).reduce((sum, i) => {
+      const val = (i.value.match(/\$([0-9.]+)/) || [])[1];
+      return sum + (val ? parseInt(val.replaceAll('.', ''), 10) : 0);
+    }, 0);
+    if (totalEl) totalEl.textContent = '$' + total.toLocaleString('es-AR');
+  };
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    alert('¡Tu configuración de NAS personalizada fue agregada al carrito con éxito!');
+    alert(`¡Tu configuración de NAS personalizada fue agregada al carrito con éxito!\nTotal: ${totalEl ? totalEl.textContent : '$0'}`);
   });
 
   showStep(0);
