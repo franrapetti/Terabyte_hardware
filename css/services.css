@@ -9,7 +9,6 @@ main {
 
 .titulo {
   color: white;
-  justify-self: center;
   text-align: center;
   padding: 0 1rem;
 }
@@ -21,40 +20,15 @@ main {
 .fieldset-form {
   display: flex;
   flex-direction: column;
-  align-content: space-evenly;
   margin: 0;
-}
-.fieldset-label {
-  color: white;
 }
 .fieldset-leyend {
   color: white;
   font-weight: bolder;
 }
 
-.cart-button {
-  color: white;
-  display: flex;
-  align-self: flex-end;
-  background-color: transparent;
-  border-radius: 0.5rem;
-  font-size: 1rem;
-  margin: 0.5rem;
-  padding: 0.5rem;
-  transition: all 0.1s ease-in-out;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
-}
-.cart-button:hover {
-  font-weight: bolder;
-  cursor: pointer;
-  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.35);
-}
-
 /* Formulario */
 main form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
   width: 100%;
   max-width: 45rem;
 }
@@ -63,16 +37,8 @@ fieldset {
   border: none;
   border-radius: 1rem;
   background-color: #435058;
-  padding: 1.25rem 1.5rem;
+  padding: 1.5rem;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
-  transition:
-    box-shadow 0.2s ease-in-out,
-    transform 0.2s ease-in-out;
-}
-
-fieldset:hover {
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
-  transform: translateY(-1px);
 }
 
 legend {
@@ -81,56 +47,177 @@ legend {
   border-radius: 1rem;
   font-size: 1.1rem;
   font-weight: bold;
-  padding: 0 0.5rem;
+  padding: 0.25rem 0.75rem;
 }
 
-fieldset label {
-  color: #d9d9d9;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-fieldset input[type="radio"],
-fieldset input[type="checkbox"] {
-  accent-color: #1b1b1b;
-  margin-right: 0.5rem;
-  cursor: pointer;
-}
-
-fieldset br {
-  content: "";
-  display: block;
-  margin-bottom: 0.5rem;
-}
-
-/* Botón de submit */
-main form button[type="submit"] {
-  align-self: center;
-  background-color: transparent;
+/* Botón toggle general */
+.toggle-button {
+  background-color: #2b353b;
   color: white;
-  border: none;
+  border: 1px solid #435058;
   border-radius: 0.5rem;
   font-size: 1rem;
-  padding: 0.5rem 1.5rem;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
-  transition: all 0.1s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+.toggle-button:hover {
+  background-color: #435058;
 }
 
-main form button[type="submit"]:hover {
-  font-weight: bolder;
+.form-hidden {
+  display: none !important;
+}
+
+/* Pasos secuenciales */
+.form-step {
+  display: none;
+}
+.form-step.active {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* Tarjetas (Cards) */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.card-option {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.25rem 1rem;
+  background-color: #2b353b;
+  border: 2px solid #435058;
+  border-radius: 0.75rem;
   cursor: pointer;
-  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.35);
+  transition: all 0.2s ease;
+}
+
+.card-option:hover {
+  border-color: #007aff;
+  transform: translateY(-2px);
+}
+
+.card-option:has(input:checked) {
+  border-color: #007aff;
+  background-color: #1a2a38;
+  box-shadow: 0 0 12px rgba(0, 122, 255, 0.35);
+}
+
+.card-option input {
+  accent-color: #007aff;
+  width: 1.1rem;
+  height: 1.1rem;
+  margin: 0;
+  cursor: pointer;
+}
+
+.card-title {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.card-price {
+  color: #38bdf8;
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+/* Feedback de selección */
+.step-selection {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #b7bdc0;
+}
+.step-selection span {
+  color: #38bdf8;
+  font-weight: bold;
+}
+
+/* Navegación entre pasos */
+.step-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.btn-step,
+.cart-button {
+  padding: 0.7rem 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-prev {
+  background-color: transparent;
+  color: #ffffff;
+  border: 1px solid #77838a;
+}
+.btn-prev:hover {
+  background-color: #435058;
+}
+
+.btn-next,
+.cart-button {
+  margin-left: auto;
+  background-color: #007aff;
+  color: #ffffff;
+  border: none;
+  box-shadow: 0 4px 10px rgba(0, 122, 255, 0.3);
+}
+.btn-next:hover,
+.cart-button:hover {
+  background-color: #005bb5;
+  transform: translateY(-2px);
+}
+
+/* Modo claro */
+html[data-theme="light"] .card-option {
+  background-color: #f4f6f7;
+  border-color: #c5cdd1;
+}
+html[data-theme="light"] .card-title {
+  color: #273137;
+}
+html[data-theme="light"] .card-price,
+html[data-theme="light"] .step-selection span {
+  color: #007aff;
+}
+html[data-theme="light"] .card-option:has(input:checked) {
+  background-color: #eaf3fc;
+  border-color: #007aff;
+}
+html[data-theme="light"] .step-selection {
+  color: #59656b;
+}
+html[data-theme="light"] .btn-prev {
+  color: #273137;
+  border-color: #aeb6bb;
+}
+html[data-theme="light"] .btn-prev:hover {
+  background-color: #e2e6e8;
 }
 
 @media (max-width: 700px) {
   main {
     padding: 1.5rem 1rem 2rem;
   }
-
   main h1 {
     font-size: 1.8rem;
   }
-
   fieldset {
     padding: 1rem 1.25rem;
   }
