@@ -7,8 +7,18 @@ function iniciarCarruselProductos() {
   const prev = document.getElementById("products-prev");
   const next = document.getElementById("products-next");
   let index = 0;
+  let estaReseteando = false;
+  let estaMoviendo = false;
+  let intervaloAutomatico;
 
   if (!track || !prev || !next) {
+    return;
+  }
+
+  const productosOriginales = Array.from(track.children);
+  const totalOriginales = productosOriginales.length;
+
+  if (totalOriginales === 0) {
     return;
   }
 
@@ -17,42 +27,110 @@ function iniciarCarruselProductos() {
     return parseInt(v, 10) || 1;
   }
 
-  function update() {
-    const total = track.children.length;
-    const max = Math.max(0, total - perView());
-    index = Math.min(index, max);
+  function limpiarClones() {
+    track.querySelectorAll(".products-item-clone").forEach(function (clone) {
+      clone.remove();
+    });
+  }
 
+  function crearClones() {
+    limpiarClones();
+
+    productosOriginales.slice(0, perView()).forEach(function (producto) {
+      const clone = producto.cloneNode(true);
+      clone.classList.add("products-item-clone");
+      clone.setAttribute("aria-hidden", "true");
+      track.appendChild(clone);
+    });
+  }
+
+  function actualizarBotones() {
+    prev.disabled = estaMoviendo || index === 0;
+    next.disabled = estaMoviendo || totalOriginales <= perView();
+  }
+
+  function update() {
     const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
     const step = track.children[0].offsetWidth + gap;
     track.style.transform = "translateX(" + -index * step + "px)";
 
-    prev.disabled = index === 0;
-    next.disabled = index >= max;
+    actualizarBotones();
   }
 
   function siguienteProducto() {
-    const total = track.children.length;
-    const max = Math.max(0, total - perView());
-
-    if (index >= max) {
-      index = 0;
-    } else {
-      index += 1;
+    if (estaMoviendo || estaReseteando || totalOriginales <= perView()) {
+      return false;
     }
 
+    estaMoviendo = true;
+    index += 1;
     update();
+    return true;
+  }
+
+  function productoAnterior() {
+    if (estaMoviendo || estaReseteando || index === 0) {
+      return false;
+    }
+
+    estaMoviendo = true;
+    index -= 1;
+    update();
+    return true;
+  }
+
+  function iniciarMovimientoAutomatico() {
+    intervaloAutomatico = setInterval(siguienteProducto, 7500);
+  }
+
+  function reiniciarMovimientoAutomatico() {
+    clearInterval(intervaloAutomatico);
+    iniciarMovimientoAutomatico();
   }
 
   prev.addEventListener("click", function () {
-    index = Math.max(0, index - 1);
-    update();
+    if (productoAnterior()) {
+      reiniciarMovimientoAutomatico();
+    }
   });
 
   next.addEventListener("click", function () {
-    siguienteProducto();
+    if (siguienteProducto()) {
+      reiniciarMovimientoAutomatico();
+    }
   });
 
-  window.addEventListener("resize", update);
+  track.addEventListener("transitionend", function (event) {
+    if (event.target !== track || event.propertyName !== "transform") {
+      return;
+    }
+
+    if (index < totalOriginales) {
+      estaMoviendo = false;
+      actualizarBotones();
+      return;
+    }
+
+    estaReseteando = true;
+    track.style.transition = "none";
+    index = 0;
+    update();
+
+    void track.offsetHeight;
+    track.style.transition = "";
+    estaReseteando = false;
+    estaMoviendo = false;
+    actualizarBotones();
+  });
+
+  window.addEventListener("resize", function () {
+    crearClones();
+    index = Math.min(index, totalOriginales - 1);
+    estaMoviendo = false;
+    update();
+  });
+
+  crearClones();
   update();
-  setInterval(siguienteProducto, 7500);
+  iniciarMovimientoAutomatico();
 }
