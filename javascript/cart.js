@@ -70,6 +70,20 @@ document.addEventListener("DOMContentLoaded", function () {
       info.appendChild(lista);
     }
 
+    const acciones = document.createElement("div");
+    acciones.className = "cart-item-actions";
+
+    const cantidad = document.createElement("div");
+    cantidad.className = "cart-quantity";
+
+    const botonMenos = crearBotonCantidad("−", "Restar una unidad", item.id, -1);
+    const valorCantidad = document.createElement("span");
+    valorCantidad.className = "cart-quantity-value";
+    valorCantidad.textContent = item.cantidad || 1;
+    const botonMas = crearBotonCantidad("+", "Sumar una unidad", item.id, 1);
+
+    cantidad.append(botonMenos, valorCantidad, botonMas);
+
     const botonQuitar = document.createElement("button");
     botonQuitar.className = "cart-remove";
     botonQuitar.type = "button";
@@ -79,8 +93,22 @@ document.addEventListener("DOMContentLoaded", function () {
       renderizarCarrito();
     });
 
-    articulo.append(info, botonQuitar);
+    acciones.append(cantidad, botonQuitar);
+    articulo.append(info, acciones);
     return articulo;
+  }
+
+  function crearBotonCantidad(texto, etiqueta, id, cambio) {
+    const boton = document.createElement("button");
+    boton.className = "cart-quantity-button";
+    boton.type = "button";
+    boton.textContent = texto;
+    boton.setAttribute("aria-label", etiqueta);
+    boton.addEventListener("click", function () {
+      cambiarCantidad(id, cambio);
+      renderizarCarrito();
+    });
+    return boton;
   }
 
   function crearMensajeCarritoVacio() {
@@ -189,6 +217,6 @@ function quitarDelCarrito(id) {
 
 function calcularTotal(carrito) {
   return carrito.reduce(function (total, item) {
-    return total + extraerPrecio(item.precio);
+    return total + extraerPrecio(item.precio) * (item.cantidad || 1);
   }, 0);
 }

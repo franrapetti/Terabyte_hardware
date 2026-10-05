@@ -77,21 +77,13 @@ function iniciarFiltrosCatalogo() {
 
   function filtrarCatalogo() {
     const busqueda = buscador.value.trim().toLowerCase();
-    const tagsActivos = Array.from(tags)
-      .filter(function (tag) {
-        return tag.checked;
-      })
-      .map(function (tag) {
-        return tag.value;
-      });
+    const categoria = document.querySelector(".catalogo-tag input:checked").value;
 
     items.forEach(function (item) {
       const nombre = item.querySelector("h5").textContent.toLowerCase();
       const itemTags = item.dataset.tags.split(" ");
       const coincideBusqueda = nombre.includes(busqueda);
-      const coincideTags = tagsActivos.every(function (tag) {
-        return itemTags.includes(tag);
-      });
+      const coincideTags = categoria === "" || itemTags.includes(categoria);
 
       item.classList.toggle("is-hidden", !coincideBusqueda || !coincideTags);
     });

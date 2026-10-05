@@ -47,6 +47,40 @@ main.cart-main {
     transform 0.2s ease;
 }
 
+.cart-item-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.6rem;
+}
+
+.cart-quantity {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  color: #273137;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+}
+
+.cart-quantity-button {
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid #435058;
+  border-radius: 0.5rem;
+  background-color: transparent;
+  color: #273137;
+  cursor: pointer;
+  font: inherit;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.cart-quantity-button:hover {
+  background-color: #cfd6d9;
+}
+
 .cart-clear {
   padding: 0.7rem 1rem;
 }
