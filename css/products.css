@@ -61,9 +61,7 @@ main {
 .catalogo {
   display: grid;
   grid-template-columns: minmax(12rem, 16rem) 1fr;
-  grid-template-areas:
-    "buscador buscador"
-    "tags grid";
+  grid-template-areas: "tags grid";
   align-items: start;
   gap: 1rem;
   margin-top: 2rem;
@@ -72,15 +70,6 @@ main {
   background-color: #435058;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
   width: 100%;
-}
-
-.catalogo-buscador {
-  grid-area: buscador;
-}
-
-.catalogo-buscador .nav-search {
-  width: 100%;
-  max-width: none;
 }
 
 .catalogo-tags {
@@ -336,7 +325,6 @@ html[data-theme="light"] .modal-action:hover {
   .catalogo {
     grid-template-columns: 1fr;
     grid-template-areas:
-      "buscador"
       "tags"
       "grid";
   }

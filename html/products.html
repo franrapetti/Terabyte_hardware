@@ -26,18 +26,19 @@
             alt="TerraByte"
           />
         </a>
-        <div class="nav-search" role="search">
+        <form class="nav-search" role="search" action="./products.html">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <circle cx="10.8" cy="10.8" r="6.8" />
             <path d="m16 16 5 5" />
           </svg>
           <input
             type="search"
+            name="q"
             aria-label="Buscar productos"
             placeholder="¿Qué estás buscando?"
           />
-          <button type="button" aria-label="Buscar">Buscar</button>
-        </div>
+          <button type="submit" aria-label="Buscar">Buscar</button>
+        </form>
         <div class="nav-account-links">
           <a class="nav-account-link" href="./login.html">Ingresar</a>
           <a class="nav-account-link" href="./register.html">Registrarse</a>
@@ -136,21 +137,6 @@
       </div>
 
       <section class="catalogo" aria-label="Catálogo de Productos">
-        <div class="catalogo-buscador" id="catalogo-buscador">
-          <div class="nav-search" role="search">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <circle cx="10.8" cy="10.8" r="6.8" />
-              <path d="m16 16 5 5" />
-            </svg>
-            <input
-              id="catalogo-search"
-              type="search"
-              aria-label="Buscar productos"
-              placeholder="Buscar un producto por nombre"
-            />
-            <button type="button" aria-label="Buscar">Buscar</button>
-          </div>
-        </div>
         <div class="catalogo-tags" id="catalogo-tags">
           <h3>Categorías</h3>
           <label class="catalogo-tag">

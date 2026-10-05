@@ -67,7 +67,8 @@ function iniciarCarruselMarcas() {
 }
 
 function iniciarFiltrosCatalogo() {
-  const buscador = document.getElementById("catalogo-search");
+  // El único buscador de la página es el del navbar (el campo con name="q").
+  const buscador = document.querySelector('.nav-search input[name="q"]');
   const tags = document.querySelectorAll(".catalogo-tag input");
   const items = document.querySelectorAll(".catalogo-item");
 
@@ -94,6 +95,12 @@ function iniciarFiltrosCatalogo() {
   tags.forEach(function (tag) {
     tag.addEventListener("change", filtrarCatalogo);
   });
+
+  // Si venimos de otra página, la dirección es products.html?q=texto.
+  // Leemos "q", lo escribimos en el buscador del navbar y filtramos.
+  const parametros = new URLSearchParams(window.location.search);
+  buscador.value = parametros.get("q") || "";
+  filtrarCatalogo();
 }
 
 function iniciarModalesProductos() {
