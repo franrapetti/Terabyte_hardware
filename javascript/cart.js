@@ -2,8 +2,9 @@ document.addEventListener("DOMContentLoaded", function () {
   const contenedorItems = document.getElementById("cart-items");
   const totalElemento = document.getElementById("cart-total");
   const botonVaciar = document.getElementById("clear-cart");
+  const botonFinalizar = document.getElementById("checkout");
 
-  if (!contenedorItems || !totalElemento || !botonVaciar) {
+  if (!contenedorItems || !totalElemento || !botonVaciar || !botonFinalizar) {
     return;
   }
 
@@ -12,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
     contenedorItems.textContent = "";
     totalElemento.textContent = formatearPrecio(calcularTotal(carrito));
     botonVaciar.disabled = carrito.length === 0;
+    botonFinalizar.disabled = carrito.length === 0;
 
     if (carrito.length === 0) {
       contenedorItems.appendChild(crearMensajeCarritoVacio());
@@ -131,16 +133,50 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    abrirModalConfirmacion(function () {
-      guardarCarrito([]);
-      renderizarCarrito();
+    abrirModalConfirmacion({
+      titulo: "¿Vaciar carrito?",
+      mensaje: "Se eliminarán todos los productos y configuraciones guardadas.",
+      textoConfirmar: "Vaciar carrito",
+      textoCancelar: "Cancelar",
+      alConfirmar: function () {
+        guardarCarrito([]);
+        renderizarCarrito();
+      },
+    });
+  });
+
+  botonFinalizar.addEventListener("click", function () {
+    const carrito = obtenerCarrito();
+
+    if (carrito.length === 0) {
+      return;
+    }
+
+    abrirModalConfirmacion({
+      titulo: "¿Finalizar compra?",
+      mensaje: "El total de tu compra es " + formatearPrecio(calcularTotal(carrito)) + ".",
+      textoConfirmar: "Confirmar compra",
+      textoCancelar: "Volver",
+      alConfirmar: function () {
+        guardarCarrito([]);
+        renderizarCarrito();
+        // Abrir otro modal borra el anterior, así que no hace falta cerrarlo antes.
+        abrirModalConfirmacion({
+          titulo: "¡Gracias por tu compra!",
+          mensaje: "Recibimos tu pedido y el carrito quedó vacío.",
+          textoConfirmar: "Entendido",
+          alConfirmar: function () {},
+        });
+      },
     });
   });
 
   renderizarCarrito();
 });
 
-function abrirModalConfirmacion(alConfirmar) {
+// opciones: titulo, mensaje, textoConfirmar, alConfirmar y (opcional) textoCancelar.
+// Si no hay textoCancelar, el modal muestra un solo botón.
+function abrirModalConfirmacion(opciones) {
   const modalAnterior = document.querySelector(".cart-modal-overlay");
 
   if (modalAnterior) {
@@ -164,26 +200,29 @@ function abrirModalConfirmacion(alConfirmar) {
   estado.textContent = "Carrito";
 
   const titulo = document.createElement("h2");
-  titulo.textContent = "¿Vaciar carrito?";
+  titulo.textContent = opciones.titulo;
 
   const mensaje = document.createElement("p");
-  mensaje.textContent =
-    "Se eliminarán todos los productos y configuraciones guardadas.";
+  mensaje.textContent = opciones.mensaje;
 
   const acciones = document.createElement("div");
   acciones.className = "cart-modal-actions";
 
-  const cancelar = document.createElement("button");
-  cancelar.className = "cart-modal-action cart-modal-secondary";
-  cancelar.type = "button";
-  cancelar.textContent = "Cancelar";
-
   const confirmar = document.createElement("button");
   confirmar.className = "cart-modal-action cart-modal-primary";
   confirmar.type = "button";
-  confirmar.textContent = "Vaciar carrito";
+  confirmar.textContent = opciones.textoConfirmar;
 
-  acciones.append(cancelar, confirmar);
+  if (opciones.textoCancelar) {
+    const cancelar = document.createElement("button");
+    cancelar.className = "cart-modal-action cart-modal-secondary";
+    cancelar.type = "button";
+    cancelar.textContent = opciones.textoCancelar;
+    cancelar.addEventListener("click", cerrarModal);
+    acciones.appendChild(cancelar);
+  }
+
+  acciones.appendChild(confirmar);
   contenido.append(cerrar, estado, titulo, mensaje, acciones);
   modal.appendChild(contenido);
   document.body.appendChild(modal);
@@ -192,11 +231,10 @@ function abrirModalConfirmacion(alConfirmar) {
     modal.remove();
   }
 
-  cancelar.addEventListener("click", cerrarModal);
   cerrar.addEventListener("click", cerrarModal);
 
   confirmar.addEventListener("click", function () {
-    alConfirmar();
+    opciones.alConfirmar();
     cerrarModal();
   });
 

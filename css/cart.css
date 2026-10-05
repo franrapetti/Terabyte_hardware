@@ -234,6 +234,28 @@ main.cart-main {
   font-size: 1.25rem;
 }
 
+.cart-checkout {
+  align-self: flex-end;
+  margin-top: 1rem;
+  border: 1px solid #007aff;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #007aff;
+  color: #ffffff;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+}
+
+.cart-checkout:hover:not(:disabled) {
+  filter: brightness(1.1);
+}
+
+.cart-checkout:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .cart-modal-overlay {
   position: fixed;
   inset: 0;
@@ -402,6 +424,10 @@ html[data-theme="light"] .cart-modal-status {
   .cart-summary {
     align-items: stretch;
     flex-direction: column;
+  }
+
+  .cart-checkout {
+    align-self: stretch;
   }
 
   .cart-item {
