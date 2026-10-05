@@ -523,10 +523,14 @@ html[data-theme="light"] .nav-search {
   color: #273137;
 }
 
-html[data-theme="light"] .hero-text button,
 html[data-theme="light"] .cart-button,
 html[data-theme="light"] main form button[type="submit"] {
   color: #273137;
+}
+
+html[data-theme="light"] .hero-text h1 em,
+html[data-theme="light"] .hero-benefits li::before {
+  color: #007aff;
 }
 
 html[data-theme="light"] .info-item,
