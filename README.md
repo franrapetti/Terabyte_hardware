@@ -21,8 +21,8 @@ La guía de desarrollo tendrá como objetivo facilitar la incorporación de nuev
 Para comenzar a trabajar en el proyecto, se deberá clonar el repositorio y acceder a la carpeta correspondiente:
 
 ```bash
-git clone https://github.com/franrapetti/Compra-Gamer-G9.git
-cd Compra-Gamer-G9
+git clone https://github.com/franrapetti/Terabyte_hardware.git
+cd Terabyte_hardware
 ```
 
 El proyecto no tiene dependencias que instalar: es HTML, CSS y JavaScript puro. Para probarlo, abrí `html/home.html` desde un servidor local (por ejemplo la extensión Live Server de VS Code o `python3 -m http.server`). Abrirlo directo con `file://` puede impedir que funcione el inicio de sesión.
