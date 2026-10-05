@@ -112,7 +112,13 @@ function iniciarModalesProductos() {
       const producto = obtenerDatosProducto(boton);
 
       if (boton.textContent.trim() !== "Ver Más") {
-        guardarProductoEnCarrito(producto);
+        agregarAlCarrito({
+          tipo: "Producto",
+          nombre: producto.nombre,
+          precio: producto.precio,
+          imagen: producto.imagen,
+          alt: producto.alt,
+        });
         abrirModal(templateComprar(producto));
       } else {
         abrirModal(templateVerMas(producto));
@@ -133,37 +139,6 @@ function obtenerDatosProducto(boton) {
     imagen: imagen.getAttribute("src"),
     alt: imagen.getAttribute("alt"),
   };
-}
-
-function obtenerCarrito() {
-  const carritoGuardado = localStorage.getItem("terrabyte-cart");
-
-  if (!carritoGuardado) {
-    return [];
-  }
-
-  try {
-    const carrito = JSON.parse(carritoGuardado);
-    return Array.isArray(carrito) ? carrito : [];
-  } catch (error) {
-    return [];
-  }
-}
-
-function guardarProductoEnCarrito(producto) {
-  const carrito = obtenerCarrito();
-
-  carrito.push({
-    id: Date.now().toString() + "-" + Math.random().toString(16).slice(2),
-    tipo: "Producto",
-    nombre: producto.nombre,
-    precio: producto.precio,
-    imagen: producto.imagen,
-    alt: producto.alt,
-    cantidad: 1,
-  });
-
-  localStorage.setItem("terrabyte-cart", JSON.stringify(carrito));
 }
 
 function templateComprar(producto) {

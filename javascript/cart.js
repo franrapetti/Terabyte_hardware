@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     abrirModalConfirmacion(function () {
-      localStorage.removeItem("terrabyte-cart");
+      guardarCarrito([]);
       renderizarCarrito();
     });
   });
@@ -179,43 +179,16 @@ function abrirModalConfirmacion(alConfirmar) {
   });
 }
 
-function obtenerCarrito() {
-  const carritoGuardado = localStorage.getItem("terrabyte-cart");
-
-  if (!carritoGuardado) {
-    return [];
-  }
-
-  try {
-    const carrito = JSON.parse(carritoGuardado);
-    return Array.isArray(carrito) ? carrito : [];
-  } catch (error) {
-    return [];
-  }
-}
-
 function quitarDelCarrito(id) {
   const carritoActualizado = obtenerCarrito().filter(function (item) {
     return item.id !== id;
   });
 
-  localStorage.setItem("terrabyte-cart", JSON.stringify(carritoActualizado));
+  guardarCarrito(carritoActualizado);
 }
 
 function calcularTotal(carrito) {
   return carrito.reduce(function (total, item) {
     return total + extraerPrecio(item.precio);
   }, 0);
-}
-
-function extraerPrecio(precio) {
-  if (!precio || precio === "Gratis") {
-    return 0;
-  }
-
-  return Number(String(precio).replace(/[^\d]/g, "")) || 0;
-}
-
-function formatearPrecio(valor) {
-  return "$" + valor.toLocaleString("es-AR");
 }

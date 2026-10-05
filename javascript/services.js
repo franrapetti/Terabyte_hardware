@@ -56,7 +56,12 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    guardarConfiguracionEnCarrito(configuracion);
+    agregarAlCarrito({
+      tipo: "Servicio",
+      nombre: configuracion.nombre,
+      precio: configuracion.precio,
+      componentes: configuracion.componentes,
+    });
     abrirModalServicio({
       titulo: "NAS agregado al carrito",
       mensaje:
@@ -74,7 +79,7 @@ function obtenerConfiguracionNas(form) {
   const seleccionados = Array.from(form.querySelectorAll("input:checked"));
   const componentes = seleccionados.map((input) => input.value);
   const total = componentes.reduce((suma, componente) => {
-    return suma + extraerPrecio(componente);
+    return suma + extraerPrecioComponente(componente);
   }, 0);
 
   return {
@@ -84,7 +89,7 @@ function obtenerConfiguracionNas(form) {
   };
 }
 
-function extraerPrecio(texto) {
+function extraerPrecioComponente(texto) {
   const coincidencia = texto.match(/\(\$([\d.]+)\)/);
 
   if (!coincidencia) {
@@ -92,40 +97,6 @@ function extraerPrecio(texto) {
   }
 
   return Number(coincidencia[1].replaceAll(".", ""));
-}
-
-function formatearPrecio(valor) {
-  return "$" + valor.toLocaleString("es-AR");
-}
-
-function obtenerCarrito() {
-  const carritoGuardado = localStorage.getItem("terrabyte-cart");
-
-  if (!carritoGuardado) {
-    return [];
-  }
-
-  try {
-    const carrito = JSON.parse(carritoGuardado);
-    return Array.isArray(carrito) ? carrito : [];
-  } catch (error) {
-    return [];
-  }
-}
-
-function guardarConfiguracionEnCarrito(configuracion) {
-  const carrito = obtenerCarrito();
-
-  carrito.push({
-    id: Date.now().toString() + "-" + Math.random().toString(16).slice(2),
-    tipo: "Servicio",
-    nombre: configuracion.nombre,
-    precio: configuracion.precio,
-    componentes: configuracion.componentes,
-    cantidad: 1,
-  });
-
-  localStorage.setItem("terrabyte-cart", JSON.stringify(carrito));
 }
 
 function abrirModalServicio(opciones) {
