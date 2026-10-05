@@ -1,6 +1,6 @@
-# COMPRA GAMER
+# TERRABYTE
 
-![Logo](assets/logo.png)
+![Logo](assets/Logo.png)
 
 ## Descripción
 
@@ -25,7 +25,7 @@ git clone https://github.com/franrapetti/Compra-Gamer-G9.git
 cd Compra-Gamer-G9
 ```
 
-Luego se deberán instalar las dependencias necesarias para ejecutar el proyecto.
+El proyecto no tiene dependencias que instalar: es HTML, CSS y JavaScript puro. Para probarlo, abrí `html/home.html` desde un servidor local (por ejemplo la extensión Live Server de VS Code o `python3 -m http.server`). Abrirlo directo con `file://` puede impedir que funcione el inicio de sesión.
 
 ### Flujo de trabajo
 
@@ -46,23 +46,13 @@ Los commits deberán utilizar una estructura clara que permita identificar rápi
 
 Ejemplos:
 
-| Tipo     <<<<<<< HEAD
-| Descripciónn                 |
+| Tipo     | Descripción                  |
 | -------- | ---------------------------- |
 | feat     | Agregar tarjeta de producto  |
 | fix      | Corregir diseño del carrito  |
 | style    | Ajustar estilos del catálogo |
 | refactor | Reorganizar componentes      |
 | docs     | Actualizar documentación     |
-=======
-| Tipo     | Descripciónn                 |
-| -------- | ---------------------------- |
-| feat     | Agregar tarjeta de producto  |
-| fix      | Corregir diseño del carrito  |
-| style    | Ajustar estilos del catálogo |
-| refactor | Reorganizar componentes      |
-| docs     | Actualizar documentación     |
->>>>>>> parent of 0a25785 (Eliminacion de columna de tabla de ejemplos)
 
 ### Pull Requests
 
