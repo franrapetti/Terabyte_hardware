@@ -25,6 +25,7 @@ header {
 }
 
 nav {
+  font-family: Arial, Helvetica, sans-serif;
   display: grid;
   grid-template-columns: 10rem minmax(18rem, 1fr) auto;
   grid-template-areas:
@@ -51,7 +52,7 @@ nav {
   height: 2.5rem;
   place-items: center;
   margin: 0;
-  border: 1px solid #666;
+  border: 1px solid transparent;
   border-radius: 0.5rem;
   background: transparent;
   color: #f2f2f2;
@@ -148,6 +149,29 @@ html[data-theme="light"] .theme-icon-moon {
   background: #596870;
 }
 
+/* Modo oscuro: buscador sutil en lugar de una caja blanca brillante. */
+html:not([data-theme="light"]) .nav-search {
+  border: 1px solid #3a4348;
+  background-color: #1f2427;
+  box-shadow: none;
+}
+
+html:not([data-theme="light"]) .nav-search input {
+  color: #f3f3f3;
+}
+
+html:not([data-theme="light"]) .nav-search input::placeholder {
+  color: #9aa4a9;
+}
+
+html:not([data-theme="light"]) .nav-search > svg {
+  stroke: #9aa4a9;
+}
+
+.nav-search:focus-within {
+  border-color: #007aff;
+}
+
 .nav-account-links {
   grid-area: accounts;
   display: flex;
@@ -160,12 +184,12 @@ html[data-theme="light"] .theme-icon-moon {
   min-height: 2.55rem;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem 0.85rem;
-  border: 1px solid #77838a;
-  border-radius: 0.4rem;
-  background: #435058;
-  color: #ffffff;
-  font-size: 0.88rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  background: transparent;
+  color: #f3f3f3;
+  font-size: 0.9rem;
   font-weight: 600;
   text-decoration: none;
   white-space: nowrap;
@@ -176,8 +200,19 @@ html[data-theme="light"] .theme-icon-moon {
 
 .nav-account-link:hover,
 .nav-account-link:focus-visible {
-  border-color: #aab5ba;
-  background: #596870;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* El enlace a register.html es el botón principal del navbar. */
+.nav-account-link[href$="register.html"] {
+  border-color: #007aff;
+  background: #007aff;
+  color: #ffffff;
+}
+
+.nav-account-link[href$="register.html"]:hover,
+.nav-account-link[href$="register.html"]:focus-visible {
+  background: #3395ff;
 }
 
 .nav-categories {
@@ -192,7 +227,7 @@ html[data-theme="light"] .theme-icon-moon {
 .nav-categories a,
 .nav-secondary-tools a {
   color: #f3f3f3;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 600;
   text-decoration: none;
   transition: color 0.15s ease;
@@ -227,7 +262,7 @@ html[data-theme="light"] .theme-icon-moon {
   height: 2.5rem;
   align-items: center;
   justify-content: center;
-  border: 1px solid #666;
+  border: 1px solid transparent;
   border-radius: 0.5rem;
   transition:
     background-color 0.2s ease,
@@ -287,7 +322,28 @@ footer {
   margin: 1rem;
 }
 
-@media (max-width: 1050px) {
+/* Pantallas grandes: el navbar en una sola fila.
+   En pantallas chicas se mantiene el diseño de varias filas (más abajo). */
+@media (min-width: 1180px) {
+  nav {
+    grid-template-columns: auto auto minmax(14rem, 1fr) auto auto;
+    grid-template-areas: "brand categories search accounts secondary";
+    gap: 0 2rem;
+    min-height: 4.75rem;
+    padding-bottom: 0.65rem;
+  }
+
+  .nav-categories,
+  .nav-secondary-tools {
+    border-top: none;
+  }
+
+  .nav-imagen {
+    width: 8.5rem;
+  }
+}
+
+@media (max-width: 1179px) {
   nav {
     grid-template-columns: minmax(0, 1fr) auto;
     grid-template-areas:
@@ -396,9 +452,22 @@ html[data-theme="light"] .nav-secondary-tools .nav-secondary {
 }
 
 html[data-theme="light"] .nav-account-link {
-  border-color: #66747b;
-  background-color: #435058;
+  color: #273137;
+}
+
+html[data-theme="light"] .nav-account-link:hover,
+html[data-theme="light"] .nav-account-link:focus-visible {
+  background-color: #e2e6e8;
+}
+
+html[data-theme="light"] .nav-account-link[href$="register.html"] {
+  background-color: #007aff;
   color: #ffffff;
+}
+
+html[data-theme="light"] .nav-account-link[href$="register.html"]:hover,
+html[data-theme="light"] .nav-account-link[href$="register.html"]:focus-visible {
+  background-color: #3395ff;
 }
 
 html[data-theme="light"] .nav-search {
@@ -407,7 +476,7 @@ html[data-theme="light"] .nav-search {
 }
 
 html[data-theme="light"] .theme-toggle {
-  border-color: #aeb6bb;
+  border-color: transparent;
   color: #273137;
 }
 
@@ -417,7 +486,7 @@ html[data-theme="light"] .theme-toggle:focus-visible {
 }
 
 html[data-theme="light"] .nav-cart {
-  border-color: #aeb6bb;
+  border-color: transparent;
 }
 
 html[data-theme="light"] .nav-cart:hover,
