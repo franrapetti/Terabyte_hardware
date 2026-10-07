@@ -572,13 +572,13 @@ html[data-theme="light"] .check-row a {
 
 html[data-theme="light"] .login-submit,
 html[data-theme="light"] .auth-submit {
-  background-color: #c5e846;
+  background-color: #3395ff;
   color: #172025;
 }
 
 html[data-theme="light"] .login-submit:hover,
 html[data-theme="light"] .auth-submit:hover {
-  background-color: #d6f56a;
+  background-color: #3395ff;
 }
 
 html[data-theme="light"] .eyebrow {
