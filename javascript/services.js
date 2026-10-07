@@ -65,20 +65,12 @@ document.addEventListener("DOMContentLoaded", () => {
         principal: "Entendido",
       });
       return;
-      // Construye el nombre, los componentes elegidos y el precio de la NAS.
     }
 
-        const componentes = seleccionados.map(
-          // Guarda el texto de cada opcion seleccionada.
-          (input) => input.value,
-        );
-        const total = componentes.reduce(
-          // Suma el precio de cada componente para obtener el total.
-          (suma, componente) => {
-            return suma + extraerPrecioComponente(componente);
-          },
-          0,
-        );
+    agregarAlCarrito({
+      tipo: "Servicio",
+      nombre: configuracion.nombre,
+      precio: configuracion.precio,
       componentes: configuracion.componentes,
     });
     abrirModalServicio({
@@ -94,12 +86,20 @@ document.addEventListener("DOMContentLoaded", () => {
   showStep(0);
 });
 
+// Construye el nombre, los componentes elegidos y el precio de la NAS.
 function obtenerConfiguracionNas(form) {
   const seleccionados = Array.from(form.querySelectorAll("input:checked"));
-  const componentes = seleccionados.map((input) => input.value);
-  const total = componentes.reduce((suma, componente) => {
-    return suma + extraerPrecioComponente(componente);
-  }, 0);
+  const componentes = seleccionados.map(
+    // Guarda el texto de cada opcion seleccionada.
+    (input) => input.value,
+  );
+  const total = componentes.reduce(
+    // Suma el precio de cada componente para obtener el total.
+    (suma, componente) => {
+      return suma + extraerPrecioComponente(componente);
+    },
+    0,
+  );
 
   return {
     nombre: "NAS personalizado",
