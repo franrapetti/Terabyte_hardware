@@ -1,7 +1,9 @@
+// Inicia el carrusel destacado cuando el documento ya se puede manipular.
 document.addEventListener("DOMContentLoaded", function () {
   iniciarCarruselProductos();
 });
 
+// Configura controles, movimiento automatico y ciclo continuo del carrusel.
 function iniciarCarruselProductos() {
   const track = document.getElementById("products-track");
   const prev = document.getElementById("products-prev");
@@ -22,33 +24,44 @@ function iniciarCarruselProductos() {
     return;
   }
 
+  // Lee desde CSS cuantos productos entran en pantalla.
   function perView() {
     const v = getComputedStyle(track).getPropertyValue("--per-view");
     return parseInt(v, 10) || 1;
   }
 
+  // Quita las copias creadas para cerrar el ciclo del carrusel.
   function limpiarClones() {
-    track.querySelectorAll(".products-item-clone").forEach(function (clone) {
-      clone.remove();
-    });
+    track.querySelectorAll(".products-item-clone").forEach(
+      // Elimina una copia anterior del carrusel.
+      function (clone) {
+        clone.remove();
+      },
+    );
   }
 
+  // Duplica los primeros productos necesarios para crear el efecto continuo.
   function crearClones() {
     limpiarClones();
 
-    productosOriginales.slice(0, perView()).forEach(function (producto) {
-      const clone = producto.cloneNode(true);
-      clone.classList.add("products-item-clone");
-      clone.setAttribute("aria-hidden", "true");
-      track.appendChild(clone);
-    });
+    productosOriginales.slice(0, perView()).forEach(
+      // Copia un producto y lo agrega al final del carrusel.
+      function (producto) {
+        const clone = producto.cloneNode(true);
+        clone.classList.add("products-item-clone");
+        clone.setAttribute("aria-hidden", "true");
+        track.appendChild(clone);
+      },
+    );
   }
 
+  // Habilita o deshabilita controles segun la posicion y el movimiento actual.
   function actualizarBotones() {
     prev.disabled = estaMoviendo || index === 0;
     next.disabled = estaMoviendo || totalOriginales <= perView();
   }
 
+  // Mueve el carrusel a la posicion actual y actualiza sus botones.
   function update() {
     const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
     const step = track.children[0].offsetWidth + gap;
@@ -57,6 +70,7 @@ function iniciarCarruselProductos() {
     actualizarBotones();
   }
 
+  // Avanza una posicion si el carrusel no esta moviendose o reiniciandose.
   function siguienteProducto() {
     if (estaMoviendo || estaReseteando || totalOriginales <= perView()) {
       return false;
@@ -68,6 +82,7 @@ function iniciarCarruselProductos() {
     return true;
   }
 
+  // Retrocede una posicion cuando hay productos anteriores.
   function productoAnterior() {
     if (estaMoviendo || estaReseteando || index === 0) {
       return false;
@@ -79,27 +94,32 @@ function iniciarCarruselProductos() {
     return true;
   }
 
+  // Programa un avance automatico cada 7.5 segundos.
   function iniciarMovimientoAutomatico() {
     intervaloAutomatico = setInterval(siguienteProducto, 7500);
   }
 
+  // Reinicia el temporizador despues de una interaccion manual.
   function reiniciarMovimientoAutomatico() {
     clearInterval(intervaloAutomatico);
     iniciarMovimientoAutomatico();
   }
 
+  // Mueve hacia atras y reinicia el temporizador si se pudo avanzar.
   prev.addEventListener("click", function () {
     if (productoAnterior()) {
       reiniciarMovimientoAutomatico();
     }
   });
 
+  // Mueve hacia adelante y reinicia el temporizador si se pudo avanzar.
   next.addEventListener("click", function () {
     if (siguienteProducto()) {
       reiniciarMovimientoAutomatico();
     }
   });
 
+  // Al terminar la animacion, libera el movimiento o reinicia el ciclo.
   track.addEventListener("transitionend", function (event) {
     if (event.target !== track || event.propertyName !== "transform") {
       return;
@@ -123,6 +143,7 @@ function iniciarCarruselProductos() {
     actualizarBotones();
   });
 
+  // Recalcula las copias y la posicion cuando cambia el ancho de pantalla.
   window.addEventListener("resize", function () {
     crearClones();
     index = Math.min(index, totalOriginales - 1);

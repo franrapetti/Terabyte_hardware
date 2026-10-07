@@ -13,6 +13,7 @@ try {
 themeRoot.dataset.theme = currentTheme;
 
 if (themeToggle) {
+  // Actualiza el texto accesible del boton segun el tema activo.
   const updateThemeButton = () => {
     const isLightTheme = themeRoot.dataset.theme === "light";
     const label = isLightTheme ? "Cambiar a modo oscuro" : "Cambiar a modo claro";
@@ -24,6 +25,7 @@ if (themeToggle) {
 
   updateThemeButton();
 
+  // Alterna el tema, guarda la preferencia y refresca la etiqueta del boton.
   themeToggle.addEventListener("click", () => {
     currentTheme = themeRoot.dataset.theme === "light" ? "dark" : "light";
     themeRoot.dataset.theme = currentTheme;

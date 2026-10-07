@@ -1,3 +1,4 @@
+// Prepara los pasos del configurador NAS cuando el documento esta listo.
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("nas-form");
   if (!form) return;
@@ -5,11 +6,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const steps = Array.from(form.querySelectorAll(".form-step"));
   let currentStep = 0;
 
+  // Activa el paso indicado y oculta los demas pasos del formulario.
   const showStep = (index) => {
-    steps.forEach((step, i) => step.classList.toggle("active", i === index));
+    steps.forEach(
+      // Mantiene activo solamente el paso solicitado.
+      (step, i) => step.classList.toggle("active", i === index),
+    );
     currentStep = index;
   };
 
+  // Controla los botones para avanzar o volver entre pasos.
   form.addEventListener("click", (e) => {
     if (e.target.matches(".btn-next") && currentStep < steps.length - 1) {
       showStep(currentStep + 1);
@@ -18,10 +24,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Actualiza el resumen de componentes y el total ante cada seleccion.
   form.addEventListener("change", (e) => {
     const step = e.target.closest(".form-step");
     if (!step) return;
     const checked = Array.from(step.querySelectorAll("input:checked")).map(
+      // Obtiene el valor de cada opcion seleccionada en este paso.
       (i) => i.value,
     );
     const selSpan = step.querySelector(".step-selection span");
@@ -32,8 +40,10 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   const totalEl = document.getElementById("total-price");
+  // Suma los precios seleccionados y actualiza el total visible.
   const updateTotal = () => {
     const total = Array.from(form.querySelectorAll("input:checked")).reduce(
+      // Agrega al acumulado el precio de la opcion seleccionada.
       (sum, i) => {
         const val = (i.value.match(/\$([0-9.]+)/) || [])[1];
         return sum + (val ? parseInt(val.replaceAll(".", ""), 10) : 0);
@@ -43,6 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (totalEl) totalEl.textContent = "$" + total.toLocaleString("es-AR");
   };
 
+  // Valida la configuracion, la agrega al carrito y muestra el resultado.
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     const configuracion = obtenerConfiguracionNas(form);
@@ -54,12 +65,20 @@ document.addEventListener("DOMContentLoaded", () => {
         principal: "Entendido",
       });
       return;
+      // Construye el nombre, los componentes elegidos y el precio de la NAS.
     }
 
-    agregarAlCarrito({
-      tipo: "Servicio",
-      nombre: configuracion.nombre,
-      precio: configuracion.precio,
+        const componentes = seleccionados.map(
+          // Guarda el texto de cada opcion seleccionada.
+          (input) => input.value,
+        );
+        const total = componentes.reduce(
+          // Suma el precio de cada componente para obtener el total.
+          (suma, componente) => {
+            return suma + extraerPrecioComponente(componente);
+          },
+          0,
+        );
       componentes: configuracion.componentes,
     });
     abrirModalServicio({
@@ -89,6 +108,7 @@ function obtenerConfiguracionNas(form) {
   };
 }
 
+// Extrae el numero de precio de una opcion o devuelve cero si no hay precio.
 function extraerPrecioComponente(texto) {
   const coincidencia = texto.match(/\(\$([\d.]+)\)/);
 
@@ -99,6 +119,7 @@ function extraerPrecioComponente(texto) {
   return Number(coincidencia[1].replaceAll(".", ""));
 }
 
+// Construye y muestra un modal con el resultado de la configuracion.
 function abrirModalServicio(opciones) {
   const modalAnterior = document.querySelector(".service-modal-overlay");
 
@@ -136,6 +157,7 @@ function abrirModalServicio(opciones) {
     secundaria.className = "service-modal-action service-modal-secondary";
     secundaria.type = "button";
     secundaria.textContent = opciones.secundaria;
+    // Cierra el modal para permitir seguir configurando.
     secundaria.addEventListener("click", function () {
       modal.remove();
     });
@@ -146,6 +168,7 @@ function abrirModalServicio(opciones) {
   principal.className = "service-modal-action service-modal-primary";
   principal.type = "button";
   principal.textContent = opciones.principal;
+  // Ejecuta la accion principal, como ir al carrito o cerrar el aviso.
   principal.addEventListener("click", function () {
     if (opciones.irAlCarrito) {
       window.location.href = "./cart.html";
@@ -160,6 +183,7 @@ function abrirModalServicio(opciones) {
   modal.appendChild(contenido);
   document.body.appendChild(modal);
 
+  // Cierra el modal al pulsar su fondo o el boton de cierre.
   modal.addEventListener("click", function (event) {
     if (
       event.target.classList.contains("service-modal-overlay") ||

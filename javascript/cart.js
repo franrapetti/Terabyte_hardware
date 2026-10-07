@@ -1,3 +1,4 @@
+// Inicializa la vista y los controles del carrito cuando el HTML esta listo.
 document.addEventListener("DOMContentLoaded", function () {
   const contenedorItems = document.getElementById("cart-items");
   const totalElemento = document.getElementById("cart-total");
@@ -8,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return;
   }
 
+  // Lee los datos guardados y actualiza items, total y botones de la pagina.
   function renderizarCarrito() {
     const carrito = obtenerCarrito();
     contenedorItems.textContent = "";
@@ -20,11 +22,15 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    carrito.forEach(function (item) {
-      contenedorItems.appendChild(crearItemCarrito(item));
-    });
+    carrito.forEach(
+      // Convierte cada registro del carrito en un elemento visible.
+      function (item) {
+        contenedorItems.appendChild(crearItemCarrito(item));
+      },
+    );
   }
 
+  // Construye el bloque visual y las acciones para un producto o servicio.
   function crearItemCarrito(item) {
     const articulo = document.createElement("article");
     articulo.className = "cart-item";
@@ -63,11 +69,14 @@ document.addEventListener("DOMContentLoaded", function () {
       const lista = document.createElement("ul");
       lista.className = "cart-components";
 
-      item.componentes.forEach(function (componente) {
-        const li = document.createElement("li");
-        li.textContent = componente;
-        lista.appendChild(li);
-      });
+      item.componentes.forEach(
+        // Agrega a la lista cada componente de una configuracion NAS.
+        function (componente) {
+          const li = document.createElement("li");
+          li.textContent = componente;
+          lista.appendChild(li);
+        },
+      );
 
       info.appendChild(lista);
     }
@@ -90,6 +99,7 @@ document.addEventListener("DOMContentLoaded", function () {
     botonQuitar.className = "cart-remove";
     botonQuitar.type = "button";
     botonQuitar.textContent = "Quitar";
+    // Quita este item y vuelve a dibujar el carrito.
     botonQuitar.addEventListener("click", function () {
       quitarDelCarrito(item.id);
       renderizarCarrito();
@@ -100,12 +110,14 @@ document.addEventListener("DOMContentLoaded", function () {
     return articulo;
   }
 
+  // Crea un boton accesible para cambiar la cantidad de un item.
   function crearBotonCantidad(texto, etiqueta, id, cambio) {
     const boton = document.createElement("button");
     boton.className = "cart-quantity-button";
     boton.type = "button";
     boton.textContent = texto;
     boton.setAttribute("aria-label", etiqueta);
+    // Aplica el cambio de cantidad y refresca la vista.
     boton.addEventListener("click", function () {
       cambiarCantidad(id, cambio);
       renderizarCarrito();
@@ -113,6 +125,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return boton;
   }
 
+  // Construye el mensaje y el enlace que se muestran con el carrito vacio.
   function crearMensajeCarritoVacio() {
     const contenedor = document.createElement("div");
     contenedor.className = "cart-empty";
@@ -128,6 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return contenedor;
   }
 
+  // Pide confirmacion antes de borrar todos los items.
   botonVaciar.addEventListener("click", function () {
     if (obtenerCarrito().length === 0) {
       return;
@@ -138,6 +152,7 @@ document.addEventListener("DOMContentLoaded", function () {
       mensaje: "Se eliminarán todos los productos y configuraciones guardadas.",
       textoConfirmar: "Vaciar carrito",
       textoCancelar: "Cancelar",
+      // Vacía los datos guardados y actualiza la pagina tras confirmar.
       alConfirmar: function () {
         guardarCarrito([]);
         renderizarCarrito();
@@ -145,6 +160,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+  // Muestra el total y solicita confirmacion para simular la compra.
   botonFinalizar.addEventListener("click", function () {
     const carrito = obtenerCarrito();
 
@@ -157,6 +173,7 @@ document.addEventListener("DOMContentLoaded", function () {
       mensaje: "El total de tu compra es " + formatearPrecio(calcularTotal(carrito)) + ".",
       textoConfirmar: "Confirmar compra",
       textoCancelar: "Volver",
+      // Limpia el carrito y muestra el mensaje final de compra.
       alConfirmar: function () {
         guardarCarrito([]);
         renderizarCarrito();
@@ -165,6 +182,7 @@ document.addEventListener("DOMContentLoaded", function () {
           titulo: "¡Gracias por tu compra!",
           mensaje: "Recibimos tu pedido y el carrito quedó vacío.",
           textoConfirmar: "Entendido",
+          // No requiere una accion adicional al cerrar el mensaje final.
           alConfirmar: function () {},
         });
       },
@@ -176,6 +194,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // opciones: titulo, mensaje, textoConfirmar, alConfirmar y (opcional) textoCancelar.
 // Si no hay textoCancelar, el modal muestra un solo botón.
+// Crea un modal de confirmacion con las acciones indicadas en opciones.
 function abrirModalConfirmacion(opciones) {
   const modalAnterior = document.querySelector(".cart-modal-overlay");
 
@@ -218,6 +237,7 @@ function abrirModalConfirmacion(opciones) {
     cancelar.className = "cart-modal-action cart-modal-secondary";
     cancelar.type = "button";
     cancelar.textContent = opciones.textoCancelar;
+    // Cierra el modal sin ejecutar la accion de confirmacion.
     cancelar.addEventListener("click", cerrarModal);
     acciones.appendChild(cancelar);
   }
@@ -227,17 +247,20 @@ function abrirModalConfirmacion(opciones) {
   modal.appendChild(contenido);
   document.body.appendChild(modal);
 
+  // Quita el modal actual del documento.
   function cerrarModal() {
     modal.remove();
   }
 
   cerrar.addEventListener("click", cerrarModal);
 
+  // Ejecuta la accion elegida y despues cierra el modal.
   confirmar.addEventListener("click", function () {
     opciones.alConfirmar();
     cerrarModal();
   });
 
+  // Cierra el modal si se hace clic sobre el fondo exterior.
   modal.addEventListener("click", function (event) {
     if (event.target.classList.contains("cart-modal-overlay")) {
       cerrarModal();
@@ -245,16 +268,25 @@ function abrirModalConfirmacion(opciones) {
   });
 }
 
+// Elimina del almacenamiento el item que coincida con el id indicado.
 function quitarDelCarrito(id) {
-  const carritoActualizado = obtenerCarrito().filter(function (item) {
-    return item.id !== id;
-  });
+  const carritoActualizado = obtenerCarrito().filter(
+    // Mantiene los items distintos al que se desea quitar.
+    function (item) {
+      return item.id !== id;
+    },
+  );
 
   guardarCarrito(carritoActualizado);
 }
 
+// Suma precio por cantidad para obtener el total del carrito.
 function calcularTotal(carrito) {
-  return carrito.reduce(function (total, item) {
-    return total + extraerPrecio(item.precio) * (item.cantidad || 1);
-  }, 0);
+  return carrito.reduce(
+    // Acumula el subtotal de cada item.
+    function (total, item) {
+      return total + extraerPrecio(item.precio) * (item.cantidad || 1);
+    },
+    0,
+  );
 }

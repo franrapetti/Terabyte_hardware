@@ -2,6 +2,7 @@ const usersStorageKey = "terrabyte-users";
 const sessionStorageKey = "terrabyte-session";
 const encoder = new TextEncoder();
 
+// Lee la lista de usuarios guardada y devuelve una lista vacia si no es valida.
 function readUsers() {
   try {
     const users = JSON.parse(localStorage.getItem(usersStorageKey) || "[]");
@@ -11,6 +12,7 @@ function readUsers() {
   }
 }
 
+// Lee la sesion actual y devuelve null si no hay una sesion valida.
 function readSession() {
   try {
     const session = JSON.parse(localStorage.getItem(sessionStorageKey) || "null");
@@ -20,12 +22,14 @@ function readSession() {
   }
 }
 
+// Muestra un mensaje en el formulario y marca si es un error o un exito.
 function showMessage(element, message, isError = false) {
   if (!element) return;
   element.textContent = message;
   element.dataset.state = isError ? "error" : "success";
 }
 
+// Dibuja enlaces de acceso o el saludo y boton de cierre segun la sesion.
 function renderAccountLinks() {
   const accountLinks = document.querySelector(".nav-account-links");
   if (!accountLinks) return;
@@ -57,6 +61,7 @@ function renderAccountLinks() {
   logoutButton.className = "nav-account-link nav-logout";
   logoutButton.type = "button";
   logoutButton.textContent = "Cerrar sesión";
+  // Elimina la sesion activa, actualiza el menu y vuelve al inicio.
   logoutButton.addEventListener("click", () => {
     localStorage.removeItem(sessionStorageKey);
     renderAccountLinks();
@@ -66,6 +71,7 @@ function renderAccountLinks() {
   accountLinks.append(greeting, logoutButton);
 }
 
+// Genera un hash PBKDF2 de la contrasena usando la sal recibida.
 async function hashPassword(password, salt) {
   const key = await crypto.subtle.importKey(
     "raw",
@@ -79,17 +85,33 @@ async function hashPassword(password, salt) {
     key,
     256,
   );
-  return Array.from(new Uint8Array(bits), (byte) => byte.toString(16).padStart(2, "0")).join("");
+  return Array.from(
+    new Uint8Array(bits),
+    // Convierte cada byte del hash a dos caracteres hexadecimales.
+    (byte) => byte.toString(16).padStart(2, "0"),
+  ).join("");
 }
 
+// Convierte bytes a texto hexadecimal para poder guardarlos.
 function bytesToHex(bytes) {
-  return Array.from(bytes, (byte) => byte.toString(16).padStart(2, "0")).join("");
+  return Array.from(
+    bytes,
+    // Convierte cada byte a dos caracteres hexadecimales.
+    (byte) => byte.toString(16).padStart(2, "0"),
+  ).join("");
 }
 
+// Convierte texto hexadecimal a bytes para volver a usar la sal.
 function hexToBytes(hex) {
-  return new Uint8Array(hex.match(/.{2}/g).map((byte) => Number.parseInt(byte, 16)));
+  return new Uint8Array(
+    hex.match(/.{2}/g).map(
+      // Convierte cada par hexadecimal en un numero de byte.
+      (byte) => Number.parseInt(byte, 16),
+    ),
+  );
 }
 
+// Guarda en localStorage los datos publicos de la sesion iniciada.
 function storeSession(user) {
   const session = {
     email: user.email,
@@ -100,6 +122,7 @@ function storeSession(user) {
   localStorage.setItem(sessionStorageKey, JSON.stringify(session));
 }
 
+// Comprueba que el navegador permita usar las funciones criptograficas seguras.
 function canUseSecureCrypto(messageElement) {
   if (crypto?.subtle && crypto?.getRandomValues) return true;
   showMessage(
@@ -110,6 +133,7 @@ function canUseSecureCrypto(messageElement) {
   return false;
 }
 
+// Valida las credenciales ingresadas y crea una sesion si son correctas.
 async function handleLogin(event) {
   event.preventDefault();
   const form = event.currentTarget;
@@ -118,7 +142,10 @@ async function handleLogin(event) {
 
   const email = form.elements.email.value.trim().toLowerCase();
   const password = form.elements.password.value;
-  const user = readUsers().find((entry) => entry.email === email);
+  const user = readUsers().find(
+    // Busca el usuario cuyo correo coincide con el ingresado.
+    (entry) => entry.email === email,
+  );
 
   if (!user) {
     showMessage(message, "No encontramos una cuenta con ese correo.", true);
@@ -139,6 +166,7 @@ async function handleLogin(event) {
   }
 }
 
+// Valida el formulario, guarda el nuevo usuario y comienza su sesion.
 async function handleRegistration(event) {
   event.preventDefault();
   const form = event.currentTarget;
@@ -157,7 +185,12 @@ async function handleRegistration(event) {
   }
 
   const users = readUsers();
-  if (users.some((user) => user.email === email)) {
+  if (
+    users.some(
+      // Comprueba si el correo ya esta asociado a una cuenta.
+      (user) => user.email === email,
+    )
+  ) {
     showMessage(message, "Ya existe una cuenta con ese correo.", true);
     return;
   }
