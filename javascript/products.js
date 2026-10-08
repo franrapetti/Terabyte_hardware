@@ -77,6 +77,7 @@ function iniciarFiltrosCatalogo() {
   const buscador = document.querySelector('.nav-search input[name="q"]');
   const tags = document.querySelectorAll(".catalogo-tag input");
   const items = document.querySelectorAll(".catalogo-item");
+  const mensajeSinResultados = document.querySelector(".catalogo-sin-resultados");
 
   if (!buscador || items.length === 0) {
     return;
@@ -86,6 +87,7 @@ function iniciarFiltrosCatalogo() {
   function filtrarCatalogo() {
     const busqueda = buscador.value.trim().toLowerCase();
     const categoria = document.querySelector(".catalogo-tag input:checked").value;
+    let hayResultados = false;
 
     items.forEach(
       // Evalua un producto y lo oculta si no coincide con los filtros.
@@ -94,10 +96,16 @@ function iniciarFiltrosCatalogo() {
         const itemTags = item.dataset.tags.split(" ");
         const coincideBusqueda = nombre.includes(busqueda);
         const coincideTags = categoria === "" || itemTags.includes(categoria);
+        const coincide = coincideBusqueda && coincideTags;
 
-        item.classList.toggle("is-hidden", !coincideBusqueda || !coincideTags);
+        item.classList.toggle("is-hidden", !coincide);
+        hayResultados = hayResultados || coincide;
       },
     );
+
+    if (mensajeSinResultados) {
+      mensajeSinResultados.hidden = hayResultados;
+    }
   }
 
   buscador.addEventListener("input", filtrarCatalogo);

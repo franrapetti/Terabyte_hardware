@@ -292,6 +292,13 @@ main {
   display: none;
 }
 
+.catalogo-sin-resultados {
+  grid-column: 1 / -1;
+  margin: 1.5rem 0;
+  color: #ffffff;
+  text-align: center;
+}
+
 html[data-theme="light"] .catalogo {
   background-color: #ffffff;
   box-shadow: 0 6px 16px rgba(24, 32, 36, 0.14);
