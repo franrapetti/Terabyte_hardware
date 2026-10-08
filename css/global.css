@@ -1,0 +1,667 @@
+/* Tipografía del sitio: se cambia acá y se aplica en todas las páginas.
+   Los botones y campos de formulario no heredan la fuente solos,
+   por eso se la pedimos con "inherit". */
+:root {
+  --fuente: "Inter", Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--fuente);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(to right, #1b1b1b, #140b1a);
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: #000000;
+}
+
+nav {
+  display: grid;
+  grid-template-columns: 10rem minmax(18rem, 1fr) auto;
+  grid-template-areas:
+    "brand search accounts"
+    "categories categories secondary";
+  align-items: center;
+  gap: 0.35rem 1.5rem;
+  width: min(100%, 90rem);
+  min-height: 5.5rem;
+  margin: 0 auto;
+  padding: 0.65rem clamp(1rem, 3vw, 2.5rem) 0;
+}
+
+.nav-brand {
+  grid-area: brand;
+  display: flex;
+  align-items: center;
+}
+
+.theme-toggle {
+  display: grid;
+  flex: 0 0 auto;
+  width: 2.5rem;
+  height: 2.5rem;
+  place-items: center;
+  margin: 0;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  background: transparent;
+  color: #f2f2f2;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus-visible {
+  background-color: #435058;
+}
+
+.theme-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.theme-icon-moon {
+  display: none;
+}
+
+html[data-theme="light"] .theme-icon-sun {
+  display: none;
+}
+
+html[data-theme="light"] .theme-icon-moon {
+  display: block;
+}
+
+.nav-search {
+  grid-area: search;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  height: 3.1rem;
+  padding: 0.3rem;
+  border: 2px solid #d9d9d9;
+  border-radius: 0.65rem;
+  background-color: #ffffff;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.25);
+}
+
+.nav-search > svg {
+  flex: 0 0 auto;
+  width: 1.35rem;
+  height: 1.35rem;
+  margin: 0 0.65rem;
+  fill: none;
+  stroke: #435058;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+.nav-search input {
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  padding: 0.25rem 0.4rem;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #1b1b1b;
+  font: inherit;
+  font-size: 1rem;
+}
+
+.nav-search input::placeholder {
+  color: #687177;
+}
+
+.nav-search button {
+  flex: 0 0 auto;
+  align-self: stretch;
+  min-width: 5.5rem;
+  border: 0;
+  border-radius: 0.45rem;
+  background: #435058;
+  color: white;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.nav-search button:hover {
+  background: #596870;
+}
+
+/* Modo oscuro: buscador sutil en lugar de una caja blanca brillante. */
+html:not([data-theme="light"]) .nav-search {
+  border: 1px solid #3a4348;
+  background-color: #1f2427;
+  box-shadow: none;
+}
+
+html:not([data-theme="light"]) .nav-search input {
+  color: #f3f3f3;
+}
+
+html:not([data-theme="light"]) .nav-search input::placeholder {
+  color: #9aa4a9;
+}
+
+html:not([data-theme="light"]) .nav-search > svg {
+  stroke: #9aa4a9;
+}
+
+.nav-search:focus-within {
+  border-color: #007aff;
+}
+
+.nav-account-links {
+  grid-area: accounts;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.nav-account-link {
+  display: inline-flex;
+  min-height: 2.55rem;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  background: transparent;
+  color: #f3f3f3;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.nav-account-link:hover,
+.nav-account-link:focus-visible {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* El enlace a register.html es el botón principal del navbar. */
+.nav-account-link[href$="register.html"] {
+  border-color: #007aff;
+  background: #007aff;
+  color: #ffffff;
+}
+
+.nav-account-link[href$="register.html"]:hover,
+.nav-account-link[href$="register.html"]:focus-visible {
+  background: #3395ff;
+}
+
+.nav-categories {
+  grid-area: categories;
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2.5vw, 2rem);
+  min-height: 2.8rem;
+  border-top: 1px solid #363636;
+}
+
+.nav-categories a,
+.nav-secondary-tools a {
+  color: #f3f3f3;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.nav-categories a:hover,
+.nav-categories a:focus-visible,
+.nav-secondary-tools a:hover,
+.nav-secondary-tools a:focus-visible {
+  color: #b8c4ca;
+}
+
+.nav-secondary-tools {
+  grid-area: secondary;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  min-height: 2.8rem;
+  border-top: 1px solid #363636;
+}
+
+.nav-secondary-tools .nav-secondary {
+  color: #b7bdc0;
+  font-weight: 400;
+}
+
+.nav-cart {
+  display: inline-flex;
+  flex: 0 0 auto;
+  width: 2.5rem;
+  height: 2.5rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.nav-cart:hover,
+.nav-cart:focus-visible {
+  border-color: #aab5ba;
+  background-color: #435058;
+}
+
+.nav-cart-image {
+  width: 1.35rem;
+  height: 1.35rem;
+  object-fit: contain;
+}
+
+.nav-imagen {
+  width: 9.5rem;
+  display: block;
+}
+
+.nav-imagen-light {
+  display: none;
+}
+
+html[data-theme="light"] .nav-imagen-dark {
+  display: none;
+}
+
+html[data-theme="light"] .nav-imagen-light {
+  display: block;
+}
+
+.mobile-menu {
+  display: none;
+}
+
+footer {
+  background-color: black;
+  bottom: 0;
+  width: 100%;
+  position: static;
+  margin-top: auto;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.footer-text {
+  color: white;
+  background-color: transparent;
+  font-size: 1rem;
+  border: none;
+  margin: 1rem;
+}
+
+/* Pantallas grandes: el navbar en una sola fila.
+   En pantallas chicas se mantiene el diseño de varias filas (más abajo). */
+@media (min-width: 1180px) {
+  nav {
+    grid-template-columns: auto auto minmax(14rem, 1fr) auto auto;
+    grid-template-areas: "brand categories search accounts secondary";
+    gap: 0 2rem;
+    min-height: 4.75rem;
+    padding-bottom: 0.65rem;
+  }
+
+  .nav-categories,
+  .nav-secondary-tools {
+    border-top: none;
+  }
+
+  .nav-imagen {
+    width: 8.5rem;
+  }
+}
+
+@media (max-width: 1179px) {
+  nav {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "brand accounts"
+      "search search"
+      "categories secondary";
+    gap: 0.65rem 1rem;
+    padding: 0.65rem 1.25rem 0;
+  }
+
+  .nav-account-links {
+    justify-self: end;
+  }
+
+  .nav-imagen {
+    width: 9rem;
+  }
+
+  .nav-search {
+    height: 3rem;
+  }
+
+  .nav-categories,
+  .nav-secondary-tools {
+    min-height: 2.6rem;
+  }
+}
+
+@media (max-width: 700px) {
+  footer {
+    padding: 1rem;
+    gap: 0.5rem 1rem;
+  }
+
+  .footer-text {
+    margin: 0;
+    font-size: 0.875rem;
+    text-align: center;
+  }
+
+  footer > label.footer-text {
+    flex-basis: 100%;
+  }
+}
+
+main h1 {
+  font-family: var(--fuente);
+  color: white;
+}
+
+main h2 {
+  font-family: var(--fuente);
+  color: white;
+}
+
+main p {
+  font-family: var(--fuente);
+  color: #d9d9d9;
+}
+
+main a {
+  font-family: var(--fuente);
+  color: #d9d9d9;
+}
+
+main label {
+  font-family: var(--fuente);
+  color: #d9d9d9;
+}
+main li {
+  font-family: var(--fuente);
+  color: #d9d9d9;
+}
+
+html[data-theme="light"] body {
+  background: linear-gradient(to right, #f1f3f4, #e8ebed);
+}
+
+html[data-theme="light"] nav,
+html[data-theme="light"] footer {
+  background-color: #ffffff;
+  box-shadow: 0 2px 10px rgba(24, 32, 36, 0.12);
+}
+
+html[data-theme="light"] header {
+  background-color: #ffffff;
+  box-shadow: 0 2px 10px rgba(24, 32, 36, 0.12);
+}
+
+html[data-theme="light"] .footer-text {
+  color: #273137;
+}
+
+html[data-theme="light"] .nav-categories,
+html[data-theme="light"] .nav-secondary-tools {
+  border-top-color: #d5dade;
+}
+
+html[data-theme="light"] .nav-categories a,
+html[data-theme="light"] .nav-secondary-tools a {
+  color: #273137;
+}
+
+html[data-theme="light"] .nav-secondary-tools .nav-secondary {
+  color: #59656b;
+}
+
+html[data-theme="light"] .nav-account-link {
+  color: #273137;
+}
+
+html[data-theme="light"] .nav-account-link:hover,
+html[data-theme="light"] .nav-account-link:focus-visible {
+  background-color: #e2e6e8;
+}
+
+html[data-theme="light"] .nav-account-link[href$="register.html"] {
+  background-color: #007aff;
+  color: #ffffff;
+}
+
+html[data-theme="light"] .nav-account-link[href$="register.html"]:hover,
+html[data-theme="light"] .nav-account-link[href$="register.html"]:focus-visible {
+  background-color: #3395ff;
+}
+
+html[data-theme="light"] .nav-search {
+  border-color: #c5cdd1;
+  box-shadow: 0 3px 12px rgba(24, 32, 36, 0.12);
+}
+
+html[data-theme="light"] .theme-toggle {
+  border-color: transparent;
+  color: #273137;
+}
+
+html[data-theme="light"] .theme-toggle:hover,
+html[data-theme="light"] .theme-toggle:focus-visible {
+  background-color: #e2e6e8;
+}
+
+html[data-theme="light"] .nav-cart {
+  border-color: transparent;
+}
+
+html[data-theme="light"] .nav-cart:hover,
+html[data-theme="light"] .nav-cart:focus-visible {
+  background-color: #e2e6e8;
+}
+
+html[data-theme="light"] main h1,
+html[data-theme="light"] main h2,
+html[data-theme="light"] main p,
+html[data-theme="light"] main a,
+html[data-theme="light"] main label,
+html[data-theme="light"] main li {
+  color: #273137;
+}
+
+html[data-theme="light"] .nav-search {
+  border: 1px solid #bdc5c9;
+  background-color: #f4f6f7;
+  color: #273137;
+}
+
+html[data-theme="light"] .cart-button,
+html[data-theme="light"] main form button[type="submit"] {
+  color: #273137;
+}
+
+html[data-theme="light"] .hero-text h1 em,
+html[data-theme="light"] .hero-benefits li::before {
+  color: #007aff;
+}
+
+html[data-theme="light"] .info-item,
+html[data-theme="light"] fieldset,
+html[data-theme="light"] .brands,
+html[data-theme="light"] .products,
+html[data-theme="light"] .login-shell,
+html[data-theme="light"] .auth-shell {
+  background-color: #ffffff;
+  box-shadow: 0 6px 16px rgba(24, 32, 36, 0.14);
+}
+
+html[data-theme="light"] .products-item {
+  background-color: #e9edef;
+}
+
+html[data-theme="light"] .products-item h5,
+html[data-theme="light"] .products-item h6 {
+  color: #273137;
+}
+
+html[data-theme="light"] legend {
+  background-color: #e2e6e8;
+  color: #273137;
+}
+
+html[data-theme="light"] .panel-heading h1,
+html[data-theme="light"] .panel-heading p,
+html[data-theme="light"] .field-group label,
+html[data-theme="light"] .auth-switch,
+html[data-theme="light"] .check-row {
+  color: #273137;
+}
+
+html[data-theme="light"] .auth-switch a,
+html[data-theme="light"] .check-row a {
+  color: #273137;
+}
+
+html[data-theme="light"] .login-submit,
+html[data-theme="light"] .auth-submit {
+  background-color: #3395ff;
+  color: #172025;
+}
+
+html[data-theme="light"] .login-submit:hover,
+html[data-theme="light"] .auth-submit:hover {
+  background-color: #3395ff;
+}
+
+html[data-theme="light"] .eyebrow {
+  color: #364147;
+}
+
+html[data-theme="light"] main.auth-main {
+  background-image: none;
+}
+
+html[data-theme="light"] .field-group input:focus {
+  border-color: #364147;
+  box-shadow: 0 0 0 3px rgba(54, 65, 71, 0.15);
+}
+
+@media (max-width: 480px) {
+  nav {
+    padding-right: 0.85rem;
+    padding-left: 0.85rem;
+  }
+
+  .nav-imagen {
+    width: clamp(7.5rem, 36vw, 9rem);
+  }
+
+  .nav-account-links {
+    gap: 0.35rem;
+  }
+
+  .nav-account-link {
+    min-height: 2.3rem;
+    padding: 0.4rem 0.55rem;
+    font-size: 0.76rem;
+  }
+
+  .nav-search button {
+    min-width: 4.25rem;
+    font-size: 0.85rem;
+  }
+
+  .nav-search > svg {
+    margin-right: 0.25rem;
+    margin-left: 0.4rem;
+  }
+
+  .nav-categories {
+    gap: 0.75rem;
+  }
+
+  .nav-secondary-tools {
+    gap: 0.55rem;
+  }
+
+  .nav-categories a,
+  .nav-secondary-tools a {
+    font-size: 0.78rem;
+  }
+
+  .theme-toggle {
+    width: 2.35rem;
+    height: 2.35rem;
+  }
+}
+
+@media (max-width: 360px) {
+  nav {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .nav-imagen {
+    width: 7.5rem;
+  }
+
+  .nav-categories {
+    gap: 0.5rem;
+  }
+
+  .nav-secondary-tools {
+    gap: 0.35rem;
+  }
+
+  .nav-categories a,
+  .nav-secondary-tools a {
+    font-size: 0.72rem;
+  }
+}

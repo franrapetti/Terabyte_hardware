@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <title>TerraByte</title>
+    <link rel="stylesheet" href="../css/global.css" />
+    <link rel="stylesheet" href="../css/home.css" />
+    <script src="../javascript/theme.js" defer></script>
+    <script src="../javascript/auth.js" defer></script>
+    <script src="../javascript/home.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a class="nav-brand" href="./home.html" aria-label="TerraByte, inicio">
+          <img
+            class="nav-imagen nav-imagen-dark"
+            src="../assets/Logo.png"
+            alt="TerraByte"
+          />
+          <img
+            class="nav-imagen nav-imagen-light"
+            src="../assets/Logo_claro.png"
+            alt="TerraByte"
+          />
+        </a>
+        <form class="nav-search" role="search" action="./products.html">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="10.8" cy="10.8" r="6.8" />
+            <path d="m16 16 5 5" />
+          </svg>
+          <input
+            type="search"
+            name="q"
+            aria-label="Buscar productos"
+            placeholder="¿Qué estás buscando?"
+          />
+          <button type="submit" aria-label="Buscar">Buscar</button>
+        </form>
+        <div class="nav-account-links">
+          <a class="nav-account-link" href="./login.html">Ingresar</a>
+          <a class="nav-account-link" href="./register.html">Registrarse</a>
+        </div>
+        <div class="nav-categories">
+          <a href="./products.html">Productos</a>
+          <a href="./services.html">Armá tu NAS</a>
+        </div>
+        <div class="nav-secondary-tools">
+          <a class="nav-cart" href="./cart.html" aria-label="Carrito">
+            <img
+              class="nav-cart-image nav-imagen-dark"
+              src="../assets/shopping-cart_claro.png"
+              alt="Carrito"
+            />
+            <img
+              class="nav-cart-image nav-imagen-light"
+              src="../assets/shopping-cart.png"
+              alt="Carrito"
+            />
+          </a>
+          <a class="nav-secondary" href="./aboutus.html">Nosotros</a>
+          <button
+            class="theme-toggle"
+            type="button"
+            aria-label="Cambiar a modo claro"
+            title="Cambiar a modo claro"
+          >
+            <svg
+              class="theme-icon theme-icon-sun"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="4" />
+              <path
+                d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"
+              />
+            </svg>
+            <svg
+              class="theme-icon theme-icon-moon"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                d="M20.2 15.1A8.5 8.5 0 0 1 8.9 3.8 8.5 8.5 0 1 0 20.2 15.1Z"
+              />
+            </svg>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-text">
+          <h1>
+            Todo para armar<br />
+            Tu NAS <em>en casa</em>
+          </h1>
+
+          <p class="hero-subtitle">
+            Chasis hot-swap, racks compactos y hardware optimizado para
+            homelabs e inferencia de IA local.
+          </p>
+
+          <button onclick="window.location.href = './services.html'">
+            Armá tu NAS
+          </button>
+
+          <ul class="hero-benefits">
+            <li>Envíos en 24h</li>
+            <li>Garantía de 12 meses</li>
+          </ul>
+        </div>
+
+        <div class="hero-image">
+          <img
+            src="../assets/NAS0-removebg-preview.png"
+            alt="Servidores NAS Hero"
+          />
+        </div>
+      </section>
+
+      <h2 class="section-title">Productos destacados</h2>
+
+      <section class="products" aria-label="Productos destacados">
+        <button
+          class="products-arrow"
+          id="products-prev"
+          type="button"
+          aria-label="Anterior"
+        >
+          <img src="../assets/products/arrow-left.png" alt="Flecha Izquierda" />
+        </button>
+
+        <div class="products-viewport">
+          <div class="products-track" id="products-track">
+            <article class="products-item">
+              <img src="../assets/products/Producto 1.png" alt="Producto 1" />
+              <h5>NAS QNAP TS-264-8G-US</h5>
+              <h6>$1.669.000</h6>
+            </article>
+            <article class="products-item">
+              <img src="../assets/products/Producto 2.png" alt="Producto 2" />
+              <h5>NAS QNAP TS-264-8G-US</h5>
+              <h6>$1.734.000</h6>
+            </article>
+            <article class="products-item">
+              <img src="../assets/products/Producto 3.png" alt="Producto 3" />
+              <h5>Servidor NAS Asustor Lockerstor</h5>
+              <h6>$1.800.000</h6>
+            </article>
+            <article class="products-item">
+              <img src="../assets/products/Producto 4.png" alt="Producto 4" />
+              <h5>Synology DS225+ Private Cloud Media Server</h5>
+              <h6>$568.269</h6>
+            </article>
+            <article class="products-item">
+              <img src="../assets/products/Producto 5.png" alt="Producto 5" />
+              <h5>UGREEN NAS DXP2800 2-Bay</h5>
+              <h6>$594.734</h6>
+            </article>
+            <article class="products-item">
+              <img src="../assets/products/Producto 6.png" alt="Producto 6" />
+              <h5>UGREEN NAS DXP4800 GT 4-Bay</h5>
+              <h6>$853.984</h6>
+            </article>
+          </div>
+        </div>
+
+        <button
+          class="products-arrow"
+          id="products-next"
+          type="button"
+          aria-label="Siguiente"
+        >
+          <img src="../assets/products/arrow-right.png" alt="Flecha Derecha" />
+        </button>
+      </section>
+    </main>
+
+    <footer>
+      <label name="home" class="footer-text"
+        >Copyright © 2026 TerraByte Team. All rights reserved.</label
+      >
+      <a class="footer-text" href="" target="_blank">Privacy Policy</a>
+      <a class="footer-text" href="" target="_blank">Terms of Use</a>
+      <a class="footer-text" href="" target="_blank">Sales and Refunds</a>
+      <a class="footer-text" href="" target="_blank">Legal</a>
+      <a class="footer-text" href="" target="_blank">Site Map</a>
+    </footer>
+  </body>
+</html>

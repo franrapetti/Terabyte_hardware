@@ -1,0 +1,399 @@
+main {
+  flex: 1;
+  padding: 2rem clamp(1rem, 4vw, 3rem) 3rem;
+}
+
+.titulo {
+  color: white;
+  justify-self: center;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.titulo-item {
+  display: flex;
+  justify-content: center;
+}
+
+.brands {
+  display: flex;
+  overflow: hidden;
+  align-content: space-around;
+  border-color: black;
+  border-radius: 1rem;
+  background-color: #435058;
+  width: 100%;
+}
+
+.brands-track {
+  flex: 0 0 auto;
+  display: grid;
+  align-items: center;
+  width: 100%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+  transition: transform 2.4s linear;
+}
+
+.brand-image {
+  justify-self: center;
+  max-height: 15rem;
+  max-width: 6rem;
+  margin: 1.5rem 0;
+  object-fit: contain;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brands-track {
+    transition: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .titulo h1 {
+    font-size: 1.8rem;
+  }
+
+  .titulo h2 {
+    font-size: 1.1rem;
+  }
+}
+
+.catalogo {
+  display: grid;
+  grid-template-columns: minmax(12rem, 16rem) 1fr;
+  grid-template-areas: "tags grid";
+  align-items: start;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  background-color: #435058;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  width: 100%;
+}
+
+.catalogo-tags {
+  grid-area: tags;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  background-color: #d9d9d9;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+.catalogo-tags h3 {
+  margin: 0 0 0.25rem;
+  color: #1b1b1b;
+  font-family: var(--fuente);
+}
+
+.catalogo-tags .catalogo-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #1b1b1b;
+  font-family: var(--fuente);
+}
+
+.catalogo-grid {
+  grid-area: grid;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.catalogo-item {
+  border-radius: 1rem;
+  background-color: #d9d9d9;
+  padding: 1.25rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+  transition:
+    box-shadow 0.2s ease-in-out,
+    transform 0.2s ease-in-out;
+}
+
+.catalogo-item:hover {
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+}
+
+/* margin-top: auto empuja los botones al fondo de la tarjeta,
+   así quedan alineados aunque los nombres tengan distinto largo. */
+.catalogo-button-section {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+  margin-top: auto;
+  padding-top: 0.5rem;
+}
+
+.catalogo-button {
+  flex: 1;
+  border: 1px solid #879299;
+  border-radius: 0.5rem;
+  background-color: transparent;
+  color: #1b1b1b;
+  font-family: var(--fuente);
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 0.65rem 0.5rem;
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.catalogo-button:hover {
+  background-color: #435058;
+  color: #ffffff;
+}
+
+/* "Agregar al carrito" es la acción principal: botón de color. */
+.catalogo-button-primary {
+  border-color: #007aff;
+  background-color: #007aff;
+  color: #ffffff;
+}
+
+.catalogo-button-primary:hover {
+  border-color: #3395ff;
+  background-color: #3395ff;
+}
+
+.catalogo-item img {
+  width: 100%;
+  height: 12rem;
+  object-fit: contain;
+}
+
+.catalogo-item h5,
+.catalogo-item h6 {
+  margin: 0;
+}
+
+.catalogo-item h5 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: #3b464c;
+}
+
+.catalogo-item h6 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #1b1b1b;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.65);
+}
+
+.modal-content {
+  width: min(28rem, 100%);
+  border-radius: 1rem;
+  background-color: #d9d9d9;
+  padding: 1.5rem;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+
+.modal-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  border: none;
+  background-color: transparent;
+  color: #1b1b1b;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.modal-image {
+  width: 100%;
+  height: 10rem;
+  object-fit: contain;
+}
+
+.modal-content h3,
+.modal-content h4,
+.modal-content p {
+  margin: 0.5rem 0;
+  color: #1b1b1b;
+  font-family: var(--fuente);
+}
+
+.modal-status {
+  display: inline-flex;
+  border-radius: 999px;
+  background-color: #435058;
+  padding: 0.35rem 0.7rem;
+  color: #ffffff !important;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.modal-price {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 0.9rem;
+}
+
+.modal-action {
+  margin-top: 0.75rem;
+  padding: 0.6rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #435058;
+  background-color: transparent;
+  color: #1b1b1b;
+  cursor: pointer;
+  font-family: var(--fuente);
+  font-weight: 700;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+}
+
+.modal-action-primary {
+  background-color: #435058;
+  color: #ffffff;
+}
+
+.modal-action-secondary {
+  background-color: transparent;
+}
+
+.modal-action:hover,
+.modal-close:hover {
+  background-color: #596870;
+  color: #ffffff;
+}
+
+.catalogo-item.is-hidden {
+  display: none;
+}
+
+.catalogo-sin-resultados {
+  grid-column: 1 / -1;
+  margin: 1.5rem 0;
+  color: #ffffff;
+  text-align: center;
+}
+
+html[data-theme="light"] .catalogo {
+  background-color: #ffffff;
+  box-shadow: 0 6px 16px rgba(24, 32, 36, 0.14);
+}
+
+html[data-theme="light"] .catalogo-tags,
+html[data-theme="light"] .catalogo-item,
+html[data-theme="light"] .modal-content {
+  background-color: #e9edef;
+  box-shadow: 0 3px 8px rgba(24, 32, 36, 0.12);
+}
+
+html[data-theme="light"] .catalogo-tags h3,
+html[data-theme="light"] .catalogo-tags .catalogo-tag,
+html[data-theme="light"] .catalogo-item h5,
+html[data-theme="light"] .catalogo-item h6,
+html[data-theme="light"] .catalogo-button,
+html[data-theme="light"] .modal-content h3,
+html[data-theme="light"] .modal-content h4,
+html[data-theme="light"] .modal-content p,
+html[data-theme="light"] .modal-close,
+html[data-theme="light"] .modal-action {
+  color: #273137;
+}
+
+html[data-theme="light"] .catalogo-button,
+html[data-theme="light"] .modal-action {
+  border-color: #879299;
+  box-shadow: 0 2px 5px rgba(24, 32, 36, 0.16);
+}
+
+html[data-theme="light"] .catalogo-button:hover,
+html[data-theme="light"] .modal-action-primary,
+html[data-theme="light"] .modal-status {
+  background-color: #435058;
+  color: #ffffff !important;
+}
+
+html[data-theme="light"] .catalogo-button:hover,
+html[data-theme="light"] .modal-action:hover {
+  box-shadow: 0 3px 7px rgba(24, 32, 36, 0.2);
+}
+
+html[data-theme="light"] .catalogo-button {
+  box-shadow: none;
+}
+
+html[data-theme="light"] .catalogo-button-primary {
+  border-color: #007aff;
+  background-color: #007aff;
+  color: #ffffff;
+}
+
+html[data-theme="light"] .catalogo-button-primary:hover {
+  border-color: #3395ff;
+  background-color: #3395ff;
+}
+
+html[data-theme="light"] .catalogo-item h5 {
+  color: #4a565c;
+}
+
+@media (max-width: 1050px) {
+  .catalogo-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .catalogo {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "tags"
+      "grid";
+  }
+
+  .catalogo-tags {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .catalogo-tags h3 {
+    flex-basis: 100%;
+  }
+
+  .catalogo-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .catalogo-button-section {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .modal-actions {
+    flex-direction: column;
+  }
+}

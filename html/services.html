@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <title>TerraByte</title>
+    <link rel="stylesheet" href="../css/global.css" />
+    <link rel="stylesheet" href="../css/services.css" />
+    <script src="../javascript/theme.js" defer></script>
+    <script src="../javascript/auth.js" defer></script>
+    <script src="../javascript/carrito.js" defer></script>
+    <script src="../javascript/services.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a class="nav-brand" href="./home.html" aria-label="TerraByte, inicio">
+          <img
+            class="nav-imagen nav-imagen-dark"
+            src="../assets/Logo.png"
+            alt="TerraByte"
+          />
+          <img
+            class="nav-imagen nav-imagen-light"
+            src="../assets/Logo_claro.png"
+            alt="TerraByte"
+          />
+        </a>
+        <form class="nav-search" role="search" action="./products.html">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="10.8" cy="10.8" r="6.8" />
+            <path d="m16 16 5 5" />
+          </svg>
+          <input
+            type="search"
+            name="q"
+            aria-label="Buscar productos"
+            placeholder="¿Qué estás buscando?"
+          />
+          <button type="submit" aria-label="Buscar">Buscar</button>
+        </form>
+        <div class="nav-account-links">
+          <a class="nav-account-link" href="./login.html">Ingresar</a>
+          <a class="nav-account-link" href="./register.html">Registrarse</a>
+        </div>
+        <div class="nav-categories">
+          <a href="./products.html">Productos</a>
+          <a href="./services.html">Armá tu NAS</a>
+        </div>
+        <div class="nav-secondary-tools">
+          <a class="nav-cart" href="./cart.html" aria-label="Carrito">
+            <img
+              class="nav-cart-image nav-imagen-dark"
+              src="../assets/shopping-cart_claro.png"
+              alt="Carrito"
+            />
+            <img
+              class="nav-cart-image nav-imagen-light"
+              src="../assets/shopping-cart.png"
+              alt="Carrito"
+            />
+          </a>
+          <a class="nav-secondary" href="./aboutus.html">Nosotros</a>
+          <button
+            class="theme-toggle"
+            type="button"
+            aria-label="Cambiar a modo claro"
+            title="Cambiar a modo claro"
+          >
+            <svg
+              class="theme-icon theme-icon-sun"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="4" />
+              <path
+                d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"
+              />
+            </svg>
+            <svg
+              class="theme-icon theme-icon-moon"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                d="M20.2 15.1A8.5 8.5 0 0 1 8.9 3.8 8.5 8.5 0 1 0 20.2 15.1Z"
+              />
+            </svg>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="titulo">
+        <h1 class="titulo-item">Armá tu NAS</h1>
+        <h2 class="titulo-item">
+          Elegí los componentes que quieras y armá el NAS a medida de tus
+          necesidades de almacenamiento en casa.
+        </h2>
+      </div>
+
+      <div class="total-bar">Total estimado: <span id="total-price">$0</span></div>
+
+      <form id="nas-form" class="fieldset-form">
+        <!-- Paso 1 -->
+        <fieldset class="form-step active">
+          <legend class="fieldset-leyend">1. Gabinete</legend>
+          <div class="cards-grid">
+            <label class="card-option">
+              <input
+                type="radio"
+                name="gabinete"
+                value="NAS 2 bahías ($80.000)"
+              />
+              <span class="card-title">Gabinete NAS 2 bahías</span>
+              <span class="card-price">$80.000</span>
+            </label>
+            <label class="card-option">
+              <input
+                type="radio"
+                name="gabinete"
+                value="NAS 4 bahías ($130.000)"
+              />
+              <span class="card-title">Gabinete NAS 4 bahías</span>
+              <span class="card-price">$130.000</span>
+            </label>
+            <label class="card-option">
+              <input
+                type="radio"
+                name="gabinete"
+                value="NAS 8 bahías ($220.000)"
+              />
+              <span class="card-title">Gabinete NAS 8 bahías</span>
+              <span class="card-price">$220.000</span>
+            </label>
+          </div>
+          <p class="step-selection">Seleccionado: <span>Ninguno</span></p>
+          <div class="step-nav">
+            <button type="button" class="btn-step btn-next">Siguiente</button>
+          </div>
+        </fieldset>
+
+        <!-- Paso 2 -->
+        <fieldset class="form-step">
+          <legend class="fieldset-leyend">2. Placa base</legend>
+          <div class="cards-grid">
+            <label class="card-option">
+              <input
+                type="radio"
+                name="placa"
+                value="Mini-ITX Bajo Consumo ($95.000)"
+              />
+              <span class="card-title">Placa Mini-ITX Bajo Consumo</span>
+              <span class="card-price">$95.000</span>
+            </label>
+            <label class="card-option">
+              <input
+                type="radio"
+                name="placa"
+                value="Micro-ATX Multi SATA ($150.000)"
+              />
+              <span class="card-title">Placa Micro-ATX Multi SATA</span>
+              <span class="card-price">$150.000</span>
+            </label>
+          </div>
+          <p class="step-selection">Seleccionado: <span>Ninguno</span></p>
+          <div class="step-nav">
+            <button type="button" class="btn-step btn-prev">Anterior</button>
+            <button type="button" class="btn-step btn-next">Siguiente</button>
+          </div>
+        </fieldset>
+
+        <!-- Paso 3 -->
+        <fieldset class="form-step">
+          <legend class="fieldset-leyend">3. Procesador</legend>
+          <div class="cards-grid">
+            <label class="card-option">
+              <input
+                type="radio"
+                name="cpu"
+                value="Intel Celeron N5105 ($70.000)"
+              />
+              <span class="card-title">Intel Celeron N5105</span>
+              <span class="card-price">$70.000</span>
+            </label>
+            <label class="card-option">
+              <input
+                type="radio"
+                name="cpu"
+                value="Intel Core i3 12100 ($180.000)"
+              />
+              <span class="card-title">Intel Core i3 12100</span>
+              <span class="card-price">$180.000</span>
+            </label>
+            <label class="card-option">
+              <input
+                type="radio"
+                name="cpu"
+                value="AMD Ryzen 5 5600G ($210.000)"
+              />
+              <span class="card-title">AMD Ryzen 5 5600G</span>
+              <span class="card-price">$210.000</span>
+            </label>
+          </div>
+          <p class="step-selection">Seleccionado: <span>Ninguno</span></p>
+          <div class="step-nav">
+            <button type="button" class="btn-step btn-prev">Anterior</button>
+            <button type="button" class="btn-step btn-next">Siguiente</button>
+          </div>
+        </fieldset>
+
+        <!-- Paso 4 -->
+        <fieldset class="form-step">
+          <legend class="fieldset-leyend">4. Memoria RAM</legend>
+          <div class="cards-grid">
+            <label class="card-option">
+              <input type="radio" name="ram" value="8 GB DDR4 ($30.000)" />
+              <span class="card-title">8 GB DDR4</span>
+              <span class="card-price">$30.000</span>
+            </label>
+            <label class="card-option">
+              <input type="radio" name="ram" value="16 GB DDR4 ($55.000)" />
+              <span class="card-title">16 GB DDR4</span>
+              <span class="card-price">$55.000</span>
+            </label>
+            <label class="card-option">
+              <input type="radio" name="ram" value="32 GB DDR4 ($100.000)" />
+              <span class="card-title">32 GB DDR4</span>
+              <span class="card-price">$100.000</span>
+            </label>
+          </div>
+          <p class="step-selection">Seleccionado: <span>Ninguno</span></p>
+          <div class="step-nav">
+            <button type="button" class="btn-step btn-prev">Anterior</button>
+            <button type="button" class="btn-step btn-next">Siguiente</button>
+          </div>
+        </fieldset>
+
+        <!-- Paso 5 -->
+        <fieldset class="form-step">
+          <legend class="fieldset-leyend">
+            5. Discos de almacenamiento (elegí uno o más)
+          </legend>
+          <div class="cards-grid">
+            <label class="card-option">
+              <input
+                type="checkbox"
+                name="discos"
+                value="HDD NAS 4TB ($90.000)"
+              />
+              <span class="card-title">HDD NAS 4TB</span>
+              <span class="card-price">$90.000</span>
+            </label>
+            <label class="card-option">
+              <input
+                type="checkbox"
+                name="discos"
+                value="HDD NAS 8TB ($150.000)"
+              />
+              <span class="card-title">HDD NAS 8TB</span>
+              <span class="card-price">$150.000</span>
+            </label>
+            <label class="card-option">
+              <input
+                type="checkbox"
+                name="discos"
+                value="SSD NAS 1TB ($80.000)"
+              />
+              <span class="card-title">SSD NAS 1TB</span>
+              <span class="card-price">$80.000</span>
+            </label>
+          </div>
+          <p class="step-selection">Seleccionado: <span>Ninguno</span></p>
+          <div class="step-nav">
+            <button type="button" class="btn-step btn-prev">Anterior</button>
+            <button type="button" class="btn-step btn-next">Siguiente</button>
+          </div>
+        </fieldset>
+
+        <!-- Paso 6 -->
+        <fieldset class="form-step">
+          <legend class="fieldset-leyend">6. Fuente de alimentación</legend>
+          <div class="cards-grid">
+            <label class="card-option">
+              <input type="radio" name="fuente" value="Fuente 300W ($40.000)" />
+              <span class="card-title">Fuente 300W</span>
+              <span class="card-price">$40.000</span>
+            </label>
+            <label class="card-option">
+              <input type="radio" name="fuente" value="Fuente 500W ($60.000)" />
+              <span class="card-title">Fuente 500W</span>
+              <span class="card-price">$60.000</span>
+            </label>
+          </div>
+          <p class="step-selection">Seleccionado: <span>Ninguno</span></p>
+          <div class="step-nav">
+            <button type="button" class="btn-step btn-prev">Anterior</button>
+            <button type="button" class="btn-step btn-next">Siguiente</button>
+          </div>
+        </fieldset>
+
+        <!-- Paso 7 -->
+        <fieldset class="form-step">
+          <legend class="fieldset-leyend">7. Sistema operativo NAS</legend>
+          <div class="cards-grid">
+            <label class="card-option">
+              <input type="radio" name="so" value="TrueNAS (Gratis)" />
+              <span class="card-title">TrueNAS</span>
+              <span class="card-price">Gratis</span>
+            </label>
+            <label class="card-option">
+              <input type="radio" name="so" value="Unraid ($70.000)" />
+              <span class="card-title">Unraid</span>
+              <span class="card-price">$70.000</span>
+            </label>
+          </div>
+          <p class="step-selection">Seleccionado: <span>Ninguno</span></p>
+          <div class="step-nav">
+            <button type="button" class="btn-step btn-prev">Anterior</button>
+            <button type="submit" class="cart-button">
+              Agregar al carrito
+            </button>
+          </div>
+        </fieldset>
+      </form>
+    </main>
+
+    <footer>
+      <label name="home" class="footer-text"
+        >Copyright © 2026 TerraByte Team. All rights reserved.</label
+      >
+      <a class="footer-text" href="" target="_blank">Privacy Policy</a>
+      <a class="footer-text" href="" target="_blank">Terms of Use</a>
+      <a class="footer-text" href="" target="_blank">Sales and Refunds</a>
+      <a class="footer-text" href="" target="_blank">Legal</a>
+      <a class="footer-text" href="" target="_blank">Site Map</a>
+    </footer>
+  </body>
+</html>

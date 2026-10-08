@@ -1,0 +1,377 @@
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+  padding: 4rem 3rem 7rem;
+}
+
+.hero {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5rem;
+  width: 100%;
+  padding-bottom: 5rem;
+}
+
+/* Título de cada sección de la portada, alineado a la izquierda. */
+.section-title {
+  width: 100%;
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 800;
+}
+
+.hero-text {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.hero-text h1,
+.hero-text p {
+  margin: 0;
+}
+
+/* "en casa" se destaca con el color de acento en lugar de cursiva. */
+.hero-text h1 em {
+  font-style: normal;
+  color: #3395ff;
+}
+
+.hero-subtitle {
+  max-width: 34rem;
+  font-size: 1.15rem;
+  line-height: 1.6;
+}
+
+/* Botón principal de la portada: de color y bien visible. */
+.hero-text button {
+  padding: 0.9rem 2.25rem;
+  border-radius: 0.6rem;
+  background-color: #007aff;
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(0, 122, 255, 0.35);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.hero-text button:hover {
+  background-color: #3395ff;
+  font-weight: 700;
+}
+
+.hero-benefits {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hero-benefits li {
+  font-weight: 600;
+}
+
+.hero-benefits li::before {
+  content: "✓";
+  margin-right: 0.6rem;
+  color: #3395ff;
+  font-weight: 800;
+}
+
+.hero-image {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-image img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+main h1,
+main p {
+  color: white;
+}
+
+main h1 {
+  font-size: clamp(2.25rem, 4vw, 3.5rem);
+  line-height: 1.1;
+}
+
+main button {
+  background-color: transparent;
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  padding: 0.5rem 1.5rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+  transition: all 0.1s ease-in-out;
+}
+
+main button:hover {
+  font-weight: bolder;
+  cursor: pointer;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.35);
+}
+
+.products {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 2rem 1rem;
+  border-radius: 1rem;
+  background-color: #435058;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  width: 100%;
+}
+
+.products-viewport {
+  flex: 1;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.products-track {
+  --per-view: 2;
+  --gap: 2rem;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc(
+    (100% - (var(--per-view) - 1) * var(--gap)) / var(--per-view)
+  );
+  gap: var(--gap);
+  transition: transform 0.4s ease-in-out;
+}
+
+.products-item {
+  border-radius: 1rem;
+  background-color: #d9d9d9;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+  transition:
+    box-shadow 0.2s ease-in-out,
+    transform 0.2s ease-in-out;
+}
+
+.products-item:hover {
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+  transform: translateY(-2px);
+}
+
+.products-button-section {
+  display: flex;
+  align-content: space-evenly;
+}
+
+.products-button {
+  display: flex;
+  background-color: transparent;
+  color: #1b1b1b;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  transition: all 0.1s ease-in-out;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+}
+
+.products-button:hover {
+  font-weight: bolder;
+  cursor: pointer;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.35);
+}
+
+.products-item img {
+  width: 100%;
+  height: 12rem;
+  object-fit: contain;
+}
+
+.products-item h5,
+.products-item h6 {
+  margin: 0;
+}
+
+.products-item h5 {
+  font-size: 1rem;
+}
+
+.products-item h6 {
+  font-size: 1.1rem;
+  color: #1b1b1b;
+}
+
+.products-arrow {
+  flex: 0 0 auto;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease-in-out,
+    filter 0.2s ease-in-out;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.4));
+}
+
+.products-arrow img {
+  display: block;
+  width: 2.5rem;
+  height: auto;
+}
+
+.products-arrow:hover:not(:disabled) {
+  transform: scale(1.2);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+}
+
+.products-arrow:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.65);
+}
+
+.modal-content {
+  width: min(28rem, 100%);
+  border-radius: 1rem;
+  background-color: #d9d9d9;
+  padding: 1.5rem;
+  position: relative;
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+
+.modal-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  border: none;
+  background-color: transparent;
+  color: #1b1b1b;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.modal-image {
+  width: 100%;
+  height: 10rem;
+  object-fit: contain;
+}
+
+.modal-content h3,
+.modal-content h4,
+.modal-content p {
+  margin: 0.5rem 0;
+  color: #1b1b1b;
+  font-family: var(--fuente);
+}
+
+.modal-price {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.modal-action {
+  margin-top: 0.75rem;
+  padding: 0.6rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #1b1b1b;
+  background-color: transparent;
+  color: #1b1b1b;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+}
+
+.modal-action:hover,
+.modal-close:hover {
+  font-weight: bold;
+}
+
+@media (min-width: 1100px) {
+  .products-track {
+    --per-view: 3;
+  }
+}
+
+@media (max-width: 800px) {
+  main {
+    padding: 3rem 1.5rem 4rem;
+  }
+
+  .hero {
+    flex-direction: column;
+    justify-content: center;
+    gap: 3rem;
+    padding-bottom: 2rem;
+  }
+
+  .hero-text,
+  .hero-image {
+    width: 100%;
+  }
+
+  .hero-image img {
+    max-width: 34rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .products-track {
+    --per-view: 1;
+  }
+
+  .products {
+    gap: 0.25rem;
+    padding: 0.75rem 0.25rem;
+  }
+
+  .products-item {
+    padding: 0.75rem;
+  }
+
+  .products-arrow img {
+    width: 1.5rem;
+  }
+
+  .products-button-section {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  main {
+    padding: 1.5rem 1rem 2rem;
+  }
+
+  main h1 {
+    font-size: clamp(2rem, 10vw, 2.75rem);
+  }
+}
