@@ -1,0 +1,86 @@
+/* Páginas legales: tarjeta centrada con texto legible. */
+.legal-main {
+  display: flex;
+  justify-content: center;
+  padding: clamp(1.5rem, 4vw, 3rem) 1rem;
+}
+
+.legal-card {
+  width: min(100%, 48rem);
+  padding: clamp(1.5rem, 4vw, 2.75rem);
+  border: 1px solid #2c2c2c;
+  border-radius: 1rem;
+  background-color: rgba(0, 0, 0, 0.45);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.legal-card h1 {
+  margin: 0 0 0.35rem;
+  font-size: clamp(1.75rem, 4vw, 2.25rem);
+  font-weight: 800;
+}
+
+.legal-updated {
+  margin: 0 0 1.75rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid #2c2c2c;
+  font-size: 0.85rem;
+  color: #8f989d !important;
+}
+
+.legal-card h2 {
+  margin: 1.75rem 0 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.legal-card p,
+.legal-card li {
+  line-height: 1.7;
+}
+
+.legal-card ul {
+  margin: 0.5rem 0;
+  padding-left: 1.25rem;
+}
+
+.legal-card a {
+  color: #4da3ff;
+  text-decoration: none;
+}
+
+.legal-card a:hover {
+  text-decoration: underline;
+}
+
+/* Mapa del sitio */
+.sitemap-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 1rem 2rem;
+  margin-top: 1rem;
+}
+
+.sitemap-grid ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sitemap-grid li {
+  margin-bottom: 0.35rem;
+}
+
+html[data-theme="light"] .legal-card {
+  border-color: #dde2e5;
+  background-color: #ffffff;
+  box-shadow: 0 6px 16px rgba(24, 32, 36, 0.12);
+}
+
+html[data-theme="light"] .legal-updated {
+  border-bottom-color: #dde2e5;
+  color: #6b767c !important;
+}
+
+html[data-theme="light"] .legal-card a {
+  color: #007aff;
+}
