@@ -50,23 +50,6 @@ legend {
   padding: 0.25rem 0.75rem;
 }
 
-/* Total estimado */
-.total-bar {
-  align-self: center;
-  background-color: #2b353b;
-  border: 1px solid #435058;
-  border-radius: 0.5rem;
-  padding: 0.6rem 1.5rem;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #ffffff;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
-}
-.total-bar span {
-  color: #38bdf8;
-  font-weight: bold;
-}
-
 /* Pasos secuenciales */
 .form-step {
   display: none;

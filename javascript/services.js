@@ -7,128 +7,106 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!form) return;
 
   const pasos = Array.from(form.querySelectorAll(".form-step"));
-  const totalEl = document.getElementById("total-price");
   let pasoActual = 0;
 
-  // 1. Muestra el paso solicitado y oculta los demás
-  const mostrarPaso = (indice) => {
+  // 1. Mostrar el paso actual y ocultar los demás
+  function mostrarPaso(indice) {
     pasos.forEach((paso, i) => {
       paso.classList.toggle("active", i === indice);
     });
     pasoActual = indice;
-  };
+  }
 
-  // 2. Actualiza el texto de resumen del paso ("Ninguno (opcional)" o lo que eligió)
-  const actualizarPaso = (paso) => {
+  // 2. Actualizar el texto del componente seleccionado en cada paso
+  function actualizarPaso(paso) {
     const seleccionados = Array.from(paso.querySelectorAll("input:checked")).map((i) => i.value);
-    const textoResumen = paso.querySelector(".step-selection span");
-    const botonQuitar = paso.querySelector(".btn-clear-step");
+    const span = paso.querySelector(".step-selection span");
+    const btnLimpiar = paso.querySelector(".btn-clear-step");
 
-    if (textoResumen) {
-      textoResumen.textContent = seleccionados.length ? seleccionados.join(", ") : "Ninguno (opcional)";
+    if (span) {
+      span.textContent = seleccionados.length > 0 ? seleccionados.join(", ") : "Ninguno";
     }
-    if (botonQuitar) {
-      botonQuitar.style.display = seleccionados.length ? "inline-block" : "none";
+    if (btnLimpiar) {
+      btnLimpiar.style.display = seleccionados.length > 0 ? "inline-block" : "none";
     }
-  };
+  }
 
-  // 3. Calcula la suma de lo seleccionado y actualiza el total en pantalla
-  const actualizarTotal = () => {
-    const seleccionados = form.querySelectorAll("input:checked");
-    let total = 0;
-    seleccionados.forEach((input) => {
-      total += extraerPrecio(input.value);
-    });
-    if (totalEl) {
-      totalEl.textContent = formatearPrecio(total);
-    }
-  };
-
-  // 4. Permite deseleccionar opciones con un clic adicional
-  let radioPrevio = null;
-
-  form.addEventListener("mousedown", (e) => {
-    const radio = e.target.closest(".card-option")?.querySelector('input[type="radio"]');
-    radioPrevio = radio?.checked ? radio : null;
-  });
-
-  // 5. Clicks: navegación, botón de limpiar y deselección de radio
+  // 3. Controlar los botones de Siguiente, Anterior y Limpiar
   form.addEventListener("click", (e) => {
-    // Si hace clic sobre la opción que ya estaba marcada, la desmarca
-    const radio = e.target.closest(".card-option")?.querySelector('input[type="radio"]');
-    if (radio && radio === radioPrevio) {
-      radio.checked = false;
-      actualizarPaso(radio.closest(".form-step"));
-      actualizarTotal();
-    }
-
-    // Botón "Quitar selección" para vaciar el paso actual
-    if (e.target.matches(".btn-clear-step")) {
-      const paso = e.target.closest(".form-step");
-      if (paso) {
-        paso.querySelectorAll("input:checked").forEach((i) => (i.checked = false));
-        actualizarPaso(paso);
-        actualizarTotal();
-      }
-    }
-
-    // Botones Siguiente y Anterior
+    // Avanzar al siguiente paso
     if (e.target.matches(".btn-next") && pasoActual < pasos.length - 1) {
       mostrarPaso(pasoActual + 1);
-    } else if (e.target.matches(".btn-prev") && pasoActual > 0) {
+    }
+    // Volver al paso anterior
+    else if (e.target.matches(".btn-prev") && pasoActual > 0) {
       mostrarPaso(pasoActual - 1);
+    }
+    // Quitar la selección del paso actual si el usuario se arrepiente
+    else if (e.target.matches(".btn-clear-step")) {
+      const paso = e.target.closest(".form-step");
+      if (paso) {
+        paso.querySelectorAll("input:checked").forEach((input) => (input.checked = false));
+        actualizarPaso(paso);
+      }
     }
   });
 
-  // 6. Al marcar o desmarcar cualquier opción, refresca el paso y el total
+  // 4. Actualizar el texto cuando el usuario elige una opción
   form.addEventListener("change", (e) => {
     const paso = e.target.closest(".form-step");
     if (paso) {
       actualizarPaso(paso);
-      actualizarTotal();
     }
   });
 
-  // 7. Envío del formulario: valida y guarda la configuración en el carrito
+  // 5. Enviar el formulario y agregar al carrito
   form.addEventListener("submit", (e) => {
     e.preventDefault();
+
+    // Obtener todos los componentes seleccionados en todos los pasos
     const seleccionados = Array.from(form.querySelectorAll("input:checked")).map((i) => i.value);
 
-    // Validación: al menos un componente en cualquier paso
+    // Validación: que haya elegido al menos un componente
     if (seleccionados.length === 0) {
       abrirModalServicio({
         titulo: "Configuración incompleta",
-        mensaje: "Seleccioná al menos un componente en cualquiera de los pasos para armar tu NAS.",
+        mensaje: "Elegí al menos un componente para agregar tu NAS al carrito.",
         principal: "Entendido",
       });
       return;
     }
 
-    const total = seleccionados.reduce((suma, item) => suma + extraerPrecio(item), 0);
+    // Calcular precio sumando los componentes
+    let precioTotal = 0;
+    seleccionados.forEach((item) => {
+      precioTotal += extraerPrecio(item);
+    });
 
+    // Guardar en el carrito
     agregarAlCarrito({
       tipo: "Servicio",
       nombre: "NAS personalizado",
-      precio: total === 0 ? "Gratis" : formatearPrecio(total),
+      precio: precioTotal === 0 ? "Gratis" : formatearPrecio(precioTotal),
       componentes: seleccionados,
     });
 
+    // Mostrar modal de éxito
     abrirModalServicio({
       titulo: "NAS agregado al carrito",
-      mensaje: "Tu configuración personalizada ya está guardada y lista para revisar.",
+      mensaje: "Tu configuración personalizada fue guardada con éxito.",
       principal: "Ir al carrito",
       secundaria: "Seguir configurando",
       irAlCarrito: true,
     });
   });
 
-  // Inicializa cada paso y muestra el paso 1
+  // Iniciar el estado de cada paso y mostrar el primero
   pasos.forEach(actualizarPaso);
   mostrarPaso(0);
 });
 
 // ========================================================
-// MODAL DE CONFIRMACIÓN O AVISO
+// VENTANA MODAL (aviso y confirmación)
 // ========================================================
 function abrirModalServicio(opciones) {
   const modalViejo = document.querySelector(".service-modal-overlay");
@@ -151,22 +129,22 @@ function abrirModalServicio(opciones) {
 
   document.body.appendChild(modal);
 
-  modal.querySelector(".service-modal-close").addEventListener("click", () => modal.remove());
+  modal.querySelector(".service-modal-close").onclick = () => modal.remove();
 
   const btnSecundario = modal.querySelector(".service-modal-secondary");
   if (btnSecundario) {
-    btnSecundario.addEventListener("click", () => modal.remove());
+    btnSecundario.onclick = () => modal.remove();
   }
 
-  modal.querySelector(".service-modal-primary").addEventListener("click", () => {
+  modal.querySelector(".service-modal-primary").onclick = () => {
     if (opciones.irAlCarrito) {
       window.location.href = "./cart.html";
     } else {
       modal.remove();
     }
-  });
+  };
 
-  modal.addEventListener("click", (e) => {
+  modal.onclick = (e) => {
     if (e.target === modal) modal.remove();
-  });
+  };
 }
