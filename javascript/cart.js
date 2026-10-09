@@ -32,6 +32,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Construye el bloque visual y las acciones para un producto o servicio.
   function crearItemCarrito(item) {
+    // Si es una configuración con componentes, recalcula la suma exacta de sus componentes
+    if (item.tipo === "Servicio" && Array.isArray(item.componentes) && item.componentes.length > 0) {
+      const sumaComponentes = item.componentes.reduce(
+        (total, comp) => total + extraerPrecio(comp),
+        0,
+      );
+      item.precio = sumaComponentes === 0 ? "Gratis" : formatearPrecio(sumaComponentes);
+    }
+
     const articulo = document.createElement("article");
     articulo.className = "cart-item";
 
@@ -285,7 +294,14 @@ function calcularTotal(carrito) {
   return carrito.reduce(
     // Acumula el subtotal de cada item.
     function (total, item) {
-      return total + extraerPrecio(item.precio) * (item.cantidad || 1);
+      let precioUnitario = extraerPrecio(item.precio);
+      if (item.tipo === "Servicio" && Array.isArray(item.componentes) && item.componentes.length > 0) {
+        precioUnitario = item.componentes.reduce(
+          (sum, comp) => sum + extraerPrecio(comp),
+          0,
+        );
+      }
+      return total + precioUnitario * (item.cantidad || 1);
     },
     0,
   );

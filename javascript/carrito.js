@@ -89,6 +89,16 @@ function extraerPrecio(precio) {
     return 0;
   }
 
+  if (typeof precio === "number") {
+    return precio;
+  }
+
+  // Extrae el valor numérico después del signo $ (evita sumar números del nombre como '32 GB', '500W' o '2 bahías')
+  const coincidencia = String(precio).match(/\$([0-9.]+)/);
+  if (coincidencia) {
+    return Number(coincidencia[1].replaceAll(".", "")) || 0;
+  }
+
   return Number(String(precio).replace(/[^\d]/g, "")) || 0;
 }
 
