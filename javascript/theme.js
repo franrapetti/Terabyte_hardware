@@ -1,6 +1,5 @@
 const themeStorageKey = "terrabyte-theme";
 const themeRoot = document.documentElement;
-const themeToggle = document.querySelector(".theme-toggle");
 
 let currentTheme = "dark";
 
@@ -12,7 +11,10 @@ try {
 
 themeRoot.dataset.theme = currentTheme;
 
-if (themeToggle) {
+document.addEventListener("DOMContentLoaded", () => {
+  const themeToggle = document.querySelector(".theme-toggle");
+  if (!themeToggle) return;
+
   // Actualiza el texto accesible del boton segun el tema activo.
   const updateThemeButton = () => {
     const isLightTheme = themeRoot.dataset.theme === "light";
@@ -37,4 +39,4 @@ if (themeToggle) {
 
     updateThemeButton();
   });
-}
+});
