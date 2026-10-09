@@ -15,8 +15,62 @@ document.addEventListener("DOMContentLoaded", () => {
     currentStep = index;
   };
 
-  // Controla los botones para avanzar o volver entre pasos.
+  // Actualiza el texto de selección y la visibilidad del botón de limpiar del paso.
+  const actualizarPaso = (step) => {
+    const checked = Array.from(step.querySelectorAll("input:checked")).map(
+      (i) => i.value,
+    );
+    const selSpan = step.querySelector(".step-selection span");
+    if (selSpan) {
+      selSpan.textContent = checked.length ? checked.join(", ") : "Ninguno (opcional)";
+    }
+    const clearBtn = step.querySelector(".btn-clear-step");
+    if (clearBtn) {
+      clearBtn.style.display = checked.length ? "inline-block" : "none";
+    }
+  };
+
+  // Registra si el radio ya estaba marcado antes de hacer clic para permitir desmarcarlo.
+  let radioQueEstabaMarcado = null;
+
+  form.addEventListener("pointerdown", (e) => {
+    const card = e.target.closest(".card-option");
+    if (!card) {
+      radioQueEstabaMarcado = null;
+      return;
+    }
+    const radio = card.querySelector('input[type="radio"]');
+    radioQueEstabaMarcado = radio && radio.checked ? radio : null;
+  });
+
+  // Controla los botones de navegación, limpiar paso y desmarcado de radios.
   form.addEventListener("click", (e) => {
+    if (e.target.matches(".btn-clear-step")) {
+      const step = e.target.closest(".form-step");
+      if (step) {
+        step.querySelectorAll("input:checked").forEach((input) => {
+          input.checked = false;
+        });
+        actualizarPaso(step);
+        updateTotal();
+      }
+      return;
+    }
+
+    const card = e.target.closest(".card-option");
+    if (card) {
+      const radio = card.querySelector('input[type="radio"]');
+      if (radio && radioQueEstabaMarcado === radio) {
+        radio.checked = false;
+        radioQueEstabaMarcado = null;
+        const step = card.closest(".form-step");
+        if (step) {
+          actualizarPaso(step);
+          updateTotal();
+        }
+      }
+    }
+
     if (e.target.matches(".btn-next") && currentStep < steps.length - 1) {
       showStep(currentStep + 1);
     } else if (e.target.matches(".btn-prev") && currentStep > 0) {
@@ -28,14 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("change", (e) => {
     const step = e.target.closest(".form-step");
     if (!step) return;
-    const checked = Array.from(step.querySelectorAll("input:checked")).map(
-      // Obtiene el valor de cada opcion seleccionada en este paso.
-      (i) => i.value,
-    );
-    const selSpan = step.querySelector(".step-selection span");
-    if (selSpan) {
-      selSpan.textContent = checked.length ? checked.join(", ") : "Ninguno";
-    }
+    actualizarPaso(step);
     updateTotal();
   });
 
@@ -61,7 +108,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (configuracion.componentes.length === 0) {
       abrirModalServicio({
         titulo: "Configuración incompleta",
-        mensaje: "Seleccioná al menos un componente para agregarlo al carrito.",
+        mensaje:
+          "Seleccioná al menos un componente en cualquiera de los pasos para armar tu NAS.",
         principal: "Entendido",
       });
       return;
@@ -83,6 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  steps.forEach(actualizarPaso);
   showStep(0);
 });
 
