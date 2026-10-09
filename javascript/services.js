@@ -1,244 +1,172 @@
-// Prepara los pasos del configurador NAS cuando el documento esta listo.
+// ========================================================
+// CONFIGURADOR NAS (services.js)
+// ========================================================
+
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("nas-form");
   if (!form) return;
 
-  const steps = Array.from(form.querySelectorAll(".form-step"));
-  let currentStep = 0;
-
-  // Activa el paso indicado y oculta los demas pasos del formulario.
-  const showStep = (index) => {
-    steps.forEach(
-      // Mantiene activo solamente el paso solicitado.
-      (step, i) => step.classList.toggle("active", i === index),
-    );
-    currentStep = index;
-  };
-
-  // Actualiza el texto de selección y la visibilidad del botón de limpiar del paso.
-  const actualizarPaso = (step) => {
-    const checked = Array.from(step.querySelectorAll("input:checked")).map(
-      (i) => i.value,
-    );
-    const selSpan = step.querySelector(".step-selection span");
-    if (selSpan) {
-      selSpan.textContent = checked.length ? checked.join(", ") : "Ninguno (opcional)";
-    }
-    const clearBtn = step.querySelector(".btn-clear-step");
-    if (clearBtn) {
-      clearBtn.style.display = checked.length ? "inline-block" : "none";
-    }
-  };
-
-  // Registra si el radio ya estaba marcado antes de hacer clic para permitir desmarcarlo.
-  let radioQueEstabaMarcado = null;
-
-  form.addEventListener("pointerdown", (e) => {
-    const card = e.target.closest(".card-option");
-    if (!card) {
-      radioQueEstabaMarcado = null;
-      return;
-    }
-    const radio = card.querySelector('input[type="radio"]');
-    radioQueEstabaMarcado = radio && radio.checked ? radio : null;
-  });
-
-  // Controla los botones de navegación, limpiar paso y desmarcado de radios.
-  form.addEventListener("click", (e) => {
-    if (e.target.matches(".btn-clear-step")) {
-      const step = e.target.closest(".form-step");
-      if (step) {
-        step.querySelectorAll("input:checked").forEach((input) => {
-          input.checked = false;
-        });
-        actualizarPaso(step);
-        updateTotal();
-      }
-      return;
-    }
-
-    const card = e.target.closest(".card-option");
-    if (card) {
-      const radio = card.querySelector('input[type="radio"]');
-      if (radio && radioQueEstabaMarcado === radio) {
-        radio.checked = false;
-        radioQueEstabaMarcado = null;
-        const step = card.closest(".form-step");
-        if (step) {
-          actualizarPaso(step);
-          updateTotal();
-        }
-      }
-    }
-
-    if (e.target.matches(".btn-next") && currentStep < steps.length - 1) {
-      showStep(currentStep + 1);
-    } else if (e.target.matches(".btn-prev") && currentStep > 0) {
-      showStep(currentStep - 1);
-    }
-  });
-
-  // Actualiza el resumen de componentes y el total ante cada seleccion.
-  form.addEventListener("change", (e) => {
-    const step = e.target.closest(".form-step");
-    if (!step) return;
-    actualizarPaso(step);
-    updateTotal();
-  });
-
+  const pasos = Array.from(form.querySelectorAll(".form-step"));
   const totalEl = document.getElementById("total-price");
-  // Suma los precios seleccionados y actualiza el total visible.
-  const updateTotal = () => {
-    const total = Array.from(form.querySelectorAll("input:checked")).reduce(
-      // Agrega al acumulado el precio de la opcion seleccionada.
-      (sum, i) => {
-        const val = (i.value.match(/\$([0-9.]+)/) || [])[1];
-        return sum + (val ? parseInt(val.replaceAll(".", ""), 10) : 0);
-      },
-      0,
-    );
-    if (totalEl) totalEl.textContent = "$" + total.toLocaleString("es-AR");
+  let pasoActual = 0;
+
+  // 1. Muestra el paso solicitado y oculta los demás
+  const mostrarPaso = (indice) => {
+    pasos.forEach((paso, i) => {
+      paso.classList.toggle("active", i === indice);
+    });
+    pasoActual = indice;
   };
 
-  // Valida la configuracion, la agrega al carrito y muestra el resultado.
+  // 2. Actualiza el texto de resumen del paso ("Ninguno (opcional)" o lo que eligió)
+  const actualizarPaso = (paso) => {
+    const seleccionados = Array.from(paso.querySelectorAll("input:checked")).map((i) => i.value);
+    const textoResumen = paso.querySelector(".step-selection span");
+    const botonQuitar = paso.querySelector(".btn-clear-step");
+
+    if (textoResumen) {
+      textoResumen.textContent = seleccionados.length ? seleccionados.join(", ") : "Ninguno (opcional)";
+    }
+    if (botonQuitar) {
+      botonQuitar.style.display = seleccionados.length ? "inline-block" : "none";
+    }
+  };
+
+  // 3. Calcula la suma de lo seleccionado y actualiza el total en pantalla
+  const actualizarTotal = () => {
+    const seleccionados = form.querySelectorAll("input:checked");
+    let total = 0;
+    seleccionados.forEach((input) => {
+      total += extraerPrecio(input.value);
+    });
+    if (totalEl) {
+      totalEl.textContent = formatearPrecio(total);
+    }
+  };
+
+  // 4. Permite deseleccionar opciones con un clic adicional
+  let radioPrevio = null;
+
+  form.addEventListener("mousedown", (e) => {
+    const radio = e.target.closest(".card-option")?.querySelector('input[type="radio"]');
+    radioPrevio = radio?.checked ? radio : null;
+  });
+
+  // 5. Clicks: navegación, botón de limpiar y deselección de radio
+  form.addEventListener("click", (e) => {
+    // Si hace clic sobre la opción que ya estaba marcada, la desmarca
+    const radio = e.target.closest(".card-option")?.querySelector('input[type="radio"]');
+    if (radio && radio === radioPrevio) {
+      radio.checked = false;
+      actualizarPaso(radio.closest(".form-step"));
+      actualizarTotal();
+    }
+
+    // Botón "Quitar selección" para vaciar el paso actual
+    if (e.target.matches(".btn-clear-step")) {
+      const paso = e.target.closest(".form-step");
+      if (paso) {
+        paso.querySelectorAll("input:checked").forEach((i) => (i.checked = false));
+        actualizarPaso(paso);
+        actualizarTotal();
+      }
+    }
+
+    // Botones Siguiente y Anterior
+    if (e.target.matches(".btn-next") && pasoActual < pasos.length - 1) {
+      mostrarPaso(pasoActual + 1);
+    } else if (e.target.matches(".btn-prev") && pasoActual > 0) {
+      mostrarPaso(pasoActual - 1);
+    }
+  });
+
+  // 6. Al marcar o desmarcar cualquier opción, refresca el paso y el total
+  form.addEventListener("change", (e) => {
+    const paso = e.target.closest(".form-step");
+    if (paso) {
+      actualizarPaso(paso);
+      actualizarTotal();
+    }
+  });
+
+  // 7. Envío del formulario: valida y guarda la configuración en el carrito
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    const configuracion = obtenerConfiguracionNas(form);
+    const seleccionados = Array.from(form.querySelectorAll("input:checked")).map((i) => i.value);
 
-    if (configuracion.componentes.length === 0) {
+    // Validación: al menos un componente en cualquier paso
+    if (seleccionados.length === 0) {
       abrirModalServicio({
         titulo: "Configuración incompleta",
-        mensaje:
-          "Seleccioná al menos un componente en cualquiera de los pasos para armar tu NAS.",
+        mensaje: "Seleccioná al menos un componente en cualquiera de los pasos para armar tu NAS.",
         principal: "Entendido",
       });
       return;
     }
 
+    const total = seleccionados.reduce((suma, item) => suma + extraerPrecio(item), 0);
+
     agregarAlCarrito({
       tipo: "Servicio",
-      nombre: configuracion.nombre,
-      precio: configuracion.precio,
-      componentes: configuracion.componentes,
+      nombre: "NAS personalizado",
+      precio: total === 0 ? "Gratis" : formatearPrecio(total),
+      componentes: seleccionados,
     });
+
     abrirModalServicio({
       titulo: "NAS agregado al carrito",
-      mensaje:
-        "Tu configuración personalizada ya está guardada y lista para revisar.",
+      mensaje: "Tu configuración personalizada ya está guardada y lista para revisar.",
       principal: "Ir al carrito",
       secundaria: "Seguir configurando",
       irAlCarrito: true,
     });
   });
 
-  steps.forEach(actualizarPaso);
-  showStep(0);
+  // Inicializa cada paso y muestra el paso 1
+  pasos.forEach(actualizarPaso);
+  mostrarPaso(0);
 });
 
-// Construye el nombre, los componentes elegidos y el precio de la NAS.
-function obtenerConfiguracionNas(form) {
-  const seleccionados = Array.from(form.querySelectorAll("input:checked"));
-  const componentes = seleccionados.map(
-    // Guarda el texto de cada opcion seleccionada.
-    (input) => input.value,
-  );
-  const total = componentes.reduce(
-    // Suma el precio de cada componente para obtener el total.
-    (suma, componente) => {
-      return suma + extraerPrecioComponente(componente);
-    },
-    0,
-  );
-
-  return {
-    nombre: "NAS personalizado",
-    precio: total === 0 ? "Gratis" : formatearPrecio(total),
-    componentes: componentes,
-  };
-}
-
-// Extrae el numero de precio de una opcion o devuelve cero si no hay precio.
-function extraerPrecioComponente(texto) {
-  const coincidencia = texto.match(/\(\$([\d.]+)\)/);
-
-  if (!coincidencia) {
-    return 0;
-  }
-
-  return Number(coincidencia[1].replaceAll(".", ""));
-}
-
-// Construye y muestra un modal con el resultado de la configuracion.
+// ========================================================
+// MODAL DE CONFIRMACIÓN O AVISO
+// ========================================================
 function abrirModalServicio(opciones) {
-  const modalAnterior = document.querySelector(".service-modal-overlay");
-
-  if (modalAnterior) {
-    modalAnterior.remove();
-  }
+  const modalViejo = document.querySelector(".service-modal-overlay");
+  if (modalViejo) modalViejo.remove();
 
   const modal = document.createElement("div");
   modal.className = "service-modal-overlay";
+  modal.innerHTML = `
+    <div class="service-modal">
+      <button class="service-modal-close" type="button" aria-label="Cerrar">x</button>
+      <p class="service-modal-status">Armá tu NAS</p>
+      <h3>${opciones.titulo}</h3>
+      <p>${opciones.mensaje}</p>
+      <div class="service-modal-actions">
+        ${opciones.secundaria ? `<button class="service-modal-action service-modal-secondary" type="button">${opciones.secundaria}</button>` : ""}
+        <button class="service-modal-action service-modal-primary" type="button">${opciones.principal}</button>
+      </div>
+    </div>
+  `;
 
-  const contenido = document.createElement("div");
-  contenido.className = "service-modal";
-
-  const cerrar = document.createElement("button");
-  cerrar.className = "service-modal-close";
-  cerrar.type = "button";
-  cerrar.setAttribute("aria-label", "Cerrar");
-  cerrar.textContent = "x";
-
-  const estado = document.createElement("p");
-  estado.className = "service-modal-status";
-  estado.textContent = "Armá tu NAS";
-
-  const titulo = document.createElement("h3");
-  titulo.textContent = opciones.titulo;
-
-  const mensaje = document.createElement("p");
-  mensaje.textContent = opciones.mensaje;
-
-  const acciones = document.createElement("div");
-  acciones.className = "service-modal-actions";
-
-  if (opciones.secundaria) {
-    const secundaria = document.createElement("button");
-    secundaria.className = "service-modal-action service-modal-secondary";
-    secundaria.type = "button";
-    secundaria.textContent = opciones.secundaria;
-    // Cierra el modal para permitir seguir configurando.
-    secundaria.addEventListener("click", function () {
-      modal.remove();
-    });
-    acciones.appendChild(secundaria);
-  }
-
-  const principal = document.createElement("button");
-  principal.className = "service-modal-action service-modal-primary";
-  principal.type = "button";
-  principal.textContent = opciones.principal;
-  // Ejecuta la accion principal, como ir al carrito o cerrar el aviso.
-  principal.addEventListener("click", function () {
-    if (opciones.irAlCarrito) {
-      window.location.href = "./cart.html";
-      return;
-    }
-
-    modal.remove();
-  });
-  acciones.appendChild(principal);
-
-  contenido.append(cerrar, estado, titulo, mensaje, acciones);
-  modal.appendChild(contenido);
   document.body.appendChild(modal);
 
-  // Cierra el modal al pulsar su fondo o el boton de cierre.
-  modal.addEventListener("click", function (event) {
-    if (
-      event.target.classList.contains("service-modal-overlay") ||
-      event.target.classList.contains("service-modal-close")
-    ) {
+  modal.querySelector(".service-modal-close").addEventListener("click", () => modal.remove());
+
+  const btnSecundario = modal.querySelector(".service-modal-secondary");
+  if (btnSecundario) {
+    btnSecundario.addEventListener("click", () => modal.remove());
+  }
+
+  modal.querySelector(".service-modal-primary").addEventListener("click", () => {
+    if (opciones.irAlCarrito) {
+      window.location.href = "./cart.html";
+    } else {
       modal.remove();
     }
+  });
+
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) modal.remove();
   });
 }
