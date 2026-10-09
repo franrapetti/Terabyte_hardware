@@ -85,7 +85,7 @@ function cambiarCantidad(id, cambio) {
 
 // Convierte un precio mostrado en texto a un numero entero.
 function extraerPrecio(precio) {
-  if (!precio || precio === "Gratis") {
+  if (!precio || String(precio).toLowerCase().includes("gratis")) {
     return 0;
   }
 
@@ -93,13 +93,12 @@ function extraerPrecio(precio) {
     return precio;
   }
 
-  // Extrae el valor numérico después del signo $ (evita sumar números del nombre como '32 GB', '500W' o '2 bahías')
-  const coincidencia = String(precio).match(/\$([0-9.]+)/);
-  if (coincidencia) {
-    return Number(coincidencia[1].replaceAll(".", "")) || 0;
-  }
+  const preciosEncontrados = String(precio).match(/\$\s*[\d.,]+/g);
+  const precioTexto = preciosEncontrados
+    ? preciosEncontrados[preciosEncontrados.length - 1]
+    : String(precio);
 
-  return Number(String(precio).replace(/[^\d]/g, "")) || 0;
+  return Number(precioTexto.replace(/[^\d]/g, "")) || 0;
 }
 
 // Formatea un numero como precio con separadores regionales argentinos.
