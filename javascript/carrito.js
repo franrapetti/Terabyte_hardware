@@ -85,11 +85,16 @@ function cambiarCantidad(id, cambio) {
 
 // Convierte un precio mostrado en texto a un numero entero.
 function extraerPrecio(precio) {
-  if (!precio || precio === "Gratis") {
+  if (!precio || String(precio).toLowerCase().includes("gratis")) {
     return 0;
   }
 
-  return Number(String(precio).replace(/[^\d]/g, "")) || 0;
+  const preciosEncontrados = String(precio).match(/\$\s*[\d.,]+/g);
+  const precioTexto = preciosEncontrados
+    ? preciosEncontrados[preciosEncontrados.length - 1]
+    : String(precio);
+
+  return Number(precioTexto.replace(/[^\d]/g, "")) || 0;
 }
 
 // Formatea un numero como precio con separadores regionales argentinos.
