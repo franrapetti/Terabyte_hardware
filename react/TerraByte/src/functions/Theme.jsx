@@ -1,4 +1,6 @@
 import { useSyncExternalStore } from 'react'
+import faviconLight from '../assets/favicon_claro.png'
+import faviconDark from '../assets/favicon_oscuro.png'
 
 export const THEME_KEY = 'terrabyte-theme'
 const changeEvent = 'terrabyte-theme-change'
@@ -17,6 +19,8 @@ function applyTheme(theme) {
   if (typeof document === 'undefined') return
   document.documentElement.dataset.theme = theme
   document.documentElement.style.colorScheme = theme
+  const favicon = document.getElementById('site-favicon')
+  if (favicon) favicon.href = theme === 'light' ? faviconLight : faviconDark
 }
 
 export function initializeTheme() {

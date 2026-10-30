@@ -68,6 +68,19 @@ test('carrito: datos antiguos inválidos, claves repetidas y cantidades cero', a
   await expect(page.locator('main article')).toHaveCount(0)
 })
 
+test('recursos: imágenes de carritos guardados antes de reorganizar las entregas', async ({ page }) => {
+  await seed(page, { [CART]: [{
+    id: 'old-path', tipo: 'Producto', nombre: 'NAS QNAP TS-264-8G-US',
+    precio: '$1.669.000', cantidad: 1,
+    imagen: '/@fs/ubicacion-anterior/assets/products/Producto 1.png',
+  }] })
+  await page.goto('/cart')
+  const image = page.locator('main article img')
+  await expect(image).toBeVisible()
+  await expect(image).not.toHaveAttribute('src', /ubicacion-anterior/)
+  await expect.poll(() => image.evaluate((element) => element.naturalWidth)).toBeGreaterThan(0)
+})
+
 test('carrito y búsqueda: filtros combinados, cambios entre pestañas y almacenamiento bloqueado', async ({ page, context }) => {
   await page.goto('/products.html?q=ugreen')
   await expect(page.locator('main article')).toHaveCount(2)

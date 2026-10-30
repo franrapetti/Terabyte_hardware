@@ -1,31 +1,87 @@
-# TERRABYTE
+# TerraByte
 
-![Logo](assets/Logo.png)
+![Logo de TerraByte](simple/assets/Logo.png)
 
-## Descripción
+Proyecto frontend de una tienda de hardware, servidores NAS y configuraciones
+personalizadas. El repositorio contiene dos entregas de la misma propuesta,
+con tecnologías y formas de ejecución diferentes.
 
-Este es un proyecto de programación con enfoque **frontend**, basado en el desarrollo de una tienda virtual de productos de hardware para computadoras.
+## Entregas
 
-El objetivo principal del proyecto es desarrollar una interfaz **rápida, intuitiva y fácil de utilizar**, donde el usuario pueda recorrer el catálogo, consultar la información de los productos y seleccionar aquellos que sean de su interés.
+| Entrega | Ubicación | Tecnologías | Documentación |
+| --- | --- | --- | --- |
+| Versión original | `simple/` | HTML, CSS y JavaScript puro | [README de simple](simple/README.md) |
+| Versión React | `react/TerraByte/` | React, React Router, TailwindCSS y Vite | [README de React](react/README.md) |
 
-Desde el frontend se priorizará la **experiencia de usuario**, la organización visual de los productos, la navegación entre las distintas secciones y la adaptación de la página a diferentes tamaños de pantalla.
+Ambas incluyen catálogo de productos, configurador NAS, carrito, registro e
+inicio de sesión y temas claro/oscuro. Son prototipos frontend: las cuentas,
+la sesión, el carrito y el tema se guardan en el navegador; la compra se simula.
 
----
+## Organización del repositorio
 
-## Guía de Desarrollo
-
-La guía de desarrollo tendrá como objetivo facilitar la incorporación de nuevos integrantes al equipo y establecer una metodología de trabajo común.
-
-### Clonar el repositorio
-
-Para comenzar a trabajar en el proyecto, se deberá clonar el repositorio y acceder a la carpeta correspondiente:
-
-```bash
-git clone https://github.com/franrapetti/Terabyte_hardware.git
-cd Terabyte_hardware
+```text
+Compra-Gamer-G9/
+├── README.md
+├── simple/
+│   ├── README.md
+│   ├── assets/          # Recursos originales
+│   ├── css/             # Estilos de las páginas HTML
+│   ├── html/            # Páginas; entrada: home.html
+│   └── javascript/      # Comportamiento de la entrega original
+└── react/
+    ├── README.md
+    └── TerraByte/
+        ├── README.md    # Detalles de implementación y verificación
+        ├── package.json
+        ├── public/
+        ├── src/
+        │   ├── assets/  # Copia independiente para React
+        │   ├── components/
+        │   ├── data/
+        │   ├── functions/
+        │   └── pages/
+        └── tests/
 ```
 
-El proyecto no tiene dependencias que instalar: es HTML, CSS y JavaScript puro. Para probarlo, abrí `html/home.html` desde un servidor local (por ejemplo la extensión Live Server de VS Code o `python3 -m http.server`). Abrirlo directo con `file://` puede impedir que funcione el inicio de sesión.
+La versión original se encuentra íntegramente en `simple/`. React importa sus
+imágenes desde `react/TerraByte/src/assets/`: modificar los recursos de una
+entrega no modifica los de la otra.
+
+## Clonar y ejecutar
+
+```bash
+git clone https://github.com/franrapetti/Compra-Gamer-G9.git
+cd Compra-Gamer-G9
+```
+
+### Entrega HTML, CSS y JavaScript
+
+Desde la raíz del repositorio, sin instalar paquetes de npm:
+
+```bash
+python3 -m http.server 8000 --directory simple
+```
+
+Abrir [http://localhost:8000/html/home.html](http://localhost:8000/html/home.html).
+También se puede usar un servidor estático como Live Server.
+
+### Entrega React
+
+Desde la raíz del repositorio, con Node.js y npm instalados:
+
+```bash
+npm --prefix react/TerraByte ci
+npm --prefix react/TerraByte run dev
+```
+
+Abrir la dirección que indique Vite, normalmente
+[http://localhost:5173/](http://localhost:5173/).
+
+Usar localhost o HTTPS para las funciones criptográficas del registro y el
+inicio de sesión. Los datos de `localStorage` pertenecen al origen del sitio;
+al ejecutar las entregas en puertos diferentes, sus datos quedan separados.
+
+## Colaboración
 
 ### Flujo de trabajo
 

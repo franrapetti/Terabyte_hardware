@@ -1,8 +1,20 @@
 # TerraByte — React y TailwindCSS
 
+Esta aplicación corresponde a la entrega React. Consultar el
+[README de React](../README.md) para la guía de entrega y el
+[README general](../../README.md) para la organización del repositorio.
+La versión original está en [`simple/`](../../simple/README.md).
+
+## Assets de esta entrega
+
+`src/assets/` contiene una copia independiente de todos los recursos de la
+versión original. Los imports de páginas, componentes y catálogo apuntan a esa
+carpeta. Para actualizar una imagen de React, modificar esta copia; la aplicación
+no depende de `simple/assets/` ni de archivos externos a `TerraByte/`.
+
 ## Desarrollo y páginas
 
-Ejecutar `npm install` y `npm run dev` desde esta carpeta.
+Ejecutar `npm ci` y `npm run dev` desde esta carpeta.
 
 Las páginas migradas están disponibles en `/aboutus`, `/sitemap`, `/terms`,
 `/refunds`, `/legal` y `/privacy`. También se aceptan sus direcciones originales
