@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import logoDark from '../assets/Logo.png'
-import logoLight from '../assets/Logo_claro.png'
-import cartDark from '../assets/shopping-cart_claro.png'
-import cartLight from '../assets/shopping-cart.png'
-import { useCarrito } from '../functions/CartFuncion.jsx'
-import { logout, useAuth } from '../functions/Auth.jsx'
-import { toggleTheme, useTheme } from '../functions/Theme.jsx'
-import SearchBar from './SearchBar.jsx'
+import logoDark from '../../assets/Logo.png'
+import logoLight from '../../assets/Logo_claro.png'
+import cartDark from '../../assets/shopping-cart_claro.png'
+import cartLight from '../../assets/shopping-cart.png'
+import { useCarrito } from '../../functions/CartFuncion.jsx'
+import { logout, useAuth } from '../../functions/Auth.jsx'
+import { toggleTheme, useTheme } from '../../functions/Theme.jsx'
+import SearchBar from '../products/SearchBar.jsx'
 
 export default function Header() {
   const navigate = useNavigate()

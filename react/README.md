@@ -32,10 +32,19 @@ TerraByte/
 ├── public/
 ├── src/
 │   ├── assets/          # Recursos propios de esta entrega
-│   ├── components/      # Header, Footer, tarjetas, carruseles, modales y formularios
+│   ├── components/
+│   │   ├── layout/     # Estructura, navegación y marcos de página
+│   │   ├── ui/         # Botones, carruseles, modales y campos reutilizables
+│   │   ├── products/   # Tarjetas, catálogo y búsqueda
+│   │   ├── cart/       # Elementos del carrito
+│   │   └── services/   # Pasos del configurador NAS
 │   ├── data/            # Catálogo y opciones del configurador NAS
 │   ├── functions/       # Auth, Theme, CartFuncion y lógica compartida
-│   ├── pages/           # Páginas de tienda, cuenta e información
+│   ├── pages/
+│   │   ├── shop/       # Inicio, productos, servicios y carrito
+│   │   ├── auth/       # Login y Register
+│   │   ├── information/ # Nosotros y mapa del sitio
+│   │   └── legal/      # Términos, privacidad, reembolsos e información legal
 │   ├── App.jsx          # Rutas de la aplicación
 │   └── main.jsx         # Inicio de React y del tema
 └── tests/               # Pruebas de navegador con Playwright

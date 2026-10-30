@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { agregarAlCarrito } from '../functions/CartFuncion.jsx'
+import { agregarAlCarrito } from '../../functions/CartFuncion.jsx'
 import Card from './Card.jsx'
-import Carrousel from './Carrousel.jsx'
-import Modal from './Modal.jsx'
+import Carrousel from '../ui/Carrousel.jsx'
+import Modal from '../ui/Modal.jsx'
 
 export default function ProductShowcase({ products, carousel = false }) {
   const [modal, setModal] = useState(null)

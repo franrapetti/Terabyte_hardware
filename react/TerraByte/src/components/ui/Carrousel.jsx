@@ -1,6 +1,6 @@
 import { Children, useCallback, useEffect, useId, useRef, useState } from 'react'
-import arrowLeft from '../assets/products/arrow-left.png'
-import arrowRight from '../assets/products/arrow-right.png'
+import arrowLeft from '../../assets/products/arrow-left.png'
+import arrowRight from '../../assets/products/arrow-right.png'
 
 /** Recibe Cards o imágenes como children. variant: 'products' | 'brands'. */
 export default function Carrousel({ children, ...props }) {

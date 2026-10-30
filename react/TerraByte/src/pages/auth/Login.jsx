@@ -1,9 +1,9 @@
 import { Link, Navigate } from 'react-router-dom'
-import { loginUser, useAuth } from '../functions/Auth.jsx'
-import ActionButton from '../components/ActionButton.jsx'
-import AuthLayout from '../components/AuthLayout.jsx'
-import FormField from '../components/FormField.jsx'
-import { useAuthForm } from '../functions/useAuthForm.js'
+import { loginUser, useAuth } from '../../functions/Auth.jsx'
+import ActionButton from '../../components/ui/ActionButton.jsx'
+import AuthLayout from '../../components/layout/AuthLayout.jsx'
+import FormField from '../../components/ui/FormField.jsx'
+import { useAuthForm } from '../../functions/useAuthForm.js'
 
 export default function Login() {
   const session = useAuth()

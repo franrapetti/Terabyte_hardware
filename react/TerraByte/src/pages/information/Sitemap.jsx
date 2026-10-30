@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import LegalPage from '../components/LegalPage.jsx'
+import LegalPage from '../../components/layout/LegalPage.jsx'
 
 const groups = [
   { title: 'Tienda', links: [

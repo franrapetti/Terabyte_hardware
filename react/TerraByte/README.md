@@ -5,6 +5,23 @@ Esta aplicación corresponde a la entrega React. Consultar el
 [README general](../../README.md) para la organización del repositorio.
 La versión original está en [`simple/`](../../simple/README.md).
 
+## Organización del código
+
+Los componentes se agrupan según su responsabilidad:
+
+| Carpeta | Componentes |
+| --- | --- |
+| `src/components/layout/` | SiteLayout, Header, Footer, ShopPage, AuthLayout y LegalPage |
+| `src/components/ui/` | ActionButton, Carrousel, Modal, FormField e InfoSection |
+| `src/components/products/` | Card, ProductShowcase y SearchBar |
+| `src/components/cart/` | CartItem |
+| `src/components/services/` | NasStep |
+
+Las páginas se distribuyen en `src/pages/shop/` (tienda y configurador NAS),
+`src/pages/auth/` (acceso y registro), `src/pages/information/` (Nosotros y mapa
+del sitio) y `src/pages/legal/` (textos legales). `App.jsx` sigue definiendo las
+mismas rutas públicas e importa directamente las páginas desde sus categorías.
+
 ## Assets de esta entrega
 
 `src/assets/` contiene una copia independiente de todos los recursos de la

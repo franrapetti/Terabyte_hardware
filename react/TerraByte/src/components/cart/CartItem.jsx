@@ -1,6 +1,6 @@
-import { products } from '../data/catalog.js'
-import { extraerPrecio, formatearPrecio } from '../functions/CartFuncion.jsx'
-import ActionButton from './ActionButton.jsx'
+import { products } from '../../data/catalog.js'
+import { extraerPrecio, formatearPrecio } from '../../functions/CartFuncion.jsx'
+import ActionButton from '../ui/ActionButton.jsx'
 
 export default function CartItem({ item, onQuantityChange, onRemove }) {
   // Resolver los productos conocidos desde el catálogo actual también recupera

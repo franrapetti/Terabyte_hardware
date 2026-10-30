@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { cambiarCantidad, formatearPrecio, quitarDelCarrito, useCarrito, vaciarCarrito } from '../functions/CartFuncion.jsx'
-import ActionButton from '../components/ActionButton.jsx'
-import CartItem from '../components/CartItem.jsx'
-import Modal from '../components/Modal.jsx'
-import ShopPage from '../components/ShopPage.jsx'
+import { cambiarCantidad, formatearPrecio, quitarDelCarrito, useCarrito, vaciarCarrito } from '../../functions/CartFuncion.jsx'
+import ActionButton from '../../components/ui/ActionButton.jsx'
+import CartItem from '../../components/cart/CartItem.jsx'
+import Modal from '../../components/ui/Modal.jsx'
+import ShopPage from '../../components/layout/ShopPage.jsx'
 
 export default function Cart() {
   const { carrito, total } = useCarrito()

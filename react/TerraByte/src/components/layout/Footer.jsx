@@ -1,5 +1,5 @@
-import logoDark from '../assets/Logo.png'
-import logoLight from '../assets/Logo_claro.png'
+import logoDark from '../../assets/Logo.png'
+import logoLight from '../../assets/Logo_claro.png'
 import { Link } from 'react-router-dom'
 
 const legalLinks = [

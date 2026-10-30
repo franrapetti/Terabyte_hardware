@@ -1,5 +1,5 @@
 import { createRoot } from 'react-dom/client'
-import Carrousel from '../../src/components/Carrousel.jsx'
+import Carrousel from '../../src/components/ui/Carrousel.jsx'
 import '../../src/index.css'
 
 createRoot(document.getElementById('root')).render(

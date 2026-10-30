@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { nasSteps } from '../data/nasSteps.js'
-import { agregarAlCarrito, extraerPrecio, formatearPrecio } from '../functions/CartFuncion.jsx'
-import ActionButton from '../components/ActionButton.jsx'
-import Modal from '../components/Modal.jsx'
-import NasStep from '../components/NasStep.jsx'
-import ShopPage from '../components/ShopPage.jsx'
+import { nasSteps } from '../../data/nasSteps.js'
+import { agregarAlCarrito, extraerPrecio, formatearPrecio } from '../../functions/CartFuncion.jsx'
+import ActionButton from '../../components/ui/ActionButton.jsx'
+import Modal from '../../components/ui/Modal.jsx'
+import NasStep from '../../components/services/NasStep.jsx'
+import ShopPage from '../../components/layout/ShopPage.jsx'
 
 export default function Services() {
   const [index, setIndex] = useState(0)

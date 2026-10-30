@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
-import { brands, products } from '../data/catalog.js'
-import Carrousel from '../components/Carrousel.jsx'
-import ProductShowcase from '../components/ProductShowcase.jsx'
-import ShopPage from '../components/ShopPage.jsx'
+import { brands, products } from '../../data/catalog.js'
+import Carrousel from '../../components/ui/Carrousel.jsx'
+import ProductShowcase from '../../components/products/ProductShowcase.jsx'
+import ShopPage from '../../components/layout/ShopPage.jsx'
 
 export default function Products() {
   const [params] = useSearchParams()

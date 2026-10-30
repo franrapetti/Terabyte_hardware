@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
-import heroImage from '../assets/NAS0-removebg-preview.png'
-import { products } from '../data/catalog.js'
-import ProductShowcase from '../components/ProductShowcase.jsx'
+import heroImage from '../../assets/NAS0-removebg-preview.png'
+import { products } from '../../data/catalog.js'
+import ProductShowcase from '../../components/products/ProductShowcase.jsx'
 
 export default function Home() {
   return (

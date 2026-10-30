@@ -1,4 +1,4 @@
-import InfoSection from '../components/InfoSection.jsx'
+import InfoSection from '../../components/ui/InfoSection.jsx'
 
 export default function AboutUs() {
   return (
