@@ -1,66 +1,42 @@
-# TERRABYTE
+# TerraByte
 
-![Logo](assets/Logo.png)
+Repositorio del proyecto frontend de una tienda virtual de hardware para computadoras. Incluye dos implementaciones independientes: una con HTML, CSS y JavaScript puro y otra en desarrollo con React y Vite.
 
-## Descripción
+## Organización
 
-Este es un proyecto de programación con enfoque **frontend**, basado en el desarrollo de una tienda virtual de productos de hardware para computadoras.
-
-El objetivo principal del proyecto es desarrollar una interfaz **rápida, intuitiva y fácil de utilizar**, donde el usuario pueda recorrer el catálogo, consultar la información de los productos y seleccionar aquellos que sean de su interés.
-
-Desde el frontend se priorizará la **experiencia de usuario**, la organización visual de los productos, la navegación entre las distintas secciones y la adaptación de la página a diferentes tamaños de pantalla.
-
----
-
-## Guía de Desarrollo
-
-La guía de desarrollo tendrá como objetivo facilitar la incorporación de nuevos integrantes al equipo y establecer una metodología de trabajo común.
-
-### Clonar el repositorio
-
-Para comenzar a trabajar en el proyecto, se deberá clonar el repositorio y acceder a la carpeta correspondiente:
-
-```bash
-git clone https://github.com/franrapetti/Terabyte_hardware.git
-cd Terabyte_hardware
+```text
+Compra-Gamer-G9/
+├── README.md
+├── simple/
+│   ├── README.md
+│   ├── assets/
+│   ├── css/
+│   ├── html/
+│   └── javascript/
+└── react/
+    ├── README.md
+    ├── package.json
+    ├── package-lock.json
+    ├── index.html
+    ├── vite.config.js
+    ├── eslint.config.js
+    ├── public/
+    └── src/
 ```
 
-El proyecto no tiene dependencias que instalar: es HTML, CSS y JavaScript puro. Para probarlo, abrí `html/home.html` desde un servidor local (por ejemplo la extensión Live Server de VS Code o `python3 -m http.server`). Abrirlo directo con `file://` puede impedir que funcione el inicio de sesión.
+Cada proyecto contiene sus propios recursos y se ejecuta desde su carpeta, sin depender del otro.
 
-### Flujo de trabajo
+- [Proyecto HTML, CSS y JavaScript](simple/README.md): funcionamiento, estructura y ejecución de la versión sin framework.
+- [Proyecto React](react/README.md): estado actual, estructura y comandos de la aplicación con Vite.
 
-Para realizar cambios en el proyecto se deberá:
+## Trabajo en equipo
 
-1. Actualizar la rama principal antes de comenzar a trabajar.
-2. Crear una rama nueva para la funcionalidad o modificación.
-3. Realizar los cambios correspondientes.
-4. Probar que los cambios funcionen correctamente.
-5. Realizar el commit siguiendo la estructura establecida.
-6. Subir la rama al repositorio.
-7. Crear una Pull Request.
-8. La Pull Request deberá ser revisada y aprobada por otro integrante del equipo antes de incorporarse a la rama principal.
+1. Actualizar la rama principal antes de comenzar.
+2. Crear una rama para la funcionalidad o modificación.
+3. Realizar los cambios en la carpeta del proyecto correspondiente y probarlos.
+4. Crear un commit descriptivo y subir la rama.
+5. Abrir una Pull Request para que otro integrante la revise antes de incorporarla a la rama principal.
 
-### Estructura de los commits
+Los commits deben indicar el tipo de cambio, por ejemplo: `feat`, `fix`, `style`, `refactor` o `docs`.
 
-Los commits deberán utilizar una estructura clara que permita identificar rápidamente qué tipo de modificación se realizó.
-
-Ejemplos:
-
-| Tipo     | Descripción                  |
-| -------- | ---------------------------- |
-| feat     | Agregar tarjeta de producto  |
-| fix      | Corregir diseño del carrito  |
-| style    | Ajustar estilos del catálogo |
-| refactor | Reorganizar componentes      |
-| docs     | Actualizar documentación     |
-
-### Pull Requests
-
-Cada Pull Request deberá indicar claramente:
-
-- Qué funcionalidad o modificación se realizó.
-- Qué archivos o componentes fueron modificados.
-- Si existen aspectos que requieren especial atención durante la revisión.
-- El nombre del integrante que realizó la modificación.
-
-Cada Pull Request deberá contar con un **revisor diferente al desarrollador que realizó los cambios**. El revisor deberá comprobar que la funcionalidad cumpla con lo solicitado y que no introduzca errores en otras partes del proyecto antes de aprobarla.
+Cada Pull Request debe describir la funcionalidad o modificación, los archivos afectados, los aspectos que requieren atención y el nombre de su autor. El revisor debe ser distinto del desarrollador y comprobar el funcionamiento antes de aprobarla.
