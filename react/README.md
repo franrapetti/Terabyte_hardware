@@ -4,11 +4,28 @@ Aplicación frontend en desarrollo con React y Vite. Sus dependencias, configura
 
 ## Estado actual
 
-`index.html` carga `src/main.jsx`, que monta `App` dentro de `StrictMode`. `App.jsx` conserva la pantalla inicial de la plantilla de Vite con un contador manejado mediante `useState`.
+La aplicación usa React Router, Tailwind y un layout compartido. Están integrados Login, Register, About us, las páginas legales, el mapa del sitio y el carrito (`/cart`). Home, Products y Services siguen pendientes; el inicio muestra un aviso y las rutas todavía no implementadas muestran la página de no encontrada.
 
-Las carpetas de páginas, componentes y datos ya están creadas, pero sus archivos están vacíos y todavía no están integrados en `App`. El catálogo, el carrito, las cuentas y las páginas informativas aún no están implementados en esta aplicación.
+El tema claro/oscuro usa `useState` y `useEffect`, la clase `dark` y la clave `terrabyte-theme`.
 
-Actualmente `App.jsx` importa tres recursos que no existen en `src/assets/`: `hero.png`, `react.svg` y `vite.svg`. Esto impide compilar y cargar la aplicación correctamente hasta que se agreguen esos recursos o se actualice la pantalla inicial. Este problema ya existía antes de reorganizar las carpetas.
+El carrito usa `CartProvider` y `useCarrito()`. Permite cambiar cantidades, quitar artículos, vaciar y confirmar una compra simulada que limpia el carrito. El total y el contador del Header se calculan desde el mismo estado. Los datos se guardan con `useEffect` bajo la clave `terrabyte-cart`, y se sincronizan entre pestañas. Si falla la escritura, se muestra un aviso y el estado sigue disponible durante la sesión.
+
+Se conservan los registros de la versión simple cuando ambas aplicaciones usan el mismo origen (protocolo, dominio y puerto). Cambiar de puerto no traslada el contenido de `localStorage`.
+
+### Agregar artículos desde las próximas páginas
+
+Dentro de un componente envuelto por `CartProvider`:
+
+```jsx
+import { useCarrito } from '../../hooks/useCarrito.js'
+
+const { agregar } = useCarrito()
+
+// En el evento de un botón o formulario:
+agregar({ nombre: 'NAS', precio: 120000, tipo: 'Producto' })
+```
+
+El contexto también expone `carrito`, `quitar(id)`, `vaciar()`, `cambiarCantidad(id, cambio)`, `total`, `cantidad` y `errorGuardado`. Cada llamada a `agregar` suma una unidad; los productos equivalentes se agrupan y las configuraciones de servicios con componentes distintos se mantienen separadas. La integración de esos botones en Products y Services corresponde a sus respectivos pasos.
 
 ## Instalación y desarrollo
 
@@ -31,35 +48,39 @@ Ejecutar desde esta carpeta:
 | Comando | Función |
 | --- | --- |
 | `npm run dev` | Inicia el servidor de desarrollo. |
-| `npm run build` | Genera la versión de producción en `dist/`, una vez resueltos los recursos faltantes. |
+| `npm run build` | Genera la versión de producción en `dist/`. |
 | `npm run preview` | Sirve localmente una compilación generada previamente. |
 | `npm run lint` | Revisa el código con ESLint. |
+| `npm test` | Ejecuta las pruebas del carrito con el runner de Node.js. |
 
 ## Estructura
 
 ```text
 react/
-├── README.md
-├── package.json          # Dependencias y comandos
-├── package-lock.json     # Versiones de dependencias
-├── index.html            # Entrada de Vite
-├── vite.config.js        # React y React Compiler
-├── eslint.config.js      # Reglas de análisis de código
-├── public/               # Recursos públicos
+├── package.json
+├── package-lock.json
+├── index.html
+├── vite.config.js
+├── eslint.config.js
+├── public/
+├── tests/                # Pruebas del carrito
 └── src/
-    ├── main.jsx          # Montaje de React
-    ├── App.jsx           # Componente principal
-    ├── App.css
+    ├── main.jsx          # Router y CartProvider
+    ├── App.jsx           # Rutas
     ├── index.css
-    ├── assets/           # Imágenes propias de la aplicación
-    ├── api/db/           # Archivo data.json todavía vacío
+    ├── assets/
+    ├── context/          # CartContext, CartProvider y autenticación pendiente de adaptar
+    ├── hooks/            # useCarrito, useTheme y otros hooks
+    ├── utils/            # Normalización, precios y operaciones del carrito
     ├── components/
-    │   ├── layout/       # Header y Footer pendientes
-    │   └── ui/           # Componentes reutilizables pendientes
+    │   ├── cart/         # CartItem
+    │   ├── layout/       # Header, Footer y layouts
+    │   └── ui/           # Controles reutilizables
     └── pages/
-        ├── auth/         # Acceso y registro pendientes
-        ├── info/         # Páginas informativas pendientes
-        └── shop/         # Inicio, catálogo, servicios y carrito pendientes
+        ├── auth/
+        ├── info/
+        ├── legal/
+        └── shop/         # Cart; Home, Products y Services pendientes
 ```
 
 `node_modules/` y `dist/` se generan localmente y están excluidos de Git mediante `.gitignore`.
