@@ -4,9 +4,9 @@ import logoDark from '../../assets/Logo.png'
 import logoLight from '../../assets/Logo_claro.png'
 import cartDark from '../../assets/shopping-cart_claro.png'
 import cartLight from '../../assets/shopping-cart.png'
-import { useCarrito } from '../../functions/CartFuncion.jsx'
-import { logout, useAuth } from '../../functions/Auth.jsx'
-import { toggleTheme, useTheme } from '../../functions/Theme.jsx'
+import { useCarrito } from '../../context/CartContext.jsx'
+import { logout, useAuth } from '../../context/AuthContext.jsx'
+import { toggleTheme, useTheme } from '../../hooks/useTheme.js'
 import SearchBar from '../products/SearchBar.jsx'
 
 export default function Header() {
