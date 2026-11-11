@@ -87,6 +87,8 @@ Hook `useTheme` con `useState` y `useEffect` que agrega o quita la clase `dark` 
 
 **Estado: completado.** `Header` usa `hooks/useTheme.js` y pasa el tema y la acción por props a `components/ui/ThemeToggle.jsx`. Se conserva la clave `terrabyte-theme`, el tema oscuro por defecto, los logos y el favicon según el tema y la sincronización entre pestañas. `index.html` aplica la clase antes de cargar React para evitar un destello del tema incorrecto.
 
+**Revisión de contraste:** `ProductCard` define el color de texto de su superficie clara en ambos temas, para que los botones secundarios no hereden texto blanco desde la página oscura. Las tarjetas, los filtros y el modal compartido usan `scheme-light` porque mantienen fondos claros. Se ajustaron también los enlaces legales en modo claro y los textos de ayuda, selección y encabezado del modal NAS en modo oscuro.
+
 ### 6. Home y Products
 Pasar los productos a un array de datos y mostrarlos con `.map()` y un componente `ProductCard`.
 *Por qué:* se ve la ventaja de JSX frente a `createElement` e `innerHTML`.
@@ -101,11 +103,13 @@ Se hizo en dos partes: **6a Products** y **6b Home** (por el carrusel de product
 `CartContext` con `agregar`, `quitar`, `vaciar` y `total`, sincronizado con `localStorage` mediante `useEffect`. Componente `CartItem`.
 *Por qué:* el carrito lo usan products, services y cart, y hoy se comparte con funciones globales. Es lo más difícil, por eso va después de entender los hooks. Si se complica, empezar pasando el estado por props y luego migrar a Context.
 
-**Estado: completado.** `CartContext.js` define el contexto, `CartProvider.jsx` mantiene el estado con `useState` y lo guarda con `useEffect`, y `hooks/useCarrito.js` permite consumirlo. La ruta `/cart` usa `CartItem`, controles de cantidad, total y confirmaciones para vaciar y simular una compra. El Header comparte el contador. Se conserva `terrabyte-cart` y se adaptan las imágenes guardadas por la versión simple. La integración de agregar artículos desde Products y Services queda para sus respectivas páginas, que todavía están pendientes.
+**Estado: completado.** `CartContext.js` define el contexto, `CartProvider.jsx` mantiene el estado con `useState` y lo guarda con `useEffect`, y `hooks/useCarrito.js` permite consumirlo. La ruta `/cart` usa `CartItem`, controles de cantidad, total y confirmaciones para vaciar y simular una compra. El Header comparte el contador. Se conserva `terrabyte-cart` y se adaptan las imágenes guardadas por la versión simple. Products y Services ya agregan artículos mediante este contexto.
 
 ### 8. Services
 Formularios controlados (`useState` por input) que agregan al carrito con el contexto del paso 7.
 *Por qué:* practican formularios y reutilizan el contexto. Puede salir un `FormInput`.
+
+**Estado: completado.** `/services` muestra el configurador de siete pasos en `pages/shop/Services.jsx`. Cada categoría tiene su propio `useState`; los discos permiten selección múltiple. Se conservan las 18 opciones y precios de la versión simple, la navegación Anterior/Siguiente y Quitar selección. Se exige al menos un componente y se suma su precio antes de llamar a `useCarrito().agregar(...)` con un servicio llamado NAS personalizado. La confirmación reutiliza `Modal` y permite ir al carrito o seguir configurando sin perder las selecciones.
 
 ### 9. Login y Register
 `AuthContext` con `user`, `login`, `logout` y `register`, y una ruta protegida simple.

@@ -15,7 +15,7 @@ export default function LegalPage({ title, updated, children }) {
           </p>
         )}
         {/* Los selectores [&_p], [&_li] y [&_a] estilan los <p>, <li> y <a> de adentro, para no repetir clases en cada página. */}
-        <div className="[&_a]:text-[#007aff] [&_a]:hover:underline dark:[&_a]:text-[#4da3ff] [&_li]:leading-[1.7] [&_p]:leading-[1.7]">
+        <div className="[&_a]:text-action [&_a]:hover:underline dark:[&_a]:text-[#4da3ff] [&_li]:leading-[1.7] [&_p]:leading-[1.7]">
           {children}
         </div>
       </article>

@@ -102,7 +102,7 @@ export default function Products() {
       <CarruselMarcas />
 
       <section aria-label="Catálogo de productos" className="mt-8 grid w-full grid-cols-[minmax(12rem,16rem)_1fr] items-start gap-4 rounded-2xl bg-white p-4 shadow-[0_6px_16px_rgba(24,32,36,0.14)] max-[700px]:grid-cols-1 dark:bg-[#435058] dark:shadow-[0_6px_16px_rgba(0,0,0,0.4)]">
-        <div role="radiogroup" aria-labelledby="categorias-titulo" className="flex flex-col gap-3 rounded-2xl bg-[#e9edef] p-4 text-[#273137] shadow-[0_3px_8px_rgba(24,32,36,0.12)] max-[700px]:flex-row max-[700px]:flex-wrap dark:bg-[#d9d9d9] dark:text-[#1b1b1b] dark:shadow-[0_3px_8px_rgba(0,0,0,0.3)]">
+        <div role="radiogroup" aria-labelledby="categorias-titulo" className="flex flex-col gap-3 rounded-2xl bg-[#e9edef] p-4 text-[#273137] scheme-light shadow-[0_3px_8px_rgba(24,32,36,0.12)] max-[700px]:flex-row max-[700px]:flex-wrap dark:bg-[#d9d9d9] dark:text-[#1b1b1b] dark:shadow-[0_3px_8px_rgba(0,0,0,0.3)]">
           <h3 id="categorias-titulo" className="m-0 mb-1 font-bold max-[700px]:basis-full">Categorías</h3>
           {categorias.map((opcion) => (
             <label key={opcion.nombre} className="flex cursor-pointer items-center gap-2">
