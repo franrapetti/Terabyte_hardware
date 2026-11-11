@@ -4,7 +4,7 @@ Aplicación frontend en desarrollo con React y Vite. Sus dependencias, configura
 
 ## Estado actual
 
-La aplicación usa React Router, Tailwind y un layout compartido. Están integrados Login, Register, About us, las páginas legales, el mapa del sitio y el carrito (`/cart`). Home, Products y Services siguen pendientes; el inicio muestra un aviso y las rutas todavía no implementadas muestran la página de no encontrada.
+La aplicación usa React Router, Tailwind y un layout compartido. Están integrados Login, Register, Products, Services (`/services`), About us, las páginas legales, el mapa del sitio y el carrito (`/cart`). Home sigue pendiente; el inicio muestra un aviso y las rutas desconocidas muestran la página de no encontrada.
 
 El tema claro/oscuro usa `useState` y `useEffect`, la clase `dark` y la clave `terrabyte-theme`.
 
@@ -12,7 +12,15 @@ El carrito usa `CartProvider` y `useCarrito()`. Permite cambiar cantidades, quit
 
 Se conservan los registros de la versión simple cuando ambas aplicaciones usan el mismo origen (protocolo, dominio y puerto). Cambiar de puerto no traslada el contenido de `localStorage`.
 
-### Agregar artículos desde las próximas páginas
+### Configurador NAS
+
+`/services` conserva los siete pasos y las 18 opciones de la versión simple. Gabinete, placa, procesador, RAM, fuente y sistema operativo usan selecciones individuales; discos permite varias opciones. Cada categoría tiene su propio `useState`, y los inputs se controlan con `checked` y `onChange`.
+
+Anterior y Siguiente conservan las selecciones; Quitar selección limpia únicamente la categoría actual. Todas las categorías son opcionales, pero se exige al menos un componente antes de agregar el NAS. Una selección gratuita, como TrueNAS, también es válida.
+
+El envío suma los precios y usa `useCarrito().agregar(...)` con el tipo `Servicio`, el nombre `NAS personalizado` y la lista de componentes. El modal de confirmación permite ir al carrito o seguir configurando. Las configuraciones equivalentes incrementan su cantidad en el carrito y los fallos de persistencia se muestran como avisos.
+
+### Agregar artículos desde otras páginas
 
 Dentro de un componente envuelto por `CartProvider`:
 
@@ -25,7 +33,7 @@ const { agregar } = useCarrito()
 agregar({ nombre: 'NAS', precio: 120000, tipo: 'Producto' })
 ```
 
-El contexto también expone `carrito`, `quitar(id)`, `vaciar()`, `cambiarCantidad(id, cambio)`, `total`, `cantidad` y `errorGuardado`. Cada llamada a `agregar` suma una unidad; los productos equivalentes se agrupan y las configuraciones de servicios con componentes distintos se mantienen separadas. La integración de esos botones en Products y Services corresponde a sus respectivos pasos.
+El contexto también expone `carrito`, `quitar(id)`, `vaciar()`, `cambiarCantidad(id, cambio)`, `total`, `cantidad` y `errorGuardado`. Cada llamada a `agregar` suma una unidad; los productos equivalentes se agrupan y las configuraciones de servicios con componentes distintos se mantienen separadas. Products y Services ya utilizan este contexto.
 
 ## Instalación y desarrollo
 
@@ -51,7 +59,7 @@ Ejecutar desde esta carpeta:
 | `npm run build` | Genera la versión de producción en `dist/`. |
 | `npm run preview` | Sirve localmente una compilación generada previamente. |
 | `npm run lint` | Revisa el código con ESLint. |
-| `npm test` | Ejecuta las pruebas del carrito con el runner de Node.js. |
+| `npm test` | Ejecuta el runner de pruebas de Node.js. |
 
 ## Estructura
 
@@ -80,7 +88,7 @@ react/
         ├── auth/
         ├── info/
         ├── legal/
-        └── shop/         # Cart; Home, Products y Services pendientes
+        └── shop/         # Products, Services y Cart; Home pendiente
 ```
 
 `node_modules/` y `dist/` se generan localmente y están excluidos de Git mediante `.gitignore`.
