@@ -123,7 +123,8 @@ export default function Products() {
           {error && <p role="alert" className="col-span-full m-0 text-center text-sm text-red-700 dark:text-red-300">{error}</p>}
           {visibles.map((producto) => (
             <ProductCard key={producto.id} producto={producto}>
-              <div className="mt-auto flex w-full gap-2 pt-2 max-[700px]:flex-wrap max-[700px]:justify-center">
+              {/* El color del texto se define acá porque "Ver Más" lo hereda y la tarjeta es clara en los dos temas. */}
+              <div className="mt-auto flex w-full gap-2 pt-2 text-[#273137] max-[700px]:flex-wrap max-[700px]:justify-center dark:text-[#1b1b1b]">
                 <ActionButton variant="secondary" onClick={() => setModal({ tipo: 'detalle', producto })} className="flex-1 text-[0.9rem]">Ver Más</ActionButton>
                 <ActionButton onClick={() => agregar(producto)} className="flex-1 text-[0.9rem]">Agregar al carrito</ActionButton>
               </div>
