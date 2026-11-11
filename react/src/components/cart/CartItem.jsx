@@ -1,12 +1,14 @@
 import ActionButton from '../ui/ActionButton.jsx'
 import { extraerPrecio, formatearPrecio } from '../../utils/cart.js'
 
-// Las imágenes guardadas por simple/ tienen rutas relativas que Vite debe resolver.
-const productImages = import.meta.glob('../../assets/products/*', { eager: true, query: '?url', import: 'default' })
+// Las imágenes de productos están en public/products/. La versión simple las guardaba con una ruta
+// relativa (../assets/products/x.png): se convierte a /products/x.png. Cualquier otra ruta queda igual.
+function resolverImagen(imagen) {
+  return imagen?.replace(/^.*assets\/products\//, '/products/')
+}
 
 export default function CartItem({ item, onChangeQuantity, onRemove }) {
-  const fileName = item.imagen?.split('/').pop()
-  const image = productImages[`../../assets/products/${fileName}`] || item.imagen
+  const image = resolverImagen(item.imagen)
   const precio = extraerPrecio(item.precio)
 
   return (
