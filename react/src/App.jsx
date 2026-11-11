@@ -10,8 +10,9 @@ import Legal from './pages/legal/Legal.jsx'
 import Sitemap from './pages/legal/Sitemap.jsx'
 import Products from './pages/shop/Products.jsx'
 import Cart from './pages/shop/Cart.jsx'
+import Services from './pages/shop/Services.jsx'
 
-// Versión parcial: rutas de Login, Register, Products, Cart, About us y las páginas legales.
+// Versión parcial: rutas de Login, Register, Products, Cart, Services, About us y las páginas legales.
 // Cuando se migren las demás pages, agregar su <Route> acá (y sacar el placeholder de "/").
 
 function Placeholder({ title, children }) {
@@ -32,6 +33,7 @@ export default function App() {
         <Route index element={<Placeholder title="Inicio"><p>Esta página todavía no fue migrada.</p></Placeholder>} />
         <Route path="home" element={<Navigate to="/" replace />} />
         <Route path="cart" element={<Cart />} />
+        <Route path="services" element={<Services />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="products" element={<Products />} />
