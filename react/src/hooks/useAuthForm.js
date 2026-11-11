@@ -1,33 +1,32 @@
-import { useEffect, useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 
-/** Comparte el envío y cancela sus efectos si se abandona el formulario. */
-export function useAuthForm(authenticate) {
-  const [busy, setBusy] = useState(false)
+// Lógica común de Login y Register: guarda lo que se escribe en cada campo y controla el envío.
+// "valoresIniciales" es un objeto con un valor por campo; "enviarDatos" recibe esos valores
+// y lanza un Error con el mensaje a mostrar si algo sale mal.
+export function useAuthForm(valoresIniciales, enviarDatos) {
+  const [valores, setValores] = useState(valoresIniciales)
   const [error, setError] = useState('')
-  const request = useRef(null)
-  const navigate = useNavigate()
+  const [cargando, setCargando] = useState(false)
 
-  useEffect(() => () => request.current?.abort(), [])
+  // Un solo manejador para todos los campos: el "name" de cada input es la clave del objeto.
+  function cambiar(event) {
+    const { name, type, value, checked } = event.target
+    setValores((actuales) => ({ ...actuales, [name]: type === 'checkbox' ? checked : value }))
+  }
 
-  async function submit(event) {
+  async function enviar(event) {
     event.preventDefault()
-    if (request.current) return
-    const fields = new FormData(event.currentTarget)
-    const controller = new AbortController()
-    request.current = controller
+    if (cargando) return
     setError('')
-    setBusy(true)
+    setCargando(true)
     try {
-      await authenticate(fields, { signal: controller.signal })
-      if (!controller.signal.aborted) navigate('/', { replace: true })
+      await enviarDatos(valores)
     } catch (failure) {
-      if (!controller.signal.aborted) setError(failure.message)
+      setError(failure.message)
     } finally {
-      if (!controller.signal.aborted) setBusy(false)
-      if (request.current === controller) request.current = null
+      setCargando(false)
     }
   }
 
-  return { busy, error, submit }
+  return { valores, cambiar, enviar, cargando, error }
 }

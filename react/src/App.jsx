@@ -1,5 +1,7 @@
 import { Link, Navigate, Route, Routes } from 'react-router-dom'
+import RutaProtegida from './components/auth/RutaProtegida.jsx'
 import SiteLayout from './components/layout/SiteLayout.jsx'
+import { usePageTitle } from './hooks/usePageTitle.js'
 import Login from './pages/auth/Login.jsx'
 import Register from './pages/auth/Register.jsx'
 import AboutUs from './pages/info/AboutUs.jsx'
@@ -17,9 +19,10 @@ import Services from './pages/shop/Services.jsx'
 // Cuando se migren las demás pages, agregar su <Route> acá (y sacar el placeholder de "/").
 
 function Placeholder({ title, children }) {
+  usePageTitle(title)
+
   return (
     <main className="mx-auto flex w-full max-w-[48rem] flex-1 flex-col gap-3 p-8 text-left text-[#273137] dark:text-[#d9d9d9]">
-      <title>{`${title} | TerraByte`}</title>
       <h1 className="text-3xl font-bold">{title}</h1>
       {children}
     </main>
@@ -32,7 +35,7 @@ export default function App() {
       <Route element={<SiteLayout />}>
         <Route index element={<Home />} />
         <Route path="home" element={<Navigate to="/" replace />} />
-        <Route path="cart" element={<Cart />} />
+        <Route path="cart" element={<RutaProtegida><Cart /></RutaProtegida>} />
         <Route path="services" element={<Services />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />

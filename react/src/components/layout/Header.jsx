@@ -5,7 +5,7 @@ import logoLight from '../../assets/Logo_claro.png'
 import cartDark from '../../assets/shopping-cart_claro.png'
 import cartLight from '../../assets/shopping-cart.png'
 import { useCarrito } from '../../hooks/useCarrito.js'
-import { logout, useAuth } from '../../context/AuthContext.jsx'
+import { useAuth } from '../../hooks/useAuth.js'
 import { useTheme } from '../../hooks/useTheme.js'
 import ThemeToggle from '../ui/ThemeToggle.jsx'
 import SearchBar from '../products/SearchBar.jsx'
@@ -14,7 +14,7 @@ export default function Header() {
   const navigate = useNavigate()
   const { cantidad } = useCarrito()
   const { theme, toggleTheme } = useTheme()
-  const session = useAuth()
+  const { user, logout } = useAuth()
   const [authError, setAuthError] = useState('')
   const isLight = theme === 'light'
   const focus = 'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#007aff]'
@@ -41,9 +41,9 @@ export default function Header() {
         <SearchBar />
 
         <div className="col-start-2 row-start-1 flex min-w-0 flex-wrap items-center justify-end justify-self-end max-[480px]:max-w-[calc(100vw-10rem)] gap-[0.55rem] max-[480px]:gap-[0.35rem] min-[1360px]:col-start-4">
-          {session ? (
+          {user ? (
             <>
-              <span title={session.email} className={`${accountClass} max-w-40 truncate max-[480px]:max-w-24`}>Hola, {session.firstName || session.email}</span>
+              <span title={user.email} className={`${accountClass} max-w-40 truncate max-[480px]:max-w-24`}>Hola, {user.firstName || user.email}</span>
               <button type="button" onClick={handleLogout} className={`${accountClass} cursor-pointer bg-transparent`}>Cerrar sesión</button>
             </>
           ) : (
