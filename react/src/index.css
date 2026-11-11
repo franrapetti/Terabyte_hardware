@@ -5,6 +5,13 @@
 @theme {
   --color-action: #0065cc;
   --color-action-hover: #0054ad;
+
+  /* Desplazamiento continuo del carrusel de marcas (clase animate-marquee). */
+  --animate-marquee: marquee 25s linear infinite;
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-100%); }
+  }
 }
 
 @layer base {
