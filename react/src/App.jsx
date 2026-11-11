@@ -2,8 +2,14 @@ import { Link, Navigate, Route, Routes } from 'react-router-dom'
 import SiteLayout from './components/layout/SiteLayout.jsx'
 import Login from './pages/auth/Login.jsx'
 import Register from './pages/auth/Register.jsx'
+import AboutUs from './pages/info/AboutUs.jsx'
+import Terms from './pages/legal/Terms.jsx'
+import Privacy from './pages/legal/Privacy.jsx'
+import Refunds from './pages/legal/Refunds.jsx'
+import Legal from './pages/legal/Legal.jsx'
+import Sitemap from './pages/legal/Sitemap.jsx'
 
-// Versión parcial: solo las rutas de About us, Login y Register.
+// Versión parcial: rutas de Login, Register, About us y las páginas legales.
 // Cuando se migren las demás pages, agregar su <Route> acá (y sacar el placeholder de "/").
 
 function Placeholder({ title, children }) {
@@ -25,6 +31,12 @@ export default function App() {
         <Route path="home" element={<Navigate to="/" replace />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
+        <Route path="aboutus" element={<AboutUs />} />
+        <Route path="terms" element={<Terms />} />
+        <Route path="privacy" element={<Privacy />} />
+        <Route path="refunds" element={<Refunds />} />
+        <Route path="legal" element={<Legal />} />
+        <Route path="sitemap" element={<Sitemap />} />
         <Route path="*" element={
           <Placeholder title="Página no encontrada">
             <p>Esta página no existe todavía.</p>
