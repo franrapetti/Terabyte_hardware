@@ -211,7 +211,7 @@ export default function Services() {
             {pasoActual + 1}/{pasos.length}. {paso.title}
           </legend>
 
-          <p className="mt-2 mb-4 text-sm text-[#59656b] dark:text-[#b7bdc0]">{paso.multiple ? 'Podés seleccionar varios discos.' : 'Podés seleccionar una opción.'}</p>
+          <p className="mt-2 mb-4 text-sm text-[#59656b] dark:text-[#d9d9d9]">{paso.multiple ? 'Podés seleccionar varios discos.' : 'Podés seleccionar una opción.'}</p>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {paso.options.map((opcion) => (
               <label key={opcion.value} className="flex cursor-pointer flex-col gap-3 rounded-xl border-2 border-[#c5cdd1] bg-[#f4f6f7] p-4 transition-colors hover:border-action has-checked:border-action has-checked:bg-[#eaf3fc] has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-action dark:border-[#77838a] dark:bg-[#2b353b] dark:has-checked:border-[#38bdf8] dark:has-checked:bg-[#1a2a38]">
@@ -230,7 +230,7 @@ export default function Services() {
           </div>
 
           <div className="mt-5 flex flex-wrap items-center gap-3">
-            <p aria-live="polite" aria-atomic="true" className="flex-1 text-sm">Seleccionado: <span className="font-semibold text-action dark:text-[#38bdf8]">{seleccion.length > 0 ? seleccion.join(', ') : 'Ninguno (opcional)'}</span></p>
+            <p aria-live="polite" aria-atomic="true" className="flex-1 text-sm">Seleccionado: <span className="font-semibold text-action dark:text-[#7dd3fc]">{seleccion.length > 0 ? seleccion.join(', ') : 'Ninguno (opcional)'}</span></p>
             {seleccion.length > 0 && <ActionButton variant="secondary" size="small" onClick={quitarSeleccion}>Quitar selección</ActionButton>}
           </div>
 
@@ -244,7 +244,7 @@ export default function Services() {
 
       {modal && (
         <Modal label={modal.titulo} onClose={() => setModal(null)}>
-          <p className="mb-2 text-sm font-bold text-action">Armá tu NAS</p>
+          <p className="mb-2 text-sm font-bold text-action dark:text-action-hover">Armá tu NAS</p>
           <h2 className="text-xl font-bold">{modal.titulo}</h2>
           <p className="mt-3">{modal.mensaje}</p>
           {errorGuardado && <p role="alert" className="mt-3 text-sm text-red-700">{errorGuardado}</p>}

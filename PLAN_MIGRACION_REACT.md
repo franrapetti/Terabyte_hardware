@@ -87,6 +87,8 @@ Hook `useTheme` con `useState` y `useEffect` que agrega o quita la clase `dark` 
 
 **Estado: completado.** `Header` usa `hooks/useTheme.js` y pasa el tema y la acción por props a `components/ui/ThemeToggle.jsx`. Se conserva la clave `terrabyte-theme`, el tema oscuro por defecto, los logos y el favicon según el tema y la sincronización entre pestañas. `index.html` aplica la clase antes de cargar React para evitar un destello del tema incorrecto.
 
+**Revisión de contraste:** `ProductCard` define el color de texto de su superficie clara en ambos temas, para que los botones secundarios no hereden texto blanco desde la página oscura. Las tarjetas, los filtros y el modal compartido usan `scheme-light` porque mantienen fondos claros. Se ajustaron también los enlaces legales en modo claro y los textos de ayuda, selección y encabezado del modal NAS en modo oscuro.
+
 ### 6. Home y Products
 Pasar los productos a un array de datos y mostrarlos con `.map()` y un componente `ProductCard`.
 *Por qué:* se ve la ventaja de JSX frente a `createElement` e `innerHTML`.

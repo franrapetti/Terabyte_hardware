@@ -8,6 +8,8 @@ La aplicación usa React Router, Tailwind y un layout compartido. Están integra
 
 El tema claro/oscuro usa `useState` y `useEffect`, la clase `dark` y la clave `terrabyte-theme`.
 
+Cada superficie debe definir colores de fondo y texto compatibles. Las tarjetas de productos mantienen un fondo claro en ambos temas y definen texto oscuro, que también heredan sus botones secundarios. Tarjetas, filtros y el modal compartido usan `scheme-light` para que los controles nativos coincidan con sus fondos claros, incluso cuando la página está en modo oscuro.
+
 El carrito usa `CartProvider` y `useCarrito()`. Permite cambiar cantidades, quitar artículos, vaciar y confirmar una compra simulada que limpia el carrito. El total y el contador del Header se calculan desde el mismo estado. Los datos se guardan con `useEffect` bajo la clave `terrabyte-cart`, y se sincronizan entre pestañas. Si falla la escritura, se muestra un aviso y el estado sigue disponible durante la sesión.
 
 Se conservan los registros de la versión simple cuando ambas aplicaciones usan el mismo origen (protocolo, dominio y puerto). Cambiar de puerto no traslada el contenido de `localStorage`.
