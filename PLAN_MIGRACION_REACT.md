@@ -34,7 +34,7 @@ Para el título de cada página se usa `document.title` dentro de un `useEffect`
 
 **Código que ya no cumple** (viene de la rama `react`, hay que reescribirlo en su paso):
 
-- `functions/Theme.jsx`, `functions/Auth.jsx` y `functions/CartFuncion.jsx` usan `useSyncExternalStore`. Se pasan a `useState` + `useEffect` (tema) y a `Context` + `useState` + `useEffect` (carrito y auth), como dice cada paso.
+- `context/AuthContext.jsx` y `context/CartContext.jsx` usan `useSyncExternalStore`. Se pasan a `Context` + `useState` + `useEffect`, como dice cada paso. El tema ya fue adaptado a `useState` + `useEffect` en el paso 5.
 - `functions/useAuthForm.js` usa `FormData` y `AbortController`. Se pasa a formularios controlados con `useState`.
 - `components/ui/FormField.jsx` y `components/ui/InfoSection.jsx` usan `useId`. Se reemplaza por un `id` que llega por props.
 - `components/layout/AuthLayout.jsx` usa `<title>` dentro del componente.
@@ -84,6 +84,8 @@ Sacar header y footer de las pages y armar un `Layout` que envuelva las rutas.
 ### 5. Tema claro/oscuro
 Hook `useTheme` con `useState` y `useEffect` que agrega o quita la clase `dark` en `<html>` y guarda en `localStorage`. Botón `ThemeToggle`.
 *Por qué:* es un estado chico y aislado, ideal para practicar los hooks básicos y conectar React con Tailwind.
+
+**Estado: completado.** `Header` usa `hooks/useTheme.js` y pasa el tema y la acción por props a `components/ui/ThemeToggle.jsx`. Se conserva la clave `terrabyte-theme`, el tema oscuro por defecto, los logos y el favicon según el tema y la sincronización entre pestañas. `index.html` aplica la clase antes de cargar React para evitar un destello del tema incorrecto.
 
 ### 6. Home y Products
 Pasar los productos a un array de datos y mostrarlos con `.map()` y un componente `ProductCard`.

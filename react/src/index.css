@@ -1,6 +1,6 @@
 @import 'tailwindcss';
 
-@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --color-action: #0065cc;
@@ -21,13 +21,13 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  html[data-theme="light"] {
+  html:not(.dark) {
     color-scheme: light;
     color: #273137;
     background: #f1f3f4;
   }
 
-  html[data-theme="dark"] {
+  html.dark {
     color-scheme: dark;
     color: #f3f3f3;
     background: #1b1b1b;

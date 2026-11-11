@@ -6,17 +6,17 @@ import cartDark from '../../assets/shopping-cart_claro.png'
 import cartLight from '../../assets/shopping-cart.png'
 import { useCarrito } from '../../context/CartContext.jsx'
 import { logout, useAuth } from '../../context/AuthContext.jsx'
-import { toggleTheme, useTheme } from '../../hooks/useTheme.js'
+import { useTheme } from '../../hooks/useTheme.js'
+import ThemeToggle from '../ui/ThemeToggle.jsx'
 import SearchBar from '../products/SearchBar.jsx'
 
 export default function Header() {
   const navigate = useNavigate()
   const { cantidad } = useCarrito()
-  const theme = useTheme()
+  const { theme, toggleTheme } = useTheme()
   const session = useAuth()
   const [authError, setAuthError] = useState('')
   const isLight = theme === 'light'
-  const themeLabel = isLight ? 'Cambiar a modo oscuro' : 'Cambiar a modo claro'
   const focus = 'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#007aff]'
   const accountClass = `inline-flex min-h-[2.55rem] items-center justify-center rounded-lg border border-transparent px-4 py-2 text-[0.9rem] font-semibold whitespace-nowrap no-underline transition-colors hover:bg-[#e2e6e8] dark:hover:bg-white/10 max-[480px]:min-h-[2.3rem] max-[480px]:px-[0.55rem] max-[480px]:py-[0.4rem] max-[480px]:text-[0.76rem] ${focus}`
   const linkClass = `font-semibold no-underline transition-colors hover:text-action dark:hover:text-[#b8c4ca] ${focus}`
@@ -65,11 +65,7 @@ export default function Header() {
             {cantidad > 0 && <span aria-hidden="true" className="absolute -top-1 -right-1 min-w-5 rounded-full bg-action px-1 text-center text-xs font-bold text-white">{cantidad}</span>}
           </Link>
           <Link to="/aboutus" className={`text-[#59656b] dark:text-[#b7bdc0] ${linkClass}`}>Nosotros</Link>
-          <button type="button" onClick={toggleTheme} aria-label={themeLabel} title={themeLabel} aria-pressed={isLight} className={`grid size-10 shrink-0 cursor-pointer place-items-center rounded-lg border border-transparent bg-transparent transition-colors hover:bg-[#e2e6e8] dark:hover:bg-[#435058] max-[480px]:size-[2.35rem] ${focus}`}>
-            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="size-5">
-              {isLight ? <path d="M20.2 15.1A8.5 8.5 0 0 1 8.9 3.8 8.5 8.5 0 1 0 20.2 15.1Z" /> : <><circle cx="12" cy="12" r="4" /><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" /></>}
-            </svg>
-          </button>
+          <ThemeToggle theme={theme} onToggle={toggleTheme} />
         </div>
       </nav>
       {authError && <p role="alert" className="px-4 py-2 text-center text-sm text-red-700 dark:text-red-300">{authError}</p>}

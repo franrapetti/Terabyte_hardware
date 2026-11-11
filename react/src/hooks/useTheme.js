@@ -1,9 +1,8 @@
-import { useSyncExternalStore } from 'react'
+import { useEffect, useState } from 'react'
 import faviconLight from '../assets/favicon_claro.png'
 import faviconDark from '../assets/favicon_oscuro.png'
 
-export const THEME_KEY = 'terrabyte-theme'
-const changeEvent = 'terrabyte-theme-change'
+const THEME_KEY = 'terrabyte-theme'
 
 function readStoredTheme() {
   try {
@@ -13,55 +12,38 @@ function readStoredTheme() {
   }
 }
 
-let currentTheme = readStoredTheme()
-
-function applyTheme(theme) {
-  if (typeof document === 'undefined') return
-  document.documentElement.dataset.theme = theme
-  document.documentElement.style.colorScheme = theme
-  const favicon = document.getElementById('site-favicon')
-  if (favicon) favicon.href = theme === 'light' ? faviconLight : faviconDark
-}
-
-export function initializeTheme() {
-  currentTheme = readStoredTheme()
-  applyTheme(currentTheme)
-}
-
-export function getTheme() {
-  return currentTheme
-}
-
-export function setTheme(theme) {
-  currentTheme = theme === 'light' ? 'light' : 'dark'
-  applyTheme(currentTheme)
-  try {
-    localStorage.setItem(THEME_KEY, currentTheme)
-  } catch {
-    // La preferencia sigue funcionando durante la sesión sin almacenamiento.
-  }
-  window.dispatchEvent(new Event(changeEvent))
-}
-
-export function toggleTheme() {
-  setTheme(currentTheme === 'dark' ? 'light' : 'dark')
-}
-
-function subscribe(listener) {
-  function onStorage(event) {
-    if (event.key !== THEME_KEY && event.key !== null) return
-    currentTheme = readStoredTheme()
-    applyTheme(currentTheme)
-    listener()
-  }
-  window.addEventListener(changeEvent, listener)
-  window.addEventListener('storage', onStorage)
-  return () => {
-    window.removeEventListener(changeEvent, listener)
-    window.removeEventListener('storage', onStorage)
-  }
-}
-
+// Header mantiene el estado del tema y lo comparte con ThemeToggle por props.
 export function useTheme() {
-  return useSyncExternalStore(subscribe, getTheme, () => 'dark')
+  const [theme, setTheme] = useState(readStoredTheme)
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', theme === 'dark')
+    document.documentElement.style.colorScheme = theme
+
+    const favicon = document.getElementById('site-favicon')
+    if (favicon) favicon.href = theme === 'light' ? faviconLight : faviconDark
+
+    try {
+      localStorage.setItem(THEME_KEY, theme)
+    } catch {
+      // El botón también funciona cuando el navegador bloquea el almacenamiento.
+    }
+  }, [theme])
+
+  useEffect(() => {
+    function syncTheme(event) {
+      if (event.key === THEME_KEY || event.key === null) {
+        setTheme(readStoredTheme())
+      }
+    }
+
+    window.addEventListener('storage', syncTheme)
+    return () => window.removeEventListener('storage', syncTheme)
+  }, [])
+
+  function toggleTheme() {
+    setTheme((current) => current === 'dark' ? 'light' : 'dark')
+  }
+
+  return { theme, toggleTheme }
 }
