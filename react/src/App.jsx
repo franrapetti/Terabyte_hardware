@@ -2,9 +2,7 @@ import { Link, Navigate, Route, Routes } from 'react-router-dom'
 import SiteLayout from './components/layout/SiteLayout.jsx'
 import Login from './pages/auth/Login.jsx'
 import Register from './pages/auth/Register.jsx'
-
-// Versión parcial: solo las rutas de About us, Login y Register.
-// Cuando se migren las demás pages, agregar su <Route> acá (y sacar el placeholder de "/").
+import AboutUs from './pages/info/AboutUs.jsx'
 
 function Placeholder({ title, children }) {
   return (
@@ -20,11 +18,12 @@ export default function App() {
   return (
     <Routes>
       <Route element={<SiteLayout />}>
-        {/* TODO paso 6: reemplazar por <Home /> */}
         <Route index element={<Placeholder title="Inicio"><p>Esta página todavía no fue migrada.</p></Placeholder>} />
         <Route path="home" element={<Navigate to="/" replace />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
+        <Route path="aboutus" element={<AboutUs />} />
+
         <Route path="*" element={
           <Placeholder title="Página no encontrada">
             <p>Esta página no existe todavía.</p>
