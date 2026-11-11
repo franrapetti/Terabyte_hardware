@@ -93,6 +93,12 @@ Hook `useTheme` con `useState` y `useEffect` que agrega o quita la clase `dark` 
 Pasar los productos a un array de datos y mostrarlos con `.map()` y un componente `ProductCard`.
 *Por qué:* se ve la ventaja de JSX frente a `createElement` e `innerHTML`.
 
+Se hizo en dos partes: **6a Products** y **6b Home** (por el carrusel de productos destacados).
+
+**Estado 6a: completado.** `pages/shop/Products.jsx` muestra el catálogo desde `data/productos.js` con `.map()` y `components/products/ProductCard.jsx`. El texto de búsqueda se lee de la URL (`?q=`, que escribe `SearchBar`), la categoría es un `useState` con radios controlados, y la lista visible se calcula con `.filter()`. Los modales de detalle y de confirmación usan `components/ui/Modal.jsx` (se cierra con la X, el fondo o Escape). El carrusel de marcas es una animación CSS (`animate-marquee` en `index.css`). Las imágenes de productos están en `public/products/` para que la URL guardada en el carrito no cambie al compilar. El botón "Agregar al carrito" usa `agregar` de `useCarrito`.
+
+**Estado 6b: completado.** `pages/shop/Home.jsx` tiene el hero y los productos destacados, que reutilizan `ProductCard` dentro de `components/ui/Carousel.jsx`. El carrusel guarda en un `useState` el índice de la primera tarjeta visible y cuántas entran según el ancho de pantalla (3, 2 o 1, recalculado con un `useEffect` sobre `resize`). El avance automático es un `useEffect` con `setTimeout` que depende del índice, así cada cambio (también con las flechas) reinicia el reloj. Diferencia con la versión simple: al llegar al último, "Siguiente" y el avance automático vuelven al principio con un deslizamiento hacia atrás, en lugar del ciclo continuo con clones.
+
 ### 7. Carrito
 `CartContext` con `agregar`, `quitar`, `vaciar` y `total`, sincronizado con `localStorage` mediante `useEffect`. Componente `CartItem`.
 *Por qué:* el carrito lo usan products, services y cart, y hoy se comparte con funciones globales. Es lo más difícil, por eso va después de entender los hooks. Si se complica, empezar pasando el estado por props y luego migrar a Context.
