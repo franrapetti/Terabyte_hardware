@@ -3,9 +3,10 @@ import { useNavigate, useSearchParams } from 'react-router-dom'
 import ProductCard from '../../components/products/ProductCard.jsx'
 import ActionButton from '../../components/ui/ActionButton.jsx'
 import Modal from '../../components/ui/Modal.jsx'
-import { agregarAlCarrito, formatearPrecio } from '../../context/CartContext.jsx'
 import { categorias, marcas, productos } from '../../data/productos.js'
+import { useCarrito } from '../../hooks/useCarrito.js'
 import { usePageTitle } from '../../hooks/usePageTitle.js'
+import { formatearPrecio } from '../../utils/cart.js'
 
 // Franja de logos que se desplaza sola. Se dibuja la lista dos veces: cuando la primera sale de
 // pantalla, la segunda ocupa su lugar y el movimiento parece continuo (animación en index.css).
@@ -59,6 +60,7 @@ function ModalProducto({ modal, onClose, onIrAlCarrito }) {
 export default function Products() {
   usePageTitle('Productos')
   const navigate = useNavigate()
+  const { agregar: agregarAlCarrito } = useCarrito()
   const [params] = useSearchParams()
   const [categoria, setCategoria] = useState('')
   const [modal, setModal] = useState(null)

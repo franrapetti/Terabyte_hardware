@@ -1,4 +1,4 @@
-import { formatearPrecio } from '../../context/CartContext.jsx'
+import { formatearPrecio } from '../../utils/cart.js'
 
 // Tarjeta de un producto: imagen, nombre y precio.
 // Los botones u otras acciones llegan como "children", así la misma tarjeta sirve en distintas páginas.

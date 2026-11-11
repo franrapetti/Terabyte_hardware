@@ -34,7 +34,7 @@ Para el título de cada página se usa `document.title` dentro de un `useEffect`
 
 **Código que ya no cumple** (viene de la rama `react`, hay que reescribirlo en su paso):
 
-- `context/AuthContext.jsx` y `context/CartContext.jsx` usan `useSyncExternalStore`. Se pasan a `Context` + `useState` + `useEffect`, como dice cada paso. El tema ya fue adaptado a `useState` + `useEffect` en el paso 5.
+- `context/AuthContext.jsx` usa `useSyncExternalStore`. Se pasa a `Context` + `useState` + `useEffect` en el paso 9. El tema ya fue adaptado en el paso 5 y el carrito en el paso 7.
 - `functions/useAuthForm.js` usa `FormData` y `AbortController`. Se pasa a formularios controlados con `useState`.
 - `components/ui/FormField.jsx` y `components/ui/InfoSection.jsx` usan `useId`. Se reemplaza por un `id` que llega por props.
 - `components/layout/AuthLayout.jsx` usa `<title>` dentro del componente.
@@ -94,6 +94,8 @@ Pasar los productos a un array de datos y mostrarlos con `.map()` y un component
 ### 7. Carrito
 `CartContext` con `agregar`, `quitar`, `vaciar` y `total`, sincronizado con `localStorage` mediante `useEffect`. Componente `CartItem`.
 *Por qué:* el carrito lo usan products, services y cart, y hoy se comparte con funciones globales. Es lo más difícil, por eso va después de entender los hooks. Si se complica, empezar pasando el estado por props y luego migrar a Context.
+
+**Estado: completado.** `CartContext.js` define el contexto, `CartProvider.jsx` mantiene el estado con `useState` y lo guarda con `useEffect`, y `hooks/useCarrito.js` permite consumirlo. La ruta `/cart` usa `CartItem`, controles de cantidad, total y confirmaciones para vaciar y simular una compra. El Header comparte el contador. Se conserva `terrabyte-cart` y se adaptan las imágenes guardadas por la versión simple. La integración de agregar artículos desde Products y Services queda para sus respectivas páginas, que todavía están pendientes.
 
 ### 8. Services
 Formularios controlados (`useState` por input) que agregan al carrito con el contexto del paso 7.
