@@ -13,7 +13,7 @@ export default function Login() {
   // Con la sesión iniciada vuelve a la página que se pidió antes de ingresar (o al inicio).
   if (user) return <Navigate to={location.state?.from || '/'} replace />
   return (
-    <AuthLayout title="Iniciar sesión" eyebrow="QUÉ BUENO VERTE DE NUEVO" description="Ingresá tus datos para continuar.">
+    <AuthLayout title="Iniciar sesión" eyebrow="QUÉ BUENO VERTE DE NUEVO" description="Ingresá tus datos para continuar." aviso={location.state?.mensaje}>
       <form onSubmit={enviar} aria-busy={cargando} className="flex flex-col gap-5">
         <FormField id="login-email" label="Correo electrónico" type="email" name="email" value={valores.email} onChange={cambiar} autoComplete="email" placeholder="nombre@ejemplo.com" required disabled={cargando} />
         <FormField id="login-password" label="Contraseña" type="password" name="password" value={valores.password} onChange={cambiar} autoComplete="current-password" placeholder="Ingresá tu contraseña" required disabled={cargando} />

@@ -1,6 +1,7 @@
 import { usePageTitle } from '../../hooks/usePageTitle.js'
 
-export default function AuthLayout({ title, eyebrow, description, wide = false, children }) {
+// "aviso" es un mensaje opcional que se muestra arriba del formulario (por ejemplo, por qué se pidió iniciar sesión).
+export default function AuthLayout({ title, eyebrow, description, aviso, wide = false, children }) {
   usePageTitle(title)
 
   return (
@@ -11,6 +12,7 @@ export default function AuthLayout({ title, eyebrow, description, wide = false, 
           <h1 id="auth-title" className="my-2 text-3xl leading-tight font-bold tracking-normal text-[#273137] dark:text-white">{title}</h1>
           <p>{description}</p>
         </div>
+        {aviso && <p role="status" className="mb-6 rounded-lg border border-action/30 bg-[#e8f1fb] p-3 text-center text-sm font-semibold text-[#0b4f99] dark:border-[#38bdf8]/30 dark:bg-[#1c3550] dark:text-[#cfe4ff]">{aviso}</p>}
         {children}
       </section>
     </main>

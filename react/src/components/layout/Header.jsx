@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import logoDark from '../../assets/Logo.png'
 import logoLight from '../../assets/Logo_claro.png'
 import cartDark from '../../assets/shopping-cart_claro.png'
@@ -11,7 +11,6 @@ import ThemeToggle from '../ui/ThemeToggle.jsx'
 import SearchBar from '../products/SearchBar.jsx'
 
 export default function Header() {
-  const navigate = useNavigate()
   const { cantidad } = useCarrito()
   const { theme, toggleTheme } = useTheme()
   const { user, logout } = useAuth()
@@ -23,9 +22,10 @@ export default function Header() {
 
   function handleLogout() {
     try {
+      // No se navega a ningún lado: se queda en la página actual. Si esa página necesita sesión,
+      // RutaProtegida se encarga de llevar a la persona al inicio.
       logout()
       setAuthError('')
-      navigate('/')
     } catch (error) {
       setAuthError(error.message)
     }

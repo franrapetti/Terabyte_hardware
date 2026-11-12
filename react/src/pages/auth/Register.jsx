@@ -15,7 +15,7 @@ export default function Register() {
   // Al crear la cuenta se inicia sesión: vuelve a la página que se pidió antes (o al inicio).
   if (user) return <Navigate to={location.state?.from || '/'} replace />
   return (
-    <AuthLayout title="Crear cuenta" eyebrow="BIENVENIDO A TERRABYTE" description="Completá tus datos para empezar." wide>
+    <AuthLayout title="Crear cuenta" eyebrow="BIENVENIDO A TERRABYTE" description="Completá tus datos para empezar." aviso={location.state?.mensaje} wide>
       <form onSubmit={enviar} aria-busy={cargando} className="flex flex-col gap-5">
         <div className="grid grid-cols-2 gap-4 max-[480px]:grid-cols-1">
           <FormField id="register-first-name" label="Nombre" name="firstName" value={valores.firstName} onChange={cambiar} autoComplete="given-name" placeholder="Lucía" required disabled={cargando} />

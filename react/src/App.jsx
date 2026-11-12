@@ -35,7 +35,7 @@ export default function App() {
       <Route element={<SiteLayout />}>
         <Route index element={<Home />} />
         <Route path="home" element={<Navigate to="/" replace />} />
-        <Route path="cart" element={<RutaProtegida><Cart /></RutaProtegida>} />
+        <Route path="cart" element={<RutaProtegida mensaje="Iniciá sesión para ver tu carrito."><Cart /></RutaProtegida>} />
         <Route path="services" element={<Services />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />

@@ -236,7 +236,9 @@ export default function Services() {
 
           <div className="mt-6 flex flex-wrap justify-between gap-3">
             {pasoActual > 0 && <ActionButton variant="secondary" onClick={() => setPasoActual((actual) => actual - 1)}>Anterior</ActionButton>}
-            {ultimoPaso ? <ActionButton type="submit" className="ml-auto">Agregar al carrito</ActionButton> : <ActionButton className="ml-auto" onClick={() => setPasoActual((actual) => actual + 1)}>Siguiente</ActionButton>}
+            {/* Cada botón lleva su "key" para que React los trate como botones distintos. Sin eso reutiliza el mismo
+                botón y le cambia el tipo a "submit" en pleno clic, y el formulario se envía al pasar del paso 6 al 7. */}
+            {ultimoPaso ? <ActionButton key="agregar" type="submit" className="ml-auto">Agregar al carrito</ActionButton> : <ActionButton key="siguiente" className="ml-auto" onClick={() => setPasoActual((actual) => actual + 1)}>Siguiente</ActionButton>}
           </div>
         </fieldset>
         {errorGuardado && <p role="alert" className="mt-4 rounded-lg bg-red-100 p-3 text-red-800 dark:bg-red-950 dark:text-red-200">{errorGuardado}</p>}
