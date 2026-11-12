@@ -10,9 +10,10 @@ import { formatearPrecio } from '../../utils/cart.js'
 
 // Franja de logos que se desplaza sola. Se dibuja la lista dos veces: cuando la primera sale de
 // pantalla, la segunda ocupa su lugar y el movimiento parece continuo (animación en index.css).
+// El fondo es blanco en los dos temas porque la mayoría de los logos son oscuros y se pierden sobre gris.
 function CarruselMarcas() {
   return (
-    <div className="flex overflow-hidden rounded-2xl bg-[#435058] shadow-[0_4px_10px_rgba(0,0,0,0.35)]">
+    <div className="flex overflow-hidden rounded-2xl bg-white shadow-[0_4px_10px_rgba(24,32,36,0.14)] dark:shadow-[0_4px_10px_rgba(0,0,0,0.35)]">
       {[false, true].map((esCopia) => (
         <ul
           key={esCopia ? 'copia' : 'original'}

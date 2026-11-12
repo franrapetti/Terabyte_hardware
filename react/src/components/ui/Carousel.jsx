@@ -19,7 +19,8 @@ function Flecha({ imagen, etiqueta, onClick, disabled }) {
       aria-label={etiqueta}
       className="shrink-0 cursor-pointer border-0 bg-transparent p-0 drop-shadow-[0_3px_6px_rgba(0,0,0,0.4)] transition duration-200 enabled:hover:scale-120 disabled:cursor-default disabled:opacity-30 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#007aff] motion-reduce:transition-none"
     >
-      <img src={imagen} alt="" className="block h-auto w-10 max-[700px]:w-6" />
+      {/* Las flechas son negras: en el tema oscuro se invierten a blanco para que se vean sobre el panel gris. */}
+      <img src={imagen} alt="" className="block h-auto w-10 max-[700px]:w-6 dark:invert" />
     </button>
   )
 }
@@ -72,7 +73,7 @@ export default function Carousel({ label, slides }) {
     <section
       aria-roledescription="carrusel"
       aria-label={label}
-      className="flex w-full items-center gap-2 rounded-2xl bg-[#435058] px-4 py-8 shadow-[0_6px_16px_rgba(0,0,0,0.4)] max-[700px]:gap-1 max-[700px]:px-1 max-[700px]:py-3"
+      className="flex w-full items-center gap-2 rounded-2xl bg-white px-4 py-8 shadow-[0_6px_16px_rgba(24,32,36,0.14)] max-[700px]:gap-1 max-[700px]:px-1 max-[700px]:py-3 dark:bg-[#435058] dark:shadow-[0_6px_16px_rgba(0,0,0,0.4)]"
     >
       <Flecha imagen="/products/arrow-left.png" etiqueta="Anterior" onClick={anterior} disabled={indiceActual === 0} />
 
